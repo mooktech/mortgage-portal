@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, Home, User, Briefcase, DollarSign, CreditCard, PiggyBank, Shield, Target, CheckCircle } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Home, User, Briefcase, DollarSign, CreditCard, Target, CheckCircle } from 'lucide-react';
 
 const MortgageFactFindPortal = () => {
   const [currentStep, setCurrentStep] = useState(0);
