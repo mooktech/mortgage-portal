@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, MessageCircle, ArrowRight, CheckCircle, Clock, Shield, Users, Star, Menu, X, Home, TrendingUp, FileText } from 'lucide-react';
+import { Phone, MessageCircle, ArrowRight, CheckCircle, Clock, Shield, Users, Star, Menu, X } from 'lucide-react';
 
 const LandingPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -318,27 +318,27 @@ const LandingPage = () => {
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#how-it-works" className="hover:text-blue-400">How It Works</a></li>
-                <li><a href="#features" className="hover:text-blue-400">Features</a></li>
-                <li><a href="#" className="hover:text-blue-400">Pricing</a></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">How It Works</button></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">Features</button></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">Pricing</button></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-blue-400">About Us</a></li>
-                <li><a href="#" className="hover:text-blue-400">Contact</a></li>
-                <li><a href="#" className="hover:text-blue-400">Careers</a></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">About Us</button></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">Contact</button></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">Careers</button></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Legal</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-blue-400">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-blue-400">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-blue-400">FCA Information</a></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">Privacy Policy</button></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">Terms of Service</button></li>
+                <li><button onClick={() => {}} className="hover:text-blue-400">FCA Information</button></li>
               </ul>
             </div>
           </div>
