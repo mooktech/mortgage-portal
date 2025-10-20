@@ -102,13 +102,13 @@ const LandingPage = () => {
 
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl p-2 transform hover:scale-105 transition-transform">
-                <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg flex items-center justify-center overflow-hidden">
-                  <div className="text-center text-gray-600 p-8">
-                    <div className="text-6xl mb-4">📱</div>
-                    <p className="text-sm font-medium">Add your hero image here</p>
-                    <p className="text-xs mt-2 text-gray-500">Woman relaxing with tablet/laptop</p>
-                  </div>
-                </div>
+                <div className="aspect-[4/3] rounded-lg overflow-hidden">
+  <img 
+    src="/heroimage.jpg" 
+    alt="Get your mortgage from your sofa"
+    className="w-full h-full object-cover"
+  />
+</div>
               </div>
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-purple-400 rounded-full opacity-20 blur-2xl"></div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-400 rounded-full opacity-20 blur-2xl"></div>
