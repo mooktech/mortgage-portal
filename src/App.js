@@ -1,1041 +1,356 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, Home, User, Briefcase, DollarSign, CreditCard, Target, CheckCircle } from 'lucide-react';
+import { Phone, MessageCircle, ArrowRight, CheckCircle, Clock, Shield, Users, Star, Menu, X, Home, TrendingUp, FileText } from 'lucide-react';
 
-const MortgageFactFindPortal = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
-    // Personal Details
-    fullName: '',
-    dateOfBirth: '',
-    maritalStatus: '',
-    dependents: '',
-    currentAddress: '',
-    yearsAtAddress: '',
-    previousAddress: '',
-    email: '',
-    phone: '',
-    nationality: '',
-    niNumber: '',
-    
-    // Employment & Income
-    employmentStatus: '',
-    employerName: '',
-    jobTitle: '',
-    yearsInJob: '',
-    basicSalary: '',
-    bonus: '',
-    overtime: '',
-    otherIncome: '',
-    
-    // Property Details
-    propertyPurpose: '',
-    propertyType: '',
-    propertyValue: '',
-    depositAmount: '',
-    loanAmount: '',
-    mortgageTerm: '25',
-    
-    // Financial Commitments
-    monthlyRent: '',
-    creditCards: '',
-    loans: '',
-    childMaintenance: '',
-    councilTax: '',
-    utilities: '',
-    
-    // Credit History
-    creditIssues: 'no',
-    ccjs: 'no',
-    bankruptcy: 'no',
-    
-    // Assets & Savings
-    totalSavings: '',
-    depositSource: '',
-    otherAssets: '',
-    
-    // Repayment Preferences
-    repaymentType: '',
-    ratePreference: '',
-    
-    // Future Plans
-    futurePlans: '',
-    incomeChanges: '',
-    
-    // Protection
-    lifeInsurance: 'no',
-    criticalIllness: 'no',
-    
-    // Objectives
-    primaryGoal: '',
-    concerns: ''
-  });
-
-  const steps = [
-    { id: 0, title: 'Personal Details', icon: User },
-    { id: 1, title: 'Employment & Income', icon: Briefcase },
-    { id: 2, title: 'Property Details', icon: Home },
-    { id: 3, title: 'Financial Commitments', icon: DollarSign },
-    { id: 4, title: 'Credit & Assets', icon: CreditCard },
-    { id: 5, title: 'Preferences & Goals', icon: Target },
-    { id: 6, title: 'Review & Submit', icon: CheckCircle }
-  ];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const nextStep = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const handleSubmit = () => {
-    alert('Fact Find submitted successfully! Your mortgage adviser will be in touch shortly.');
-    console.log('Form Data:', formData);
-  };
-
-  const renderStepContent = () => {
-    switch(currentStep) {
-      case 0:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Personal Details</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="John Smith"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth *</label>
-                <input
-                  type="date"
-                  name="dateOfBirth"
-                  value={formData.dateOfBirth}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Marital Status *</label>
-                <select
-                  name="maritalStatus"
-                  value={formData.maritalStatus}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="">Select...</option>
-                  <option value="single">Single</option>
-                  <option value="married">Married</option>
-                  <option value="civil_partnership">Civil Partnership</option>
-                  <option value="divorced">Divorced</option>
-                  <option value="widowed">Widowed</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Number of Dependents</label>
-                <input
-                  type="number"
-                  name="dependents"
-                  value={formData.dependents}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="0"
-                />
-              </div>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Current Address *</label>
-              <input
-                type="text"
-                name="currentAddress"
-                value={formData.currentAddress}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="123 High Street, London, SW1A 1AA"
-              />
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Years at Current Address *</label>
-                <input
-                  type="number"
-                  name="yearsAtAddress"
-                  value={formData.yearsAtAddress}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="2"
-                  step="0.5"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">National Insurance Number</label>
-                <input
-                  type="text"
-                  name="niNumber"
-                  value={formData.niNumber}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="AB123456C"
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="john.smith@example.com"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="07123456789"
-                />
-              </div>
-            </div>
-          </div>
-        );
-        
-      case 1:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Employment & Income</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Employment Status *</label>
-                <select
-                  name="employmentStatus"
-                  value={formData.employmentStatus}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="">Select...</option>
-                  <option value="employed">Employed</option>
-                  <option value="self_employed">Self-Employed</option>
-                  <option value="contractor">Contractor</option>
-                  <option value="retired">Retired</option>
-                  <option value="unemployed">Unemployed</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Years in Current Job *</label>
-                <input
-                  type="number"
-                  name="yearsInJob"
-                  value={formData.yearsInJob}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="3"
-                  step="0.5"
-                />
-              </div>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Employer Name *</label>
-              <input
-                type="text"
-                name="employerName"
-                value={formData.employerName}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="ABC Company Ltd"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Job Title *</label>
-              <input
-                type="text"
-                name="jobTitle"
-                value={formData.jobTitle}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Software Developer"
-              />
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Basic Annual Salary (£) *</label>
-                <input
-                  type="number"
-                  name="basicSalary"
-                  value={formData.basicSalary}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="45000"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Annual Bonus (£)</label>
-                <input
-                  type="number"
-                  name="bonus"
-                  value={formData.bonus}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="5000"
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Regular Overtime (£/year)</label>
-                <input
-                  type="number"
-                  name="overtime"
-                  value={formData.overtime}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="2000"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Other Income (£/year)</label>
-                <input
-                  type="number"
-                  name="otherIncome"
-                  value={formData.otherIncome}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Rental, investments, etc."
-                />
-              </div>
-            </div>
-            
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-blue-800">
-                <strong>Note:</strong> You'll need to provide supporting documents such as 3 months payslips or 2-3 years accounts for self-employed applicants.
-              </p>
-            </div>
-          </div>
-        );
-        
-      case 2:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Property Details</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Purpose *</label>
-                <select
-                  name="propertyPurpose"
-                  value={formData.propertyPurpose}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="">Select...</option>
-                  <option value="first_time_buyer">First Time Buyer</option>
-                  <option value="moving_home">Moving Home</option>
-                  <option value="remortgage">Remortgage</option>
-                  <option value="buy_to_let">Buy to Let</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Property Type *</label>
-                <select
-                  name="propertyType"
-                  value={formData.propertyType}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="">Select...</option>
-                  <option value="detached">Detached House</option>
-                  <option value="semi_detached">Semi-Detached House</option>
-                  <option value="terraced">Terraced House</option>
-                  <option value="flat">Flat/Apartment</option>
-                  <option value="bungalow">Bungalow</option>
-                  <option value="new_build">New Build</option>
-                </select>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Property Value/Price (£) *</label>
-                <input
-                  type="number"
-                  name="propertyValue"
-                  value={formData.propertyValue}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="350000"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Deposit Available (£) *</label>
-                <input
-                  type="number"
-                  name="depositAmount"
-                  value={formData.depositAmount}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="70000"
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Loan Amount Required (£) *</label>
-                <input
-                  type="number"
-                  name="loanAmount"
-                  value={formData.loanAmount}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="280000"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Preferred Mortgage Term (years) *</label>
-                <input
-                  type="number"
-                  name="mortgageTerm"
-                  value={formData.mortgageTerm}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="25"
-                />
-              </div>
-            </div>
-            
-            {formData.propertyValue && formData.depositAmount && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <p className="text-sm text-green-800">
-                  <strong>Loan to Value (LTV):</strong> {((parseFloat(formData.loanAmount || formData.propertyValue - formData.depositAmount) / parseFloat(formData.propertyValue)) * 100).toFixed(1)}%
-                </p>
-              </div>
-            )}
-          </div>
-        );
-        
-      case 3:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Financial Commitments & Outgoings</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Rent/Mortgage (£)</label>
-                <input
-                  type="number"
-                  name="monthlyRent"
-                  value={formData.monthlyRent}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="1200"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Credit Cards (total balance £)</label>
-                <input
-                  type="number"
-                  name="creditCards"
-                  value={formData.creditCards}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="2000"
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Loans (monthly payment £)</label>
-                <input
-                  type="number"
-                  name="loans"
-                  value={formData.loans}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="350"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Child Maintenance (monthly £)</label>
-                <input
-                  type="number"
-                  name="childMaintenance"
-                  value={formData.childMaintenance}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="0"
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Council Tax (monthly £)</label>
-                <input
-                  type="number"
-                  name="councilTax"
-                  value={formData.councilTax}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="150"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Utilities & Bills (monthly £)</label>
-                <input
-                  type="number"
-                  name="utilities"
-                  value={formData.utilities}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="200"
-                />
-              </div>
-            </div>
-            
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-              <p className="text-sm text-yellow-800">
-                <strong>Important:</strong> Accurate information about your financial commitments helps us find the best mortgage deal for you.
-              </p>
-            </div>
-          </div>
-        );
-        
-      case 4:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Credit History & Assets</h2>
-            
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-              <h3 className="font-semibold text-gray-800 mb-3">Credit History</h3>
-              
-              <div className="space-y-3">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Any adverse credit history?</label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="creditIssues"
-                        value="no"
-                        checked={formData.creditIssues === 'no'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      No
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="creditIssues"
-                        value="yes"
-                        checked={formData.creditIssues === 'yes'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      Yes
-                    </label>
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Any CCJs or Defaults?</label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="ccjs"
-                        value="no"
-                        checked={formData.ccjs === 'no'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      No
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="ccjs"
-                        value="yes"
-                        checked={formData.ccjs === 'yes'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      Yes
-                    </label>
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Any Bankruptcy or IVAs?</label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="bankruptcy"
-                        value="no"
-                        checked={formData.bankruptcy === 'no'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      No
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="bankruptcy"
-                        value="yes"
-                        checked={formData.bankruptcy === 'yes'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      Yes
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-800 mb-3">Assets & Savings</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Total Savings (£) *</label>
-                  <input
-                    type="number"
-                    name="totalSavings"
-                    value={formData.totalSavings}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="80000"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Source of Deposit *</label>
-                  <select
-                    name="depositSource"
-                    value={formData.depositSource}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="">Select...</option>
-                    <option value="savings">Savings</option>
-                    <option value="gift">Gift from Family</option>
-                    <option value="inheritance">Inheritance</option>
-                    <option value="property_sale">Sale of Property</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Other Assets (£)</label>
-                  <input
-                    type="number"
-                    name="otherAssets"
-                    value={formData.otherAssets}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Investments, other properties, etc."
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-        
-      case 5:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Preferences & Goals</h2>
-            
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-              <h3 className="font-semibold text-gray-800 mb-3">Repayment Preferences</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Repayment Type *</label>
-                  <select
-                    name="repaymentType"
-                    value={formData.repaymentType}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="">Select...</option>
-                    <option value="repayment">Repayment (Capital & Interest)</option>
-                    <option value="interest_only">Interest Only</option>
-                    <option value="combination">Combination</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Rate Preference *</label>
-                  <select
-                    name="ratePreference"
-                    value={formData.ratePreference}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="">Select...</option>
-                    <option value="fixed">Fixed Rate</option>
-                    <option value="variable">Variable Rate</option>
-                    <option value="tracker">Tracker</option>
-                    <option value="discount">Discount</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-              <h3 className="font-semibold text-gray-800 mb-3">Protection</h3>
-              
-              <div className="space-y-3">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Do you have Life Insurance?</label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="lifeInsurance"
-                        value="yes"
-                        checked={formData.lifeInsurance === 'yes'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      Yes
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="lifeInsurance"
-                        value="no"
-                        checked={formData.lifeInsurance === 'no'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      No
-                    </label>
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Do you have Critical Illness Cover?</label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="criticalIllness"
-                        value="yes"
-                        checked={formData.criticalIllness === 'yes'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      Yes
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="criticalIllness"
-                        value="no"
-                        checked={formData.criticalIllness === 'no'}
-                        onChange={handleInputChange}
-                        className="mr-2"
-                      />
-                      No
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Primary Goal *</label>
-              <select
-                name="primaryGoal"
-                value={formData.primaryGoal}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="">Select...</option>
-                <option value="lowest_rate">Lowest Interest Rate</option>
-                <option value="lowest_payment">Lowest Monthly Payment</option>
-                <option value="flexibility">Maximum Flexibility</option>
-                <option value="short_term">Pay Off Quickly</option>
-                <option value="stability">Payment Stability</option>
-              </select>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Future Plans</label>
-              <textarea
-                name="futurePlans"
-                value={formData.futurePlans}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                rows="3"
-                placeholder="Any plans to move, retire, change careers, or other life changes?"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Any Concerns or Special Requirements?</label>
-              <textarea
-                name="concerns"
-                value={formData.concerns}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                rows="3"
-                placeholder="Tell us about any specific concerns or requirements you have..."
-              />
-            </div>
-          </div>
-        );
-        
-      case 6:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Review Your Information</h2>
-            
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6 mb-6">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="text-green-600 mt-1" size={24} />
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Almost Done!</h3>
-                  <p className="text-sm text-gray-700">Please review your information below before submitting. Your mortgage adviser will contact you within 24 hours.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <User size={18} />
-                  Personal Details
-                </h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div className="text-gray-600">Name:</div>
-                  <div className="font-medium">{formData.fullName || 'Not provided'}</div>
-                  <div className="text-gray-600">Email:</div>
-                  <div className="font-medium">{formData.email || 'Not provided'}</div>
-                  <div className="text-gray-600">Phone:</div>
-                  <div className="font-medium">{formData.phone || 'Not provided'}</div>
-                  <div className="text-gray-600">Marital Status:</div>
-                  <div className="font-medium capitalize">{formData.maritalStatus.replace('_', ' ') || 'Not provided'}</div>
-                </div>
-              </div>
-              
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <Briefcase size={18} />
-                  Employment & Income
-                </h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div className="text-gray-600">Status:</div>
-                  <div className="font-medium capitalize">{formData.employmentStatus.replace('_', ' ') || 'Not provided'}</div>
-                  <div className="text-gray-600">Employer:</div>
-                  <div className="font-medium">{formData.employerName || 'Not provided'}</div>
-                  <div className="text-gray-600">Annual Salary:</div>
-                  <div className="font-medium">£{formData.basicSalary ? parseInt(formData.basicSalary).toLocaleString() : 'Not provided'}</div>
-                </div>
-              </div>
-              
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <Home size={18} />
-                  Property Details
-                </h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div className="text-gray-600">Purpose:</div>
-                  <div className="font-medium capitalize">{formData.propertyPurpose.replace('_', ' ') || 'Not provided'}</div>
-                  <div className="text-gray-600">Property Value:</div>
-                  <div className="font-medium">£{formData.propertyValue ? parseInt(formData.propertyValue).toLocaleString() : 'Not provided'}</div>
-                  <div className="text-gray-600">Deposit:</div>
-                  <div className="font-medium">£{formData.depositAmount ? parseInt(formData.depositAmount).toLocaleString() : 'Not provided'}</div>
-                  <div className="text-gray-600">Loan Amount:</div>
-                  <div className="font-medium">£{formData.loanAmount ? parseInt(formData.loanAmount).toLocaleString() : 'Not provided'}</div>
-                  <div className="text-gray-600">Term:</div>
-                  <div className="font-medium">{formData.mortgageTerm} years</div>
-                </div>
-              </div>
-              
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <Target size={18} />
-                  Preferences
-                </h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div className="text-gray-600">Repayment Type:</div>
-                  <div className="font-medium capitalize">{formData.repaymentType.replace('_', ' ') || 'Not provided'}</div>
-                  <div className="text-gray-600">Rate Preference:</div>
-                  <div className="font-medium capitalize">{formData.ratePreference || 'Not provided'}</div>
-                  <div className="text-gray-600">Primary Goal:</div>
-                  <div className="font-medium capitalize">{formData.primaryGoal.replace('_', ' ') || 'Not provided'}</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
-              <p className="text-sm text-blue-800">
-                <strong>Data Protection:</strong> Your information will be handled in accordance with GDPR and will only be used to process your mortgage application. We will not share your data with third parties without your consent.
-              </p>
-            </div>
-            
-            <div className="flex items-start gap-2 mt-4">
-              <input type="checkbox" id="consent" className="mt-1" />
-              <label htmlFor="consent" className="text-sm text-gray-700">
-                I confirm that the information provided is accurate and I consent to a credit check being performed.
-              </label>
-            </div>
-          </div>
-        );
-        
-      default:
-        return null;
-    }
-  };
+const LandingPage = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      <div className="max-w-5xl mx-auto p-6">
-        {/* Header */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Mortgage Fact Find</h1>
-          <p className="text-gray-600">Complete your mortgage application in a few simple steps</p>
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <div className="text-2xl font-bold">
+                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">GETMY</span>
+                <span className="text-gray-800">.MORTGAGE</span>
+              </div>
+            </div>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#how-it-works" className="text-gray-700 hover:text-blue-600 transition-colors">How It Works</a>
+              <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
+              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+              <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all">
+                Login
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t">
+            <div className="px-4 py-4 space-y-3">
+              <a href="#how-it-works" className="block text-gray-700 hover:text-blue-600">How It Works</a>
+              <a href="#features" className="block text-gray-700 hover:text-blue-600">Features</a>
+              <a href="#about" className="block text-gray-700 hover:text-blue-600">About</a>
+              <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-semibold">
+                Login
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center pt-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 opacity-90">
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.2),transparent_50%)]"></div>
         </div>
         
-        {/* Progress Bar */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              const isActive = index === currentStep;
-              const isCompleted = index < currentStep;
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="text-white">
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                Get Your Mortgage<br />
+                <span className="text-blue-200">From Your Sofa</span>
+              </h1>
               
-              return (
-                <div key={step.id} className="flex items-center flex-1">
-                  <div className="flex flex-col items-center flex-1">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                      isActive ? 'bg-blue-600 text-white' : 
-                      isCompleted ? 'bg-green-500 text-white' : 
-                      'bg-gray-200 text-gray-500'
-                    }`}>
-                      <Icon size={20} />
-                    </div>
-                    <span className={`text-xs mt-2 text-center hidden md:block ${
-                      isActive ? 'text-blue-600 font-semibold' : 
-                      isCompleted ? 'text-green-600' : 
-                      'text-gray-500'
-                    }`}>
-                      {step.title}
-                    </span>
-                  </div>
-                  {index < steps.length - 1 && (
-                    <div className={`h-1 flex-1 ${
-                      isCompleted ? 'bg-green-500' : 'bg-gray-200'
-                    }`} />
-                  )}
+              <p className="text-xl text-blue-100 mb-8">
+                Your complete mortgage journey in one beautiful portal. No stress, no hassle, just results.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                <button className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+                  Get Started Now
+                  <ArrowRight size={20} />
+                </button>
+                
+                <button className="border-2 border-white/50 hover:bg-white/10 text-white px-8 py-4 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 transition-all backdrop-blur-sm">
+                  <Phone size={20} />
+                  Speak to a Broker
+                </button>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <div className="text-3xl font-bold text-white">2 min</div>
+                  <div className="text-sm text-blue-100">Quick Quote</div>
                 </div>
-              );
-            })}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <div className="text-3xl font-bold text-white">24/7</div>
+                  <div className="text-sm text-blue-100">Portal Access</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <div className="text-3xl font-bold text-white">100+</div>
+                  <div className="text-sm text-blue-100">Lenders</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Image - Placeholder for your image */}
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-2xl p-2 transform hover:scale-105 transition-transform">
+                <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg flex items-center justify-center overflow-hidden">
+                  <div className="text-center text-gray-600 p-8">
+                    <div className="text-6xl mb-4">📱</div>
+                    <p className="text-sm font-medium">Add your hero image here</p>
+                    <p className="text-xs mt-2 text-gray-500">Woman relaxing with tablet/laptop</p>
+                  </div>
+                </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-purple-400 rounded-full opacity-20 blur-2xl"></div>
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-400 rounded-full opacity-20 blur-2xl"></div>
+            </div>
+
           </div>
-          
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
-            />
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose GETMY.MORTGAGE?</h2>
+            <p className="text-xl text-gray-600">Everything you need in one place</p>
           </div>
-          <p className="text-center text-sm text-gray-600 mt-2">
-            Step {currentStep + 1} of {steps.length}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white border-2 border-blue-100 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mb-4">
+                <Clock className="text-white" size={24} />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Lightning Fast</h3>
+              <p className="text-gray-600">Get a quote in 2 minutes. Decision in Principle in 24 hours.</p>
+            </div>
+
+            <div className="bg-white border-2 border-purple-100 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
+                <Shield className="text-white" size={24} />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">100% Secure</h3>
+              <p className="text-gray-600">Bank-level encryption. Your data is completely protected.</p>
+            </div>
+
+            <div className="bg-white border-2 border-indigo-100 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-xl flex items-center justify-center mb-4">
+                <Users className="text-white" size={24} />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Expert Brokers</h3>
+              <p className="text-gray-600">Real people, real expertise. Chat with us anytime.</p>
+            </div>
+
+            <div className="bg-white border-2 border-blue-100 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center mb-4">
+                <Star className="text-white" size={24} />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Best Rates</h3>
+              <p className="text-gray-600">Access to 100+ lenders. We find your perfect match.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+            <p className="text-xl text-gray-600">Your mortgage in 4 simple steps</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                1
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Quick Quote</h3>
+              <p className="text-gray-600">Answer 5 questions and get instant rate estimates</p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                2
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Create Account</h3>
+              <p className="text-gray-600">Set up your secure portal in seconds</p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                3
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Upload Documents</h3>
+              <p className="text-gray-600">Easy drag-and-drop. AI does the rest</p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                4
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Get Approved</h3>
+              <p className="text-gray-600">Decision in Principle in 24 hours</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+              Start Your Journey
+              <ArrowRight size={20} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl p-12 text-white shadow-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-4xl font-bold mb-6">Everything In One Place</h2>
+                <p className="text-xl text-blue-100 mb-8">
+                  No more jumping between websites, emails, and phone calls. Your entire mortgage journey lives in your personal portal.
+                </p>
+
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                    <CheckCircle className="text-blue-200 flex-shrink-0 mt-1" size={24} />
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Real-Time Updates</h3>
+                      <p className="text-blue-100">Track your application progress 24/7</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                    <CheckCircle className="text-blue-200 flex-shrink-0 mt-1" size={24} />
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Direct Broker Chat</h3>
+                      <p className="text-blue-100">Message your broker anytime, get fast responses</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                    <CheckCircle className="text-blue-200 flex-shrink-0 mt-1" size={24} />
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">AI Document Processing</h3>
+                      <p className="text-blue-100">Upload docs once, AI extracts everything automatically</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                    <CheckCircle className="text-blue-200 flex-shrink-0 mt-1" size={24} />
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Area Insights</h3>
+                      <p className="text-blue-100">Discover everything about your new neighborhood</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-4 shadow-2xl">
+                <div className="aspect-square bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg flex items-center justify-center">
+                  <div className="text-center text-gray-600 p-8">
+                    <div className="text-6xl mb-4">🏠</div>
+                    <p className="text-sm font-medium">Client Portal Preview</p>
+                    <p className="text-xs mt-2 text-gray-500">Dashboard screenshot goes here</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Ready to Get Your Mortgage?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Join thousands who've already started their journey
           </p>
-        </div>
-        
-        {/* Form Content */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          {renderStepContent()}
-        </div>
-        
-        {/* Navigation Buttons */}
-        <div className="flex justify-between">
-          <button
-            onClick={prevStep}
-            disabled={currentStep === 0}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium ${
-              currentStep === 0
-                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                : 'bg-gray-600 text-white hover:bg-gray-700'
-            }`}
-          >
-            <ChevronLeft size={20} />
-            Previous
-          </button>
-          
-          {currentStep === steps.length - 1 ? (
-            <button
-              onClick={handleSubmit}
-              className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700"
-            >
-              Submit Application
-              <CheckCircle size={20} />
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-lg">
+              Get Started Now
+              <ArrowRight size={20} />
             </button>
-          ) : (
-            <button
-              onClick={nextStep}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
-            >
-              Next
-              <ChevronRight size={20} />
+            
+            <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center justify-center gap-2 transition-all backdrop-blur-sm">
+              <MessageCircle size={20} />
+              Chat With Us
             </button>
-          )}
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="text-2xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">GETMY</span>
+                <span className="text-white">.MORTGAGE</span>
+              </div>
+              <p className="text-gray-400 text-sm">
+                Making mortgages simple, personal, and stress-free.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Product</h3>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#how-it-works" className="hover:text-blue-400">How It Works</a></li>
+                <li><a href="#features" className="hover:text-blue-400">Features</a></li>
+                <li><a href="#" className="hover:text-blue-400">Pricing</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-blue-400">About Us</a></li>
+                <li><a href="#" className="hover:text-blue-400">Contact</a></li>
+                <li><a href="#" className="hover:text-blue-400">Careers</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Legal</h3>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-blue-400">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-blue-400">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-blue-400">FCA Information</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+            <p>© 2025 GETMY.MORTGAGE. All rights reserved.</p>
+            <p className="mt-2">FCA Registered. Your home may be repossessed if you do not keep up repayments on your mortgage.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
 
-export default MortgageFactFindPortal;
+export default LandingPage;
