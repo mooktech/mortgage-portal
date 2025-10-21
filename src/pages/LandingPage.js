@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Phone, MessageCircle, ArrowRight, CheckCircle, Clock, Shield, Users, Star, Menu, X } from 'lucide-react';
 
 const LandingPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
@@ -22,7 +23,10 @@ const LandingPage = () => {
               <a href="#how-it-works" className="text-gray-700 hover:text-blue-600 transition-colors">How It Works</a>
               <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
               <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-              <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all">
+              <button 
+                onClick={() => navigate('/login')}
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transition-all"
+              >
                 Login
               </button>
             </div>
@@ -42,7 +46,10 @@ const LandingPage = () => {
               <a href="#how-it-works" className="block text-gray-700 hover:text-blue-600">How It Works</a>
               <a href="#features" className="block text-gray-700 hover:text-blue-600">Features</a>
               <a href="#about" className="block text-gray-700 hover:text-blue-600">About</a>
-              <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-semibold">
+              <button 
+                onClick={() => navigate('/login')}
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-semibold"
+              >
                 Login
               </button>
             </div>
@@ -103,12 +110,12 @@ const LandingPage = () => {
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl p-2 transform hover:scale-105 transition-transform">
                 <div className="aspect-[4/3] rounded-lg overflow-hidden">
-  <img 
-    src="/heroimage.jpg" 
-    alt="Get your mortgage from your sofa"
-    className="w-full h-full object-cover"
-  />
-</div>
+                  <img 
+                    src="/heroimage.jpg" 
+                    alt="Get your mortgage from your sofa"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-purple-400 rounded-full opacity-20 blur-2xl"></div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-400 rounded-full opacity-20 blur-2xl"></div>
