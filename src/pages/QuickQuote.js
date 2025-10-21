@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { ArrowRight, Home, DollarSign, Briefcase, MapPin, Mail, TrendingUp, CheckCircle } from 'lucide-react';
+import { ArrowRight, Home, DollarSign, Briefcase, MapPin, Mail, TrendingUp, CheckCircle, Lock, AlertCircle } from 'lucide-react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const QuickQuoteForm = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     propertyValue: '',
@@ -12,6 +17,10 @@ const QuickQuoteForm = () => {
     email: ''
   });
   const [showResults, setShowResults] = useState(false);
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +52,70 @@ const QuickQuoteForm = () => {
     const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
     
     return Math.round(monthlyPayment);
+  };
+
+  // Create account and continue to portal
+  const handleCreateAccount = async () => {
+    setError('');
+
+    // Validation
+    if (!password || !confirmPassword) {
+      setError('Please enter a password');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords don't match");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Create user account
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        password
+      );
+
+      // Save user data and quote to Firestore
+      await setDoc(doc(db, 'users', userCredential.user.uid), {
+        email: formData.email,
+        createdAt: new Date().toISOString(),
+        role: 'client',
+        quoteData: {
+          propertyValue: formData.propertyValue,
+          depositAmount: formData.depositAmount,
+          employmentStatus: formData.employmentStatus,
+          annualIncome: formData.annualIncome,
+          postcode: formData.postcode,
+          loanAmount: parseFloat(formData.propertyValue) - parseFloat(formData.depositAmount),
+          ltv: ((parseFloat(formData.propertyValue) - parseFloat(formData.depositAmount)) / parseFloat(formData.propertyValue) * 100).toFixed(1),
+          estimatedMonthlyPayment: calculateMonthlyPayment()
+        }
+      });
+
+      // Redirect to portal
+      navigate('/portal');
+
+    } catch (err) {
+      console.error('Account creation error:', err);
+      if (err.code === 'auth/email-already-in-use') {
+        setError('An account with this email already exists. Please log in instead.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Please enter a valid email address.');
+      } else {
+        setError('Failed to create account. Please try again.');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Sample lender rates (will come from Firebase later)
@@ -131,20 +204,96 @@ const QuickQuoteForm = () => {
             </div>
           </div>
 
-          {/* CTA Buttons */}
+          {/* Create Account Section */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">What's Next?</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">Save Your Quote & Continue</h3>
+            <p className="text-center text-gray-600 mb-6">Create your account to access your personalized portal</p>
+            
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-red-800">{error}</p>
+              </div>
+            )}
+
+            <div className="max-w-md mx-auto space-y-4 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email (Your Username)
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="email"
+                    value={formData.email}
+                    disabled
+                    className="w-full pl-11 pr-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-gray-700"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Create a Password
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-11 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                    placeholder="••••••••"
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Minimum 6 characters</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full pl-11 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                    placeholder="••••••••"
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transition-all flex items-center justify-center gap-2">
-                Continue to Full Application
-                <ArrowRight size={20} />
+              <button 
+                onClick={handleCreateAccount}
+                disabled={loading}
+                className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <>
+                    Create Account & Continue
+                    <ArrowRight size={20} />
+                  </>
+                )}
               </button>
               <button className="flex-1 border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-all">
                 Speak to a Broker
               </button>
             </div>
+            
             <p className="text-center text-sm text-gray-500 mt-4">
-              Your quote has been saved to {formData.email}
+              Already have an account?{' '}
+              <button
+                onClick={() => navigate('/login')}
+                className="text-blue-600 font-semibold hover:underline"
+              >
+                Log in here
+              </button>
             </p>
           </div>
 
