@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, FileText, CheckCircle, AlertCircle, Loader, X, Eye } from 'lucide-react';
+import { Upload, FileText, CheckCircle, AlertCircle, Loader, X } from 'lucide-react';
 
 const DocumentUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Star, MapPin, Phone, Mail, MessageCircle, Filter, Award, Clock, CheckCircle, TrendingUp } from 'lucide-react';
-
+import { Search, Star, MapPin, MessageCircle, Filter, Award, CheckCircle } from 'lucide-react';
 const SolicitorsMarketplace = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSpecialty, setSelectedSpecialty] = useState('all');

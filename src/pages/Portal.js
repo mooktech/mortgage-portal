@@ -15,7 +15,7 @@ import {
   Clock,
   AlertCircle,
   Menu,
-  X
+  
 } from 'lucide-react';
 
 const Portal = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Star, MapPin, Phone, Truck, Package, Shield, Clock, CheckCircle, Award, Users, TrendingUp } from 'lucide-react';
+import { Search, Star, MapPin, Truck, Shield, Clock, CheckCircle, Award, Users } from 'lucide-react';
 
 const RemovalsMarketplace = () => {
   const [searchTerm, setSearchTerm] = useState('');
