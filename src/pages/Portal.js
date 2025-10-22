@@ -83,7 +83,7 @@ const Portal = () => {
     } finally {
       setNewsLoading(false);
     }
-  };
+  }; []);
 
   const handleLogout = async () => {
     try {
