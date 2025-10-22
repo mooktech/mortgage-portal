@@ -66,7 +66,7 @@ const Portal = () => {
     }
   }, [missionControlOpen]);
 
-  const fetchPropertyNews = async () => {
+  const fetchPropertyNews = useCallback(async () => {
     setNewsLoading(true);
     
     try {
