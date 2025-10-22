@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { ArrowRight, Home, DollarSign, Briefcase, MapPin, Mail, TrendingUp, CheckCircle, Lock, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Home, DollarSign, Briefcase, MapPin, Mail, TrendingUp, CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
-import { doc, setDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { doc, setDoc, collection, getDocs, query, where } from 'firebase/firestore';
 
 const QuickQuoteForm = () => {
   const navigate = useNavigate();
@@ -21,17 +21,60 @@ const QuickQuoteForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [mortgageProducts, setMortgageProducts] = useState([]);
+  const [loadingRates, setLoadingRates] = useState(false);
+
+  // Fetch mortgage products from Firebase
+  const fetchMortgageProducts = async (ltv) => {
+    setLoadingRates(true);
+    try {
+      const productsRef = collection(db, 'mortgageProducts');
+      const q = query(productsRef, where('status', '==', 'active'));
+      
+      const querySnapshot = await getDocs(q);
+      const products = [];
+      
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        // Filter client-side: only include products where maxLTV >= ltv
+        if (data.maxLTV >= ltv) {
+          products.push({ id: doc.id, ...data });
+        }
+      });
+
+      console.log(`Found ${products.length} products for LTV ${ltv.toFixed(1)}%`); // Debug log
+
+      // Sort by rate (lowest first)
+      products.sort((a, b) => a.rate - b.rate);
+      
+      // Take top 5 products
+      setMortgageProducts(products.slice(0, 5));
+      
+      if (products.length === 0) {
+        setError('No products found for your LTV. Please adjust your deposit.');
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      setError('Could not load mortgage rates. Please try again.');
+    } finally {
+      setLoadingRates(false);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const nextStep = () => {
+  const nextStep = async () => {
     if (step < 6) {
       setStep(step + 1);
     } else {
-      // Show results
+      // Calculate LTV and fetch real products
+      const loanAmount = parseFloat(formData.propertyValue) - parseFloat(formData.depositAmount);
+      const ltv = (loanAmount / parseFloat(formData.propertyValue)) * 100;
+      
+      await fetchMortgageProducts(ltv);
       setShowResults(true);
     }
   };
@@ -42,23 +85,23 @@ const QuickQuoteForm = () => {
     }
   };
 
-  // Calculate estimated monthly payment
-  const calculateMonthlyPayment = () => {
-    const loanAmount = parseFloat(formData.propertyValue) - parseFloat(formData.depositAmount);
-    const annualRate = 4.75; // Average rate
+  // Calculate monthly payment for a given loan amount and rate
+  const calculateMonthlyPayment = (loanAmount, annualRate, termYears = 25) => {
     const monthlyRate = annualRate / 100 / 12;
-    const numberOfPayments = 25 * 12; // 25 year term
+    const numberOfPayments = termYears * 12;
     
     const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
     
     return Math.round(monthlyPayment);
   };
 
-  // Create account and continue to portal
+  const loanAmount = parseFloat(formData.propertyValue) - parseFloat(formData.depositAmount);
+  const ltv = ((loanAmount / parseFloat(formData.propertyValue)) * 100).toFixed(1);
+
+  // Create account and continue
   const handleCreateAccount = async () => {
     setError('');
 
-    // Validation
     if (!password || !confirmPassword) {
       setError('Please enter a password');
       return;
@@ -77,14 +120,12 @@ const QuickQuoteForm = () => {
     setLoading(true);
 
     try {
-      // Create user account
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
         password
       );
 
-      // Save user data and quote to Firestore
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         email: formData.email,
         createdAt: new Date().toISOString(),
@@ -95,13 +136,12 @@ const QuickQuoteForm = () => {
           employmentStatus: formData.employmentStatus,
           annualIncome: formData.annualIncome,
           postcode: formData.postcode,
-          loanAmount: parseFloat(formData.propertyValue) - parseFloat(formData.depositAmount),
-          ltv: ((parseFloat(formData.propertyValue) - parseFloat(formData.depositAmount)) / parseFloat(formData.propertyValue) * 100).toFixed(1),
-          estimatedMonthlyPayment: calculateMonthlyPayment()
+          loanAmount: loanAmount,
+          ltv: ltv,
+          estimatedMonthlyPayment: mortgageProducts.length > 0 ? calculateMonthlyPayment(loanAmount, mortgageProducts[0].rate) : null
         }
       });
 
-      // Redirect to portal
       navigate('/portal');
 
     } catch (err) {
@@ -118,18 +158,6 @@ const QuickQuoteForm = () => {
     }
   };
 
-  // Sample lender rates (will come from Firebase later)
-  const sampleRates = [
-    { lender: 'HSBC', rate: 4.64, product: '5 Year Fixed', fee: 0, monthlyPayment: calculateMonthlyPayment() - 50 },
-    { lender: 'Nationwide', rate: 4.89, product: '2 Year Fixed', fee: 999, monthlyPayment: calculateMonthlyPayment() + 20 },
-    { lender: 'Santander', rate: 4.75, product: '3 Year Fixed', fee: 1495, monthlyPayment: calculateMonthlyPayment() },
-    { lender: 'Barclays', rate: 5.12, product: 'Variable Tracker', fee: 0, monthlyPayment: calculateMonthlyPayment() + 80 },
-    { lender: 'NatWest', rate: 4.92, product: '2 Year Fixed', fee: 995, monthlyPayment: calculateMonthlyPayment() + 35 }
-  ];
-
-  const loanAmount = parseFloat(formData.propertyValue) - parseFloat(formData.depositAmount);
-  const ltv = ((loanAmount / parseFloat(formData.propertyValue)) * 100).toFixed(1);
-
   if (showResults) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4">
@@ -141,7 +169,7 @@ const QuickQuoteForm = () => {
               <CheckCircle className="text-green-600" size={32} />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Great News!</h1>
-            <p className="text-xl text-gray-600">Here are your personalized mortgage options</p>
+            <p className="text-xl text-gray-600">Here are your personalized mortgage options from REAL lenders</p>
           </div>
 
           {/* Quick Summary */}
@@ -156,63 +184,105 @@ const QuickQuoteForm = () => {
                 <div className="text-3xl font-bold">{ltv}%</div>
               </div>
               <div>
-                <div className="text-sm text-blue-100 mb-1">Est. Monthly Payment</div>
-                <div className="text-3xl font-bold">£{calculateMonthlyPayment().toLocaleString()}</div>
+                <div className="text-sm text-blue-100 mb-1">Best Rate Available</div>
+                <div className="text-3xl font-bold">
+                  {mortgageProducts.length > 0 ? `${mortgageProducts[0].rate}%` : 'Loading...'}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Rate Options */}
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Best Rates</h2>
-            <div className="grid grid-cols-1 gap-4">
-              {sampleRates.map((rate, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border-2 border-transparent hover:border-blue-500">
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-2xl font-bold text-gray-900">{rate.lender}</h3>
-                        {index === 0 && (
-                          <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                            Best Rate
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-gray-600 mb-3">{rate.product}</p>
-                      <div className="flex items-center gap-6 text-sm">
-                        <div>
-                          <span className="text-gray-500">Rate: </span>
-                          <span className="font-semibold text-gray-900">{rate.rate}%</span>
-                        </div>
-                        <div>
-                          <span className="text-gray-500">Fee: </span>
-                          <span className="font-semibold text-gray-900">
-                            {rate.fee === 0 ? 'FREE' : `£${rate.fee.toLocaleString()}`}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm text-gray-500 mb-1">Monthly Payment</div>
-                      <div className="text-3xl font-bold text-blue-600">
-                        £{rate.monthlyPayment.toLocaleString()}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          {/* Loading State */}
+          {loadingRates && (
+            <div className="bg-white rounded-2xl shadow-lg p-8 text-center mb-6">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <p className="text-gray-600">Finding your best rates from our database...</p>
             </div>
-          </div>
+          )}
 
-          {/* Create Account Section */}
+          {/* Rate Options */}
+          {!loadingRates && mortgageProducts.length > 0 && (
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Best Rates (Real Lender Data)</h2>
+              <div className="grid grid-cols-1 gap-4">
+                {mortgageProducts.map((product, index) => {
+                  const monthlyPayment = calculateMonthlyPayment(loanAmount, product.rate, 25);
+                  
+                  return (
+                    <div key={product.id} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border-2 border-transparent hover:border-blue-500">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h3 className="text-2xl font-bold text-gray-900">{product.lender}</h3>
+                            {index === 0 && (
+                              <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                Best Rate
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-gray-600 mb-3">{product.productName}</p>
+                          <div className="flex items-center gap-6 text-sm flex-wrap">
+                            <div>
+                              <span className="text-gray-500">Rate: </span>
+                              <span className="font-semibold text-gray-900">{product.rate}%</span>
+                            </div>
+                            <div>
+                              <span className="text-gray-500">APR: </span>
+                              <span className="font-semibold text-gray-900">{product.apr}%</span>
+                            </div>
+                            <div>
+                              <span className="text-gray-500">Fee: </span>
+                              <span className="font-semibold text-gray-900">
+                                {product.productFee === 0 ? 'FREE' : `£${product.productFee.toLocaleString()}`}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="text-gray-500">Term: </span>
+                              <span className="font-semibold text-gray-900">{product.term} years</span>
+                            </div>
+                          </div>
+                          
+                          {/* Features */}
+                          {product.features && product.features.length > 0 && (
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              {product.features.slice(0, 2).map((feature, i) => (
+                                <span key={i} className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
+                                  {feature}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        <div className="text-right ml-6">
+                          <div className="text-sm text-gray-500 mb-1">Monthly Payment</div>
+                          <div className="text-3xl font-bold text-blue-600">
+                            £{monthlyPayment.toLocaleString()}
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">Based on 25yr term</div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* No Products Found */}
+          {!loadingRates && mortgageProducts.length === 0 && (
+            <div className="bg-white rounded-2xl shadow-lg p-8 text-center mb-6">
+              <p className="text-gray-600">No products found for your criteria. Please contact us for specialist advice.</p>
+            </div>
+          )}
+
+          {/* CTA Buttons - Create Account */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">Save Your Quote & Continue</h3>
             <p className="text-center text-gray-600 mb-6">Create your account to access your personalized portal</p>
             
             {error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-red-800">{error}</p>
+                <div className="text-sm text-red-800">{error}</div>
               </div>
             )}
 
@@ -221,31 +291,25 @@ const QuickQuoteForm = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email (Your Username)
                 </label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="email"
-                    value={formData.email}
-                    disabled
-                    className="w-full pl-11 pr-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-gray-700"
-                  />
-                </div>
+                <input
+                  type="email"
+                  value={formData.email}
+                  disabled
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-gray-700"
+                />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Create a Password
                 </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-11 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                    placeholder="••••••••"
-                  />
-                </div>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                  placeholder="••••••••"
+                />
                 <p className="text-xs text-gray-500 mt-1">Minimum 6 characters</p>
               </div>
 
@@ -253,16 +317,13 @@ const QuickQuoteForm = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Confirm Password
                 </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full pl-11 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-                    placeholder="••••••••"
-                  />
-                </div>
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                  placeholder="••••••••"
+                />
               </div>
             </div>
 
@@ -313,7 +374,7 @@ const QuickQuoteForm = () => {
             <span className="text-gray-800">.MORTGAGE</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Get Your Quote in 2 Minutes</h1>
-          <p className="text-gray-600">Answer {6} quick questions to see your best rates</p>
+          <p className="text-gray-600">Answer 6 quick questions to see your best rates from REAL lenders</p>
         </div>
 
         {/* Progress Bar */}
@@ -501,7 +562,7 @@ const QuickQuoteForm = () => {
             }
             className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            {step === 6 ? 'See My Rates' : 'Continue'}
+            {step === 6 ? 'See My Real Rates' : 'Continue'}
             <ArrowRight size={20} />
           </button>
         </div>
