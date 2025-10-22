@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../firebase';
@@ -64,7 +64,7 @@ const Portal = () => {
     if (missionControlOpen === 'market-alert' && propertyNews.length === 0) {
       fetchPropertyNews();
     }
-  }, [missionControlOpen]);
+  }, [missionControlOpen, propertyNews.length, fetchPropertyNews]);
 
   const fetchPropertyNews = useCallback(async () => {
     setNewsLoading(true);
@@ -83,7 +83,7 @@ const Portal = () => {
     } finally {
       setNewsLoading(false);
     }
-  }; []);
+  }, []);
 
   const handleLogout = async () => {
     try {
