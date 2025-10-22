@@ -43,35 +43,10 @@ const Portal = () => {
   const [currentRates, setCurrentRates] = useState(null);
   const [newsLastUpdated, setNewsLastUpdated] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
-        if (userDoc.exists()) {
-          setUserData(userDoc.data());
-        }
-      } else {
-        navigate('/login');
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, [navigate]);
-
-  useEffect(() => {
-    if (missionControlOpen === 'market-alert' && propertyNews.length === 0) {
-      fetchPropertyNews();
-    }
-  }, [missionControlOpen, propertyNews.length, fetchPropertyNews]);
-
   const fetchPropertyNews = useCallback(async () => {
     setNewsLoading(true);
-    
     try {
       const newsDoc = await getDoc(doc(db, 'propertyNews', 'latest'));
-      
       if (newsDoc.exists()) {
         const data = newsDoc.data();
         setPropertyNews(data.articles || []);
@@ -85,6 +60,27 @@ const Portal = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+        if (userDoc.exists()) {
+          setUserData(userDoc.data());
+        }
+      } else {
+        navigate('/login');
+      }
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, [navigate]);
+
+  useEffect(() => {
+    if (missionControlOpen === 'market-alert' && propertyNews.length === 0) {
+      fetchPropertyNews();
+    }
+  }, [missionControlOpen, propertyNews.length, fetchPropertyNews]);
   const handleLogout = async () => {
     try {
       await signOut(auth);
