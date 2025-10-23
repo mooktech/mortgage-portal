@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, Home, User, Briefcase, DollarSign, CreditCard, Target, CheckCircle, AlertCircle, PlusCircle, Trash2, Calculator } from 'lucide-react';
 import { auth, db } from '../firebase';
-import { collection, addDoc, doc, updateDoc, getDoc, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
+import { collection, addDoc, doc, updateDoc, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
 
 const FactFind = () => {
   const navigate = useNavigate();
