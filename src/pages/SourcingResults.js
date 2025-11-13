@@ -13,6 +13,455 @@ import {
   Star
 } from 'lucide-react';
 
+// ============================================
+// PURE UTILITY FUNCTIONS (Outside Component)
+// ============================================
+
+const calculateMonthlyPayment = (loanAmount, rate, years = 25) => {
+  const monthlyRate = rate / 100 / 12;
+  const numPayments = years * 12;
+  if (monthlyRate === 0) return loanAmount / numPayments;
+  return loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
+         (Math.pow(1 + monthlyRate, numPayments) - 1);
+};
+
+const evaluateLenders = (userData, lenders) => {
+  const matches = [];
+  let debugText = '=== BLUESTONE MATCHING DEBUG LOG ===\n\n';
+
+  const addLog = (message, data = null) => {
+    debugText += `${message}\n`;
+    if (data) {
+      debugText += JSON.stringify(data, null, 2) + '\n';
+    }
+    debugText += '\n';
+    console.log(message, data || '');
+  };
+
+  const propertyValue = parseFloat(userData.propertyValue) || 0;
+  const depositAmount = parseFloat(userData.depositAmount) || 0;
+  const loanAmount = propertyValue - depositAmount;
+  const ltv = propertyValue > 0 ? ((loanAmount / propertyValue) * 100) : 75;
+
+  const income = parseFloat(userData.basicSalary) || 0;
+  const bonus = parseFloat(userData.bonus) || 0;
+  const totalIncome = income + bonus;
+  const employmentStatus = userData.employmentStatus || 'employed';
+  const mortgageTerm = parseInt(userData.mortgageTerm) || 25;
+
+  const ccjs = userData.ccjs || [];
+  const defaults = userData.defaults || [];
+  const missedPayments = parseInt(userData.creditCardMissedPayments) || 0;
+  const bankruptcyDate = userData.bankruptcyDate;
+  const ivaDate = userData.ivaDate;
+  const dmpActive = userData.dmpActive === 'yes';
+  const paydayLoans = parseInt(userData.paydayLoans) || 0;
+
+  const now = new Date();
+  const monthsSinceCCJ = ccjs.length > 0 ?
+    Math.min(...ccjs.map(ccj => {
+      if (!ccj.dateRegistered) return 999;
+      const ccjDate = new Date(ccj.dateRegistered);
+      return Math.floor((now - ccjDate) / (1000 * 60 * 60 * 24 * 30.44));
+    })) : 999;
+
+  const monthsSinceDefault = defaults.length > 0 ?
+    Math.min(...defaults.map(def => {
+      if (!def.dateRegistered) return 999;
+      const defDate = new Date(def.dateRegistered);
+      return Math.floor((now - defDate) / (1000 * 60 * 60 * 24 * 30.44));
+    })) : 999;
+
+  const monthsSinceBankruptcy = bankruptcyDate ?
+    Math.floor((now - new Date(bankruptcyDate)) / (1000 * 60 * 60 * 24 * 30.44)) : 999;
+
+  const monthsSinceIVA = ivaDate ?
+    Math.floor((now - new Date(ivaDate)) / (1000 * 60 * 60 * 24 * 30.44)) : 999;
+
+  addLog('📊 Client Profile:', {
+    ltv: ltv.toFixed(1) + '%',
+    loanAmount: '£' + loanAmount.toLocaleString(),
+    income: '£' + totalIncome.toLocaleString(),
+    ccjs: ccjs.length,
+    defaults: defaults.length,
+    monthsSinceCCJ,
+    monthsSinceDefault
+  });
+
+  lenders.forEach(lender => {
+    if (lender.lenderName === "Bluestone Mortgages" && lender.tierName === "AAA") {
+      addLog('🔍 Evaluating Bluestone AAA:', {
+        tierName: lender.tierName,
+        maxLTV: lender.maxLTV,
+        minLTV: lender.minLTV,
+        maxLoan: lender.maxLoan,
+        minLoan: lender.minLoan,
+        tierCriteria: lender.tierCriteria,
+        clientLTV: ltv.toFixed(1) + '%',
+        clientLoan: '£' + loanAmount.toLocaleString()
+      });
+    }
+
+    let matchScore = 100;
+    const matchReasons = [];
+    const rejectionReasons = [];
+
+    if (lender.maxLTV && ltv > lender.maxLTV) {
+      matchScore = 0;
+      rejectionReasons.push(`LTV ${ltv.toFixed(1)}% exceeds max ${lender.maxLTV}%`);
+      if (lender.lenderName === "Bluestone Mortgages") {
+        addLog(`❌ ${lender.tierName} rejected: LTV too high`);
+      }
+      return;
+    }
+
+    if (lender.minLTV && ltv < lender.minLTV) {
+      matchScore = 0;
+      rejectionReasons.push(`LTV ${ltv.toFixed(1)}% below min ${lender.minLTV}%`);
+      if (lender.lenderName === "Bluestone Mortgages") {
+        addLog(`❌ ${lender.tierName} rejected: LTV too low (needs ${lender.minLTV}%+)`);
+      }
+      return;
+    }
+
+    if (lender.lenderName === "Bluestone Mortgages" &&
+        lender.tierName && lender.tierName.includes("Deposit Unlock") &&
+        ltv < 90) {
+      matchScore = 0;
+      rejectionReasons.push(`Deposit Unlock requires 90%+ LTV (you have ${ltv.toFixed(1)}%)`);
+      addLog(`❌ ${lender.tierName} rejected: Hardcoded LTV check - needs 90%+, client has ${ltv.toFixed(1)}%`);
+      return;
+    }
+
+    if (lender.minLoan && loanAmount < lender.minLoan) {
+      matchScore = 0;
+      rejectionReasons.push(`Loan £${loanAmount.toLocaleString()} below min £${lender.minLoan.toLocaleString()}`);
+      if (lender.lenderName === "Bluestone Mortgages") {
+        addLog(`❌ ${lender.tierName} rejected: Loan amount too low`);
+      }
+      return;
+    }
+
+    if (lender.maxLoan && loanAmount > lender.maxLoan) {
+      matchScore = 0;
+      rejectionReasons.push(`Loan £${loanAmount.toLocaleString()} exceeds max £${lender.maxLoan.toLocaleString()}`);
+      if (lender.lenderName === "Bluestone Mortgages") {
+        addLog(`❌ ${lender.tierName} rejected: Loan amount too high`);
+      }
+      return;
+    }
+
+    const criteria = lender.tierCriteria || {};
+
+    if (ccjs.length > 0) {
+      const ccjCriteria = criteria.ccjs || criteria.satisfiedCCJs || criteria.unsatisfiedCCJs || {};
+
+      if (ccjCriteria.acceptsClients === false) {
+        matchScore = 0;
+        rejectionReasons.push(`Does not accept any CCJs (you have ${ccjs.length})`);
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Does not accept CCJs`);
+        }
+        return;
+      }
+
+      if (lender.lenderName === "West One") {
+        const satisfiedCCJsCriteria = criteria.satisfiedCCJs || {};
+        const minBalance = satisfiedCCJsCriteria.minBalance || 0;
+
+        if (minBalance > 0) {
+          const ccjsOverThreshold = ccjs.filter(ccj => {
+            const amount = parseFloat(ccj.amount) || 0;
+            return amount >= minBalance;
+          });
+
+          if (ccjsOverThreshold.length > 0) {
+            const maxAllowed = satisfiedCCJsCriteria.maxInPeriod !== undefined ? satisfiedCCJsCriteria.maxInPeriod : 999;
+            const periodMonths = satisfiedCCJsCriteria.periodMonths || 12;
+
+            const recentLargeCCJs = ccjsOverThreshold.filter(ccj => {
+              if (!ccj.dateRegistered) return false;
+              const ccjDate = new Date(ccj.dateRegistered);
+              const monthsAgo = Math.floor((now - ccjDate) / (1000 * 60 * 60 * 24 * 30.44));
+              return monthsAgo < periodMonths;
+            });
+
+            if (recentLargeCCJs.length > maxAllowed) {
+              matchScore = 0;
+              rejectionReasons.push(`Too many CCJs ≥£${minBalance}: ${recentLargeCCJs.length} in last ${periodMonths} months (max ${maxAllowed})`);
+              addLog(`❌ ${lender.tierName} rejected: Has ${recentLargeCCJs.length} CCJs ≥£${minBalance} (max ${maxAllowed})`);
+              return;
+            }
+          }
+        }
+      }
+
+      const recentCCJs = ccjs.filter(ccj => {
+        if (!ccj.dateRegistered) return false;
+        const ccjDate = new Date(ccj.dateRegistered);
+        const monthsAgo = Math.floor((now - ccjDate) / (1000 * 60 * 60 * 24 * 30.44));
+        return monthsAgo < (ccjCriteria.periodMonths || 12);
+      });
+
+      const maxAllowed = ccjCriteria.maxInPeriod !== undefined ? ccjCriteria.maxInPeriod : 999;
+      if (recentCCJs.length > maxAllowed) {
+        matchScore = 0;
+        rejectionReasons.push(`Too many CCJs: ${recentCCJs.length} in last ${ccjCriteria.periodMonths} months (max ${maxAllowed})`);
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Too many CCJs (${recentCCJs.length}/${maxAllowed})`);
+        }
+        return;
+      }
+
+      matchScore -= Math.min(20, ccjs.length * 5);
+      matchReasons.push(`✓ Accepts CCJs (${ccjs.length} total, ${recentCCJs.length} recent)`);
+    }
+
+    if (defaults.length > 0) {
+      const defaultCriteria = criteria.defaults || {};
+      let defaultsToCount = [...defaults];
+
+      if (lender.lenderName === "Bluestone Mortgages") {
+        defaultsToCount = defaults.filter(def => {
+          const isUtilityTelecom = def.type && (
+            def.type.toLowerCase().includes('utilit') ||
+            def.type.toLowerCase().includes('telecom') ||
+            def.type.toLowerCase().includes('communications')
+          );
+          const amount = parseFloat(def.amount) || 0;
+          return !isUtilityTelecom || amount >= 500;
+        });
+
+        if (lender.tierName === "AAA") {
+          addLog(`🔍 Bluestone AAA Default Filtering:`, {
+            totalDefaults: defaults.length,
+            afterFiltering: defaultsToCount.length,
+            filtered: defaults.map(d => ({
+              type: d.type,
+              amount: d.amount,
+              kept: defaultsToCount.includes(d)
+            }))
+          });
+        }
+      }
+
+      if (lender.lenderName === "The Mortgage Lender") {
+        defaultsToCount = defaults.filter(def => {
+          const isUtility = def.type && def.type.toLowerCase().includes('utilit');
+          return !isUtility;
+        });
+      }
+
+      if (lender.lenderName === "West One") {
+        const satisfiedDefaultsCriteria = criteria.satisfiedDefaults || {};
+        const minBalance = satisfiedDefaultsCriteria.minBalance || 0;
+
+        if (minBalance > 0) {
+          const defaultsOverThreshold = defaults.filter(def => {
+            const amount = parseFloat(def.amount) || 0;
+            return amount >= minBalance;
+          });
+
+          if (defaultsOverThreshold.length > 0) {
+            const maxAllowed = satisfiedDefaultsCriteria.maxInPeriod !== undefined ? satisfiedDefaultsCriteria.maxInPeriod : 999;
+            const periodMonths = satisfiedDefaultsCriteria.periodMonths || 12;
+
+            const recentLargeDefaults = defaultsOverThreshold.filter(def => {
+              if (!def.dateRegistered) return false;
+              const defDate = new Date(def.dateRegistered);
+              const monthsAgo = Math.floor((now - defDate) / (1000 * 60 * 60 * 24 * 30.44));
+              return monthsAgo < periodMonths;
+            });
+
+            if (recentLargeDefaults.length > maxAllowed) {
+              matchScore = 0;
+              rejectionReasons.push(`Too many defaults ≥£${minBalance}: ${recentLargeDefaults.length} in last ${periodMonths} months (max ${maxAllowed})`);
+              addLog(`❌ ${lender.tierName} rejected: Has ${recentLargeDefaults.length} defaults ≥£${minBalance} (max ${maxAllowed})`);
+              return;
+            }
+          }
+        }
+      }
+
+      const recentDefaults = defaultsToCount.filter(def => {
+        if (!def.dateRegistered) return false;
+        const defDate = new Date(def.dateRegistered);
+        const monthsAgo = Math.floor((now - defDate) / (1000 * 60 * 60 * 24 * 30.44));
+        return monthsAgo < (defaultCriteria.periodMonths || 12);
+      });
+
+      const maxAllowed = defaultCriteria.maxInPeriod !== undefined ? defaultCriteria.maxInPeriod : 999;
+      if (recentDefaults.length > maxAllowed) {
+        matchScore = 0;
+        rejectionReasons.push(`Too many defaults: ${recentDefaults.length} in last ${defaultCriteria.periodMonths} months (max ${maxAllowed})`);
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Too many defaults (${recentDefaults.length}/${maxAllowed} in ${defaultCriteria.periodMonths} months)`);
+        }
+        return;
+      }
+
+      matchScore -= Math.min(20, defaultsToCount.length * 5);
+      const ignoredCount = defaults.length - defaultsToCount.length;
+      if (ignoredCount > 0) {
+        matchReasons.push(`✓ Accepts defaults (${defaultsToCount.length} count, ${ignoredCount} utility/telecom ignored)`);
+      } else {
+        matchReasons.push(`✓ Accepts defaults (${defaults.length} total, ${recentDefaults.length} recent)`);
+      }
+    }
+
+    if (bankruptcyDate) {
+      if (criteria.bankruptcyAccepted === false) {
+        matchScore = 0;
+        rejectionReasons.push('Does not accept bankruptcy');
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Does not accept bankruptcy`);
+        }
+        return;
+      }
+
+      if (criteria.bankruptcyMinMonths && monthsSinceBankruptcy < criteria.bankruptcyMinMonths) {
+        matchScore = 0;
+        rejectionReasons.push(`Bankruptcy too recent (needs ${criteria.bankruptcyMinMonths}+ months)`);
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Bankruptcy too recent`);
+        }
+        return;
+      }
+
+      matchScore -= 15;
+      matchReasons.push(`✓ Accepts discharged bankruptcy (${monthsSinceBankruptcy} months ago)`);
+    }
+
+    if (ivaDate) {
+      if (criteria.ivaAccepted === false) {
+        matchScore = 0;
+        rejectionReasons.push('Does not accept IVAs');
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Does not accept IVAs`);
+        }
+        return;
+      }
+
+      if (criteria.ivaMinMonths && monthsSinceIVA < criteria.ivaMinMonths) {
+        matchScore = 0;
+        rejectionReasons.push(`IVA too recent (needs ${criteria.ivaMinMonths}+ months)`);
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: IVA too recent`);
+        }
+        return;
+      }
+
+      matchScore -= 10;
+      matchReasons.push(`✓ Accepts IVAs (${monthsSinceIVA} months ago)`);
+    }
+
+    if (dmpActive) {
+      if (criteria.dmpAccepted === false) {
+        matchScore = 0;
+        rejectionReasons.push('Does not accept active DMPs');
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Does not accept active DMPs`);
+        }
+        return;
+      }
+      matchScore -= 10;
+      matchReasons.push('✓ Accepts active DMPs');
+    }
+
+    if (paydayLoans > 0) {
+      if (criteria.paydayLoansAccepted === false) {
+        matchScore = 0;
+        rejectionReasons.push('Does not accept payday loan history');
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Does not accept payday loans`);
+        }
+        return;
+      }
+      matchScore -= (paydayLoans * 3);
+      matchReasons.push(`✓ Accepts payday loan history`);
+    }
+
+    if (employmentStatus === 'self_employed') {
+      if (criteria.selfEmployedAccepted === false) {
+        matchScore = 0;
+        rejectionReasons.push('Does not accept self-employed');
+        if (lender.lenderName === "Bluestone Mortgages") {
+          addLog(`❌ ${lender.tierName} rejected: Does not accept self-employed`);
+        }
+        return;
+      }
+      matchScore -= 5;
+      matchReasons.push('✓ Accepts self-employed');
+    }
+
+    if (ccjs.length === 0 && defaults.length === 0 && !bankruptcyDate && !ivaDate && missedPayments === 0) {
+      matchScore = Math.min(100, matchScore + 10);
+      matchReasons.push('✓ Clean credit profile bonus');
+    }
+
+    let estimatedRate = 5.99;
+    let selectedProduct = null;
+
+    if (lender.incentives && Array.isArray(lender.incentives)) {
+      const eligibleIncentives = lender.incentives.filter(inc => {
+        const maxLTV = inc.maxLTV || 95;
+        return ltv <= maxLTV;
+      });
+
+      if (eligibleIncentives.length > 0) {
+        eligibleIncentives.sort((a, b) => (a.rate || 999) - (b.rate || 999));
+        selectedProduct = eligibleIncentives[0];
+        estimatedRate = selectedProduct.rate || 5.99;
+      }
+    }
+
+    if (matchScore > 0) {
+      if (lender.lenderName === "Bluestone Mortgages") {
+        addLog(`✅ ${lender.tierName} MATCHED with score ${matchScore}%`);
+      }
+
+      matches.push({
+        lenderName: lender.lenderName,
+        tierName: lender.tierName || lender.productName || 'Standard',
+        matchScore: Math.max(0, Math.min(100, matchScore)),
+        estimatedRate: estimatedRate.toFixed(2),
+        maxLTV: lender.maxLTV || 95,
+        maxLoan: lender.maxLoan || 1000000,
+        minLoan: lender.minLoan || 25000,
+        matchReasons,
+        rejectionReasons,
+        fees: selectedProduct?.productFee || lender.fees || {},
+        productTerm: selectedProduct?.term || '2yr',
+        monthlyPayment: calculateMonthlyPayment(loanAmount, estimatedRate, mortgageTerm),
+        productId: lender.id,
+        criteria
+      });
+    } else {
+      if (lender.lenderName === "Bluestone Mortgages") {
+        console.log(`❌ ${lender.tierName} final rejection:`, rejectionReasons);
+      }
+    }
+  });
+
+  if (debugText.includes('Bluestone')) {
+    const blob = new Blob([debugText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'bluestone-debug-log.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  return matches;
+};
+
+// ============================================
+// REACT COMPONENT
+// ============================================
+
 const SourcingResults = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -103,447 +552,6 @@ const SourcingResults = () => {
   useEffect(() => {
     loadAndMatchLenders();
   }, [loadAndMatchLenders]);
-
-  const evaluateLenders = (userData, lenders) => {
-    const matches = [];
-    let debugText = '=== BLUESTONE MATCHING DEBUG LOG ===\n\n';
-
-    const addLog = (message, data = null) => {
-      debugText += `${message}\n`;
-      if (data) {
-        debugText += JSON.stringify(data, null, 2) + '\n';
-      }
-      debugText += '\n';
-      console.log(message, data || '');
-    };
-
-    const propertyValue = parseFloat(userData.propertyValue) || 0;
-    const depositAmount = parseFloat(userData.depositAmount) || 0;
-    const loanAmount = propertyValue - depositAmount;
-    const ltv = propertyValue > 0 ? ((loanAmount / propertyValue) * 100) : 75;
-
-    const income = parseFloat(userData.basicSalary) || 0;
-    const bonus = parseFloat(userData.bonus) || 0;
-    const totalIncome = income + bonus;
-    const employmentStatus = userData.employmentStatus || 'employed';
-    const mortgageTerm = parseInt(userData.mortgageTerm) || 25;
-
-    const ccjs = userData.ccjs || [];
-    const defaults = userData.defaults || [];
-    const missedPayments = parseInt(userData.creditCardMissedPayments) || 0;
-    const bankruptcyDate = userData.bankruptcyDate;
-    const ivaDate = userData.ivaDate;
-    const dmpActive = userData.dmpActive === 'yes';
-    const paydayLoans = parseInt(userData.paydayLoans) || 0;
-
-    const now = new Date();
-    const monthsSinceCCJ = ccjs.length > 0 ?
-      Math.min(...ccjs.map(ccj => {
-        if (!ccj.dateRegistered) return 999;
-        const ccjDate = new Date(ccj.dateRegistered);
-        return Math.floor((now - ccjDate) / (1000 * 60 * 60 * 24 * 30.44));
-      })) : 999;
-
-    const monthsSinceDefault = defaults.length > 0 ?
-      Math.min(...defaults.map(def => {
-        if (!def.dateRegistered) return 999;
-        const defDate = new Date(def.dateRegistered);
-        return Math.floor((now - defDate) / (1000 * 60 * 60 * 24 * 30.44));
-      })) : 999;
-
-    const monthsSinceBankruptcy = bankruptcyDate ?
-      Math.floor((now - new Date(bankruptcyDate)) / (1000 * 60 * 60 * 24 * 30.44)) : 999;
-
-    const monthsSinceIVA = ivaDate ?
-      Math.floor((now - new Date(ivaDate)) / (1000 * 60 * 60 * 24 * 30.44)) : 999;
-
-    addLog('📊 Client Profile:', {
-      ltv: ltv.toFixed(1) + '%',
-      loanAmount: '£' + loanAmount.toLocaleString(),
-      income: '£' + totalIncome.toLocaleString(),
-      ccjs: ccjs.length,
-      defaults: defaults.length,
-      monthsSinceCCJ,
-      monthsSinceDefault
-    });
-
-    lenders.forEach(lender => {
-      if (lender.lenderName === "Bluestone Mortgages" && lender.tierName === "AAA") {
-        addLog('🔍 Evaluating Bluestone AAA:', {
-          tierName: lender.tierName,
-          maxLTV: lender.maxLTV,
-          minLTV: lender.minLTV,
-          maxLoan: lender.maxLoan,
-          minLoan: lender.minLoan,
-          tierCriteria: lender.tierCriteria,
-          clientLTV: ltv.toFixed(1) + '%',
-          clientLoan: '£' + loanAmount.toLocaleString()
-        });
-      }
-
-      let matchScore = 100;
-      const matchReasons = [];
-      const rejectionReasons = [];
-
-      if (lender.maxLTV && ltv > lender.maxLTV) {
-        matchScore = 0;
-        rejectionReasons.push(`LTV ${ltv.toFixed(1)}% exceeds max ${lender.maxLTV}%`);
-        if (lender.lenderName === "Bluestone Mortgages") {
-          addLog(`❌ ${lender.tierName} rejected: LTV too high`);
-        }
-        return;
-      }
-
-      if (lender.minLTV && ltv < lender.minLTV) {
-        matchScore = 0;
-        rejectionReasons.push(`LTV ${ltv.toFixed(1)}% below min ${lender.minLTV}%`);
-        if (lender.lenderName === "Bluestone Mortgages") {
-          addLog(`❌ ${lender.tierName} rejected: LTV too low (needs ${lender.minLTV}%+)`);
-        }
-        return;
-      }
-
-      if (lender.lenderName === "Bluestone Mortgages" &&
-          lender.tierName && lender.tierName.includes("Deposit Unlock") &&
-          ltv < 90) {
-        matchScore = 0;
-        rejectionReasons.push(`Deposit Unlock requires 90%+ LTV (you have ${ltv.toFixed(1)}%)`);
-        addLog(`❌ ${lender.tierName} rejected: Hardcoded LTV check - needs 90%+, client has ${ltv.toFixed(1)}%`);
-        return;
-      }
-
-      if (lender.minLoan && loanAmount < lender.minLoan) {
-        matchScore = 0;
-        rejectionReasons.push(`Loan £${loanAmount.toLocaleString()} below min £${lender.minLoan.toLocaleString()}`);
-        if (lender.lenderName === "Bluestone Mortgages") {
-          addLog(`❌ ${lender.tierName} rejected: Loan amount too low`);
-        }
-        return;
-      }
-
-      if (lender.maxLoan && loanAmount > lender.maxLoan) {
-        matchScore = 0;
-        rejectionReasons.push(`Loan £${loanAmount.toLocaleString()} exceeds max £${lender.maxLoan.toLocaleString()}`);
-        if (lender.lenderName === "Bluestone Mortgages") {
-          addLog(`❌ ${lender.tierName} rejected: Loan amount too high`);
-        }
-        return;
-      }
-
-      const criteria = lender.tierCriteria || {};
-
-      if (ccjs.length > 0) {
-        const ccjCriteria = criteria.ccjs || criteria.satisfiedCCJs || criteria.unsatisfiedCCJs || {};
-
-        if (ccjCriteria.acceptsClients === false) {
-          matchScore = 0;
-          rejectionReasons.push(`Does not accept any CCJs (you have ${ccjs.length})`);
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Does not accept CCJs`);
-          }
-          return;
-        }
-
-        if (lender.lenderName === "West One") {
-          const satisfiedCCJsCriteria = criteria.satisfiedCCJs || {};
-          const minBalance = satisfiedCCJsCriteria.minBalance || 0;
-
-          if (minBalance > 0) {
-            const ccjsOverThreshold = ccjs.filter(ccj => {
-              const amount = parseFloat(ccj.amount) || 0;
-              return amount >= minBalance;
-            });
-
-            if (ccjsOverThreshold.length > 0) {
-              const maxAllowed = satisfiedCCJsCriteria.maxInPeriod !== undefined ? satisfiedCCJsCriteria.maxInPeriod : 999;
-              const periodMonths = satisfiedCCJsCriteria.periodMonths || 12;
-
-              const recentLargeCCJs = ccjsOverThreshold.filter(ccj => {
-                if (!ccj.dateRegistered) return false;
-                const ccjDate = new Date(ccj.dateRegistered);
-                const monthsAgo = Math.floor((now - ccjDate) / (1000 * 60 * 60 * 24 * 30.44));
-                return monthsAgo < periodMonths;
-              });
-
-              if (recentLargeCCJs.length > maxAllowed) {
-                matchScore = 0;
-                rejectionReasons.push(`Too many CCJs ≥£${minBalance}: ${recentLargeCCJs.length} in last ${periodMonths} months (max ${maxAllowed})`);
-                addLog(`❌ ${lender.tierName} rejected: Has ${recentLargeCCJs.length} CCJs ≥£${minBalance} (max ${maxAllowed})`);
-                return;
-              }
-            }
-          }
-        }
-
-        const recentCCJs = ccjs.filter(ccj => {
-          if (!ccj.dateRegistered) return false;
-          const ccjDate = new Date(ccj.dateRegistered);
-          const monthsAgo = Math.floor((now - ccjDate) / (1000 * 60 * 60 * 24 * 30.44));
-          return monthsAgo < (ccjCriteria.periodMonths || 12);
-        });
-
-        const maxAllowed = ccjCriteria.maxInPeriod !== undefined ? ccjCriteria.maxInPeriod : 999;
-        if (recentCCJs.length > maxAllowed) {
-          matchScore = 0;
-          rejectionReasons.push(`Too many CCJs: ${recentCCJs.length} in last ${ccjCriteria.periodMonths} months (max ${maxAllowed})`);
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Too many CCJs (${recentCCJs.length}/${maxAllowed})`);
-          }
-          return;
-        }
-
-        matchScore -= Math.min(20, ccjs.length * 5);
-        matchReasons.push(`✓ Accepts CCJs (${ccjs.length} total, ${recentCCJs.length} recent)`);
-      }
-
-      if (defaults.length > 0) {
-        const defaultCriteria = criteria.defaults || {};
-        let defaultsToCount = [...defaults];
-
-        if (lender.lenderName === "Bluestone Mortgages") {
-          defaultsToCount = defaults.filter(def => {
-            const isUtilityTelecom = def.type && (
-              def.type.toLowerCase().includes('utilit') ||
-              def.type.toLowerCase().includes('telecom') ||
-              def.type.toLowerCase().includes('communications')
-            );
-            const amount = parseFloat(def.amount) || 0;
-            return !isUtilityTelecom || amount >= 500;
-          });
-
-          if (lender.tierName === "AAA") {
-            addLog(`🔍 Bluestone AAA Default Filtering:`, {
-              totalDefaults: defaults.length,
-              afterFiltering: defaultsToCount.length,
-              filtered: defaults.map(d => ({
-                type: d.type,
-                amount: d.amount,
-                kept: defaultsToCount.includes(d)
-              }))
-            });
-          }
-        }
-
-        if (lender.lenderName === "The Mortgage Lender") {
-          defaultsToCount = defaults.filter(def => {
-            const isUtility = def.type && def.type.toLowerCase().includes('utilit');
-            return !isUtility;
-          });
-        }
-
-        if (lender.lenderName === "West One") {
-          const satisfiedDefaultsCriteria = criteria.satisfiedDefaults || {};
-          const minBalance = satisfiedDefaultsCriteria.minBalance || 0;
-
-          if (minBalance > 0) {
-            const defaultsOverThreshold = defaults.filter(def => {
-              const amount = parseFloat(def.amount) || 0;
-              return amount >= minBalance;
-            });
-
-            if (defaultsOverThreshold.length > 0) {
-              const maxAllowed = satisfiedDefaultsCriteria.maxInPeriod !== undefined ? satisfiedDefaultsCriteria.maxInPeriod : 999;
-              const periodMonths = satisfiedDefaultsCriteria.periodMonths || 12;
-
-              const recentLargeDefaults = defaultsOverThreshold.filter(def => {
-                if (!def.dateRegistered) return false;
-                const defDate = new Date(def.dateRegistered);
-                const monthsAgo = Math.floor((now - defDate) / (1000 * 60 * 60 * 24 * 30.44));
-                return monthsAgo < periodMonths;
-              });
-
-              if (recentLargeDefaults.length > maxAllowed) {
-                matchScore = 0;
-                rejectionReasons.push(`Too many defaults ≥£${minBalance}: ${recentLargeDefaults.length} in last ${periodMonths} months (max ${maxAllowed})`);
-                addLog(`❌ ${lender.tierName} rejected: Has ${recentLargeDefaults.length} defaults ≥£${minBalance} (max ${maxAllowed})`);
-                return;
-              }
-            }
-          }
-        }
-
-        const recentDefaults = defaultsToCount.filter(def => {
-          if (!def.dateRegistered) return false;
-          const defDate = new Date(def.dateRegistered);
-          const monthsAgo = Math.floor((now - defDate) / (1000 * 60 * 60 * 24 * 30.44));
-          return monthsAgo < (defaultCriteria.periodMonths || 12);
-        });
-
-        const maxAllowed = defaultCriteria.maxInPeriod !== undefined ? defaultCriteria.maxInPeriod : 999;
-        if (recentDefaults.length > maxAllowed) {
-          matchScore = 0;
-          rejectionReasons.push(`Too many defaults: ${recentDefaults.length} in last ${defaultCriteria.periodMonths} months (max ${maxAllowed})`);
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Too many defaults (${recentDefaults.length}/${maxAllowed} in ${defaultCriteria.periodMonths} months)`);
-          }
-          return;
-        }
-
-        matchScore -= Math.min(20, defaultsToCount.length * 5);
-        const ignoredCount = defaults.length - defaultsToCount.length;
-        if (ignoredCount > 0) {
-          matchReasons.push(`✓ Accepts defaults (${defaultsToCount.length} count, ${ignoredCount} utility/telecom ignored)`);
-        } else {
-          matchReasons.push(`✓ Accepts defaults (${defaults.length} total, ${recentDefaults.length} recent)`);
-        }
-      }
-
-      if (bankruptcyDate) {
-        if (criteria.bankruptcyAccepted === false) {
-          matchScore = 0;
-          rejectionReasons.push('Does not accept bankruptcy');
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Does not accept bankruptcy`);
-          }
-          return;
-        }
-
-        if (criteria.bankruptcyMinMonths && monthsSinceBankruptcy < criteria.bankruptcyMinMonths) {
-          matchScore = 0;
-          rejectionReasons.push(`Bankruptcy too recent (needs ${criteria.bankruptcyMinMonths}+ months)`);
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Bankruptcy too recent`);
-          }
-          return;
-        }
-
-        matchScore -= 15;
-        matchReasons.push(`✓ Accepts discharged bankruptcy (${monthsSinceBankruptcy} months ago)`);
-      }
-
-      if (ivaDate) {
-        if (criteria.ivaAccepted === false) {
-          matchScore = 0;
-          rejectionReasons.push('Does not accept IVAs');
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Does not accept IVAs`);
-          }
-          return;
-        }
-
-        if (criteria.ivaMinMonths && monthsSinceIVA < criteria.ivaMinMonths) {
-          matchScore = 0;
-          rejectionReasons.push(`IVA too recent (needs ${criteria.ivaMinMonths}+ months)`);
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: IVA too recent`);
-          }
-          return;
-        }
-
-        matchScore -= 10;
-        matchReasons.push(`✓ Accepts IVAs (${monthsSinceIVA} months ago)`);
-      }
-
-      if (dmpActive) {
-        if (criteria.dmpAccepted === false) {
-          matchScore = 0;
-          rejectionReasons.push('Does not accept active DMPs');
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Does not accept active DMPs`);
-          }
-          return;
-        }
-        matchScore -= 10;
-        matchReasons.push('✓ Accepts active DMPs');
-      }
-
-      if (paydayLoans > 0) {
-        if (criteria.paydayLoansAccepted === false) {
-          matchScore = 0;
-          rejectionReasons.push('Does not accept payday loan history');
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Does not accept payday loans`);
-          }
-          return;
-        }
-        matchScore -= (paydayLoans * 3);
-        matchReasons.push(`✓ Accepts payday loan history`);
-      }
-
-      if (employmentStatus === 'self_employed') {
-        if (criteria.selfEmployedAccepted === false) {
-          matchScore = 0;
-          rejectionReasons.push('Does not accept self-employed');
-          if (lender.lenderName === "Bluestone Mortgages") {
-            addLog(`❌ ${lender.tierName} rejected: Does not accept self-employed`);
-          }
-          return;
-        }
-        matchScore -= 5;
-        matchReasons.push('✓ Accepts self-employed');
-      }
-
-      if (ccjs.length === 0 && defaults.length === 0 && !bankruptcyDate && !ivaDate && missedPayments === 0) {
-        matchScore = Math.min(100, matchScore + 10);
-        matchReasons.push('✓ Clean credit profile bonus');
-      }
-
-      let estimatedRate = 5.99;
-      let selectedProduct = null;
-
-      if (lender.incentives && Array.isArray(lender.incentives)) {
-        const eligibleIncentives = lender.incentives.filter(inc => {
-          const maxLTV = inc.maxLTV || 95;
-          return ltv <= maxLTV;
-        });
-
-        if (eligibleIncentives.length > 0) {
-          eligibleIncentives.sort((a, b) => (a.rate || 999) - (b.rate || 999));
-          selectedProduct = eligibleIncentives[0];
-          estimatedRate = selectedProduct.rate || 5.99;
-        }
-      }
-
-      if (matchScore > 0) {
-        if (lender.lenderName === "Bluestone Mortgages") {
-          addLog(`✅ ${lender.tierName} MATCHED with score ${matchScore}%`);
-        }
-
-        matches.push({
-          lenderName: lender.lenderName,
-          tierName: lender.tierName || lender.productName || 'Standard',
-          matchScore: Math.max(0, Math.min(100, matchScore)),
-          estimatedRate: estimatedRate.toFixed(2),
-          maxLTV: lender.maxLTV || 95,
-          maxLoan: lender.maxLoan || 1000000,
-          minLoan: lender.minLoan || 25000,
-          matchReasons,
-          rejectionReasons,
-          fees: selectedProduct?.productFee || lender.fees || {},
-          productTerm: selectedProduct?.term || '2yr',
-          monthlyPayment: calculateMonthlyPayment(loanAmount, estimatedRate, mortgageTerm),
-          productId: lender.id,
-          criteria
-        });
-      } else {
-        if (lender.lenderName === "Bluestone Mortgages") {
-          console.log(`❌ ${lender.tierName} final rejection:`, rejectionReasons);
-        }
-      }
-    });
-
-    if (debugText.includes('Bluestone')) {
-      const blob = new Blob([debugText], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'bluestone-debug-log.txt';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    }
-
-    return matches;
-  };
-
-  const calculateMonthlyPayment = (loanAmount, rate, years = 25) => {
-    const monthlyRate = rate / 100 / 12;
-    const numPayments = years * 12;
-    if (monthlyRate === 0) return loanAmount / numPayments;
-    return loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
-           (Math.pow(1 + monthlyRate, numPayments) - 1);
-  };
 
   if (loading) {
     return (

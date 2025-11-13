@@ -5,8 +5,7 @@ import { auth, db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { collection, query, where, limit, getDocs } from 'firebase/firestore';
 import { 
-  Home, 
-  DollarSign, 
+  Home,  
   TrendingUp, 
   TrendingDown,
   FileText, 
