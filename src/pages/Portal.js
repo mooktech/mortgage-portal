@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { collection, query, where, limit, getDocs } from 'firebase/firestore';
 import { 
   Home, 
   DollarSign, 
@@ -28,7 +29,8 @@ import {
   Home as HomeIcon,
   Wrench,
   RefreshCw,
-  ArrowRight
+  ArrowRight,
+  ChevronRight
 } from 'lucide-react';
 
 const Portal = () => {
@@ -39,6 +41,7 @@ const Portal = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [missionControlOpen, setMissionControlOpen] = useState(null);
   const [propertyNews, setPropertyNews] = useState([]);
+  const [factFindComplete, setFactFindComplete] = useState(false);
   const [newsLoading, setNewsLoading] = useState(false);
   const [currentRates, setCurrentRates] = useState(null);
   const [newsLastUpdated, setNewsLastUpdated] = useState(null);
@@ -61,20 +64,30 @@ const Portal = () => {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
-        if (userDoc.exists()) {
-          setUserData(userDoc.data());
-        }
-      } else {
-        navigate('/login');
+  const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+    if (currentUser) {
+      setUser(currentUser);
+      const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+      if (userDoc.exists()) {
+        setUserData(userDoc.data());
       }
-      setLoading(false);
-    });
-    return () => unsubscribe();
-  }, [navigate]);
+      
+      // Check if fact-find is complete
+      const ffQuery = query(
+        collection(db, 'factFinds'),
+        where('userId', '==', currentUser.uid),
+        where('status', '==', 'completed'),
+        limit(1)
+      );
+      const ffSnapshot = await getDocs(ffQuery);
+      setFactFindComplete(!ffSnapshot.empty);
+    } else {
+      navigate('/login');
+    }
+    setLoading(false);
+  });
+  return () => unsubscribe();
+}, [navigate]);
 
   useEffect(() => {
     if (missionControlOpen === 'market-alert' && propertyNews.length === 0) {
@@ -176,6 +189,60 @@ const Portal = () => {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        );
+
+
+      case 'lender-match':
+        return (
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Find Your Best Lenders</h3>
+            
+            <div className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl p-6 text-white">
+              <div className="flex items-center gap-3 mb-4">
+                <Award size={32} />
+                <div>
+                  <div className="text-2xl font-bold">8 Specialist Lenders</div>
+                  <div className="text-pink-100">Matched to your profile</div>
+                </div>
+              </div>
+              <p className="text-pink-50 mb-4">
+                Our AI will match you against 8 specialist lenders including Pepper Money, 
+                Bluestone, TML, and more. Get instant results with rates and why you qualify.
+              </p>
+              <button 
+                onClick={() => {
+                  closeMissionControl();
+                  navigate('/factfind');
+                }}
+                className="bg-white text-pink-600 px-6 py-3 rounded-lg font-semibold hover:bg-pink-50 transition-colors inline-flex items-center gap-2"
+              >
+                Complete Application First
+                <ArrowRight size={18} />
+              </button>
+            </div>
+
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
+              <h4 className="font-semibold text-gray-900 mb-2">What We'll Check:</h4>
+              <ul className="space-y-2 text-sm text-gray-700">
+                <li className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-green-600" />
+                  <span>Your LTV and loan amount</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-green-600" />
+                  <span>Credit history and adverse events</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-green-600" />
+                  <span>Employment and income type</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-green-600" />
+                  <span>Best rates for your profile</span>
+                </li>
+              </ul>
             </div>
           </div>
         );
@@ -799,27 +866,63 @@ const Portal = () => {
                 </div>
               </div>
 
-              {/* 6. Quote Status Tile */}
-              {userData?.quoteData && (
-                <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur">
-                      <DollarSign className="text-white" size={20} />
-                    </div>
-                    <div className="flex items-center gap-1 bg-green-500 px-3 py-1 rounded-full text-xs">
-                      <CheckCircle size={12} />
-                      <span>Saved</span>
-                    </div>
+
+             {/* 6. Lender Matching Tile - NEW */}
+              <div 
+                onClick={() => openMissionControl('lender-match')}
+                className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl p-6 text-white shadow-lg cursor-pointer transform transition-all hover:scale-105"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur">
+                    <Award className="text-white" size={20} />
                   </div>
-                  <div className="text-sm text-indigo-100 mb-1">Your Quote</div>
-                  <div className="text-2xl font-bold mb-2">
-                    £{userData.quoteData.loanAmount?.toLocaleString()}
+                  <div className="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-xs backdrop-blur">
+                    <Sparkles size={12} />
+                    <span>AI Powered</span>
                   </div>
-                  <div className="text-sm text-indigo-100">
-                    {userData.quoteData.ltv}% LTV • £{userData.quoteData.estimatedMonthlyPayment}/mo
+                </div>
+                <div className="text-sm text-pink-100 mb-1">Lender Matching</div>
+                <div className="text-2xl font-bold mb-2">8 Lenders</div>
+                <div className="text-sm text-pink-100">
+                  Find your best mortgage options
+                </div>
+              </div>
+
+              {/* 7. Matched Lenders Tile - Only shows when fact-find is complete */}
+              {factFindComplete && (
+                <div 
+                  onClick={() => navigate('/sourcing-results')}
+                  className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-6 text-white shadow-lg cursor-pointer transform transition-all hover:scale-105 relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16"></div>
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-12 -mb-12"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="p-3 bg-white bg-opacity-20 rounded-xl backdrop-blur-sm">
+                        <Brain size={24} />
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm opacity-90">Matched</p>
+                        <p className="text-2xl font-bold">View</p>
+                      </div>
+                    </div>
+                    
+                    <h3 className="font-bold text-lg mb-1">Your Lender Matches</h3>
+                    <p className="text-sm opacity-90 mb-4">
+                      AI-matched lenders based on your profile
+                    </p>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs bg-white bg-opacity-20 px-3 py-1 rounded-full backdrop-blur-sm">
+                        Ready to view
+                      </span>
+                      <ChevronRight size={20} />
+                    </div>
                   </div>
                 </div>
               )}
+              
 
             </div>
 

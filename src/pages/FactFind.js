@@ -27,47 +27,24 @@ const FactFind = () => {
 
   const loadExistingApplication = async (uid) => {
     try {
-      // Query for incomplete applications for this user (simpler query, no composite index needed)
       const q = query(
         collection(db, 'factFinds'),
         where('userId', '==', uid),
         orderBy('lastUpdated', 'desc'),
-        limit(5)
+        limit(1)
       );
       
       const querySnapshot = await getDocs(q);
       
       if (!querySnapshot.empty) {
-        // Find the first incomplete one, or use the most recent
-        let selectedDoc = null;
+        const selectedDoc = querySnapshot.docs[0];
+        const data = selectedDoc.data();
         
-        for (const docSnapshot of querySnapshot.docs) {
-          const data = docSnapshot.data();
-          if (data.status !== 'completed') {
-            selectedDoc = docSnapshot;
-            break;
-          }
-        }
+        console.log('✅ Loaded most recent application:', selectedDoc.id);
+        setApplicationId(selectedDoc.id);
+        setCurrentStep(data.currentStep || 0);
         
-        // If no incomplete, use most recent
-        if (!selectedDoc && querySnapshot.docs.length > 0) {
-          selectedDoc = querySnapshot.docs[0];
-        }
-        
-        if (selectedDoc) {
-          const data = selectedDoc.data();
-          
-          console.log('✅ Loaded existing application:', selectedDoc.id);
-          
-          // Set the application ID
-          setApplicationId(selectedDoc.id);
-          
-          // Set the current step
-          setCurrentStep(data.currentStep || 0);
-          
-          // Populate all form data
-          setFormData({
-          // Personal Details
+        setFormData({
           fullName: data.fullName || '',
           dateOfBirth: data.dateOfBirth || '',
           maritalStatus: data.maritalStatus || '',
@@ -82,8 +59,6 @@ const FactFind = () => {
           nationality: data.nationality || '',
           niNumber: data.niNumber || '',
           residentialStatus: data.residentialStatus || '',
-          
-          // Employment & Income
           employmentStatus: data.employmentStatus || '',
           employerName: data.employerName || '',
           jobTitle: data.jobTitle || '',
@@ -94,8 +69,6 @@ const FactFind = () => {
           bonus: data.bonus || '',
           overtime: data.overtime || '',
           commission: data.commission || '',
-          
-          // Self-Employed
           selfEmployedYearsTrading: data.selfEmployedYearsTrading || '',
           selfEmployedAccountant: data.selfEmployedAccountant || '',
           selfEmployedBusinessType: data.selfEmployedBusinessType || '',
@@ -105,12 +78,8 @@ const FactFind = () => {
           selfEmployedYear2Salary: data.selfEmployedYear2Salary || '',
           selfEmployedYear1Dividends: data.selfEmployedYear1Dividends || '',
           selfEmployedYear2Dividends: data.selfEmployedYear2Dividends || '',
-          
-          // Secondary Income
           hasSecondaryIncome: data.hasSecondaryIncome || 'no',
           secondaryIncomes: data.secondaryIncomes || [],
-          
-          // Other Income
           rentalIncome: data.rentalIncome || '',
           pensionIncome: data.pensionIncome || '',
           benefitsIncome: data.benefitsIncome || '',
@@ -118,8 +87,6 @@ const FactFind = () => {
           investmentIncome: data.investmentIncome || '',
           otherIncomeSource: data.otherIncomeSource || '',
           otherIncomeAmount: data.otherIncomeAmount || '',
-          
-          // Property Details
           propertyPurpose: data.propertyPurpose || '',
           purchaseType: data.purchaseType || '',
           propertyValue: data.propertyValue || '',
@@ -132,14 +99,10 @@ const FactFind = () => {
           propertyConstruction: data.propertyConstruction || '',
           propertyTenure: data.propertyTenure || '',
           leaseYearsRemaining: data.leaseYearsRemaining || '',
-          
-          // Existing Mortgage
           existingMortgageBalance: data.existingMortgageBalance || '',
           existingMortgageRate: data.existingMortgageRate || '',
           existingMortgageLender: data.existingMortgageLender || '',
           existingMortgageEndDate: data.existingMortgageEndDate || '',
-          
-          // Financial Commitments
           monthlyRent: data.monthlyRent || '',
           creditCards: data.creditCards || [],
           loans: data.loans || [],
@@ -148,8 +111,6 @@ const FactFind = () => {
           councilTax: data.councilTax || '',
           utilities: data.utilities || '',
           otherCommitments: data.otherCommitments || '',
-          
-          // Adverse Credit
           hasAdverseCredit: data.hasAdverseCredit || 'no',
           hasCCJs: data.hasCCJs || 'no',
           ccjs: data.ccjs || [],
@@ -174,8 +135,6 @@ const FactFind = () => {
           ivaStartDate: data.ivaStartDate || '',
           ivaDischargeDate: data.ivaDischargeDate || '',
           ivaStatus: data.ivaStatus || '',
-          
-          // Assets & Savings
           totalSavings: data.totalSavings || '',
           depositSource: data.depositSource || '',
           giftAmount: data.giftAmount || '',
@@ -184,51 +143,37 @@ const FactFind = () => {
           propertyOwned: data.propertyOwned || 'no',
           propertyOwnedValue: data.propertyOwnedValue || '',
           propertyOwnedMortgageBalance: data.propertyOwnedMortgageBalance || '',
-          
-          // Repayment Preferences
           repaymentType: data.repaymentType || '',
           interestOnlyAmount: data.interestOnlyAmount || '',
           repaymentStrategy: data.repaymentStrategy || '',
           ratePreference: data.ratePreference || '',
           fixedRatePeriod: data.fixedRatePeriod || '',
-          
-          // Future Plans
           futurePlans: data.futurePlans || '',
           incomeChanges: data.incomeChanges || '',
           planningChildren: data.planningChildren || '',
           planningRetirement: data.planningRetirement || '',
-          
-          // Protection
           lifeInsurance: data.lifeInsurance || 'no',
           lifeInsuranceCover: data.lifeInsuranceCover || '',
           criticalIllness: data.criticalIllness || 'no',
           criticalIllnessCover: data.criticalIllnessCover || '',
           incomeProtection: data.incomeProtection || 'no',
           buildingsInsurance: data.buildingsInsurance || 'no',
-          
-          // Objectives
           primaryGoal: data.primaryGoal || '',
           concerns: data.concerns || '',
           additionalInfo: data.additionalInfo || '',
           solicitorPreference: data.solicitorPreference || '',
-          
-          // Consent
           consentCreditCheck: data.consentCreditCheck || false,
           dataProtectionConsent: data.dataProtectionConsent || false,
           accuracyDeclaration: data.accuracyDeclaration || false
-          });
-          
-          console.log('✅ Form populated with existing data');
-        } else {
-          console.log('ℹ️ No existing application found, starting fresh');
-        }
-      } else {
-        console.log('ℹ️ No existing application found, starting fresh');
+        });
+        
+        console.log('✅ Form populated');
       }
     } catch (error) {
-      console.error('❌ Error loading existing application:', error);
+      console.error('❌ Error:', error);
     }
   };
+  
   
   const [formData, setFormData] = useState({
     // Personal Details
@@ -617,8 +562,11 @@ const FactFind = () => {
       });
     }
     
-    alert('🎉 Application submitted successfully! We\'ll be in touch shortly.');
-    navigate('/portal');
+    navigate('/sourcing-results', {
+      state: {
+        clientData: formData
+      }
+    });
   };
 
   const renderStepContent = () => {

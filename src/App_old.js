@@ -10,7 +10,6 @@ import Solicitors from './pages/Solicitors';
 import Removals from './pages/Removals';
 import DocumentUpload from './pages/DocumentUpload';
 import AdminTest from './pages/AdminTest';
-import SourcingResults from './pages/SourcingResults';
 
 function App() {
   return (
@@ -26,7 +25,6 @@ function App() {
         <Route path="/removals" element={<Removals />} />
         <Route path="/documents" element={<DocumentUpload />} />
         <Route path="/admin-test" element={<AdminTest />} />
-        <Route path="/sourcing-results" element={<SourcingResults />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,3523 @@
+{
+  "lenders": [
+    {
+      "lenderName": "Pepper Money",
+      "lenderType": "Adverse Credit Specialist",
+      "productTiers": [
+        {
+          "tierName": "Pepper48 Light",
+          "description": "No CCJs ever, no defaults in 48 months",
+          "maxLTV": 90,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 5.14,
+            "85ltv_5yr": 6.09,
+            "90ltv_5yr": 6.39
+          }
+        },
+        {
+          "tierName": "Pepper48",
+          "description": "No CCJs/defaults in 48 months",
+          "maxLTV": 90,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 5.19,
+            "85ltv_5yr": 6.14,
+            "90ltv_5yr": 6.44
+          }
+        },
+        {
+          "tierName": "Pepper36 Light",
+          "description": "No CCJs ever, no defaults in 36 months",
+          "maxLTV": 90,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 5.44,
+            "85ltv_5yr": 6.19,
+            "90ltv_5yr": 6.49
+          }
+        },
+        {
+          "tierName": "Pepper36",
+          "description": "No CCJs/defaults in 36 months",
+          "maxLTV": 90,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 5.54,
+            "85ltv_5yr": 6.29,
+            "90ltv_5yr": 6.59
+          }
+        },
+        {
+          "tierName": "Pepper24 Light",
+          "description": "No CCJs ever, no defaults in 24 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 5.84,
+            "85ltv_5yr": 6.59
+          }
+        },
+        {
+          "tierName": "Pepper24",
+          "description": "No CCJs/defaults in 24 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 5.94,
+            "85ltv_5yr": 6.69
+          }
+        },
+        {
+          "tierName": "Pepper24 DMP",
+          "description": "Active/recent DMP, no CCJs/defaults in 24 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.24,
+            "85ltv_5yr": 6.99
+          }
+        },
+        {
+          "tierName": "Pepper18 Light",
+          "description": "No CCJs ever, no defaults in 18 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.1,
+            "85ltv_5yr": 7.19
+          }
+        },
+        {
+          "tierName": "Pepper18",
+          "description": "No CCJs/defaults in 18 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.2,
+            "85ltv_5yr": 7.29
+          }
+        },
+        {
+          "tierName": "Pepper18 DMP",
+          "description": "Active/recent DMP, no CCJs/defaults in 18 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.5,
+            "85ltv_5yr": 7.59
+          }
+        },
+        {
+          "tierName": "Pepper12 Light",
+          "description": "No CCJs ever, no defaults in 12 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.25,
+            "85ltv_5yr": 7.35
+          }
+        },
+        {
+          "tierName": "Pepper12",
+          "description": "No CCJs/defaults in 12 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.35,
+            "85ltv_5yr": 7.45
+          }
+        },
+        {
+          "tierName": "Pepper12 DMP",
+          "description": "Active/recent DMP, no CCJs/defaults in 12 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.65,
+            "85ltv_5yr": 7.75
+          }
+        },
+        {
+          "tierName": "Pepper6 Light",
+          "description": "No CCJs ever, no defaults in 6 months",
+          "maxLTV": 80,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.4,
+            "80ltv_5yr": 6.85
+          }
+        },
+        {
+          "tierName": "Pepper6",
+          "description": "No CCJs/defaults in 6 months",
+          "maxLTV": 80,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.5,
+            "80ltv_5yr": 6.95
+          }
+        },
+        {
+          "tierName": "Pepper24 Bankruptcy/IVA",
+          "description": "Discharged bankruptcy/IVA over 3 years ago",
+          "maxLTV": 75,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 6.94
+          }
+        },
+        {
+          "tierName": "Pepper12 Bankruptcy/IVA",
+          "description": "Discharged bankruptcy/IVA over 3 years ago",
+          "maxLTV": 75,
+          "maxLoan": 1000000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_5yr": 7.35
+          }
+        }
+      ],
+      "adverseCreditCriteria": {
+        "ccjs": {
+          "allowed": true,
+          "details": "None registered in last 6 months at minimum (varies by tier). Must be older than 6 months at mortgage offer. No value limit.",
+          "tierRequirements": {
+            "Pepper48": "0 in 48 months",
+            "Pepper36": "0 in 36 months",
+            "Pepper24": "0 in 24 months",
+            "Pepper18": "0 in 18 months",
+            "Pepper12": "0 in 12 months",
+            "Pepper6": "0 in 6 months",
+            "Light_products": "None ever"
+          },
+          "mustBeSatisfied": false,
+          "maxValue": "No limit",
+          "maxNumber": "No limit specified"
+        },
+        "defaults": {
+          "allowed": true,
+          "details": "None registered in last 6 months at minimum (varies by tier). Must be older than 6 months at mortgage offer. No value limit.",
+          "tierRequirements": {
+            "Pepper48": "0 in 48 months",
+            "Pepper36": "0 in 36 months",
+            "Pepper24": "0 in 24 months",
+            "Pepper18": "0 in 18 months",
+            "Pepper12": "0 in 12 months",
+            "Pepper6": "0 in 6 months",
+            "Light_products": "0 in respective period"
+          },
+          "mustBeSatisfied": false,
+          "maxValue": "No limit",
+          "specialRule": "On Pepper 24, 18, 12 and 6 products: ignore 2 defaults per application up to \u00a3200 each for utilities/comms/mail order. On Pepper 36: ignore 1 default up to \u00a3200."
+        },
+        "mortgageArrears": {
+          "allowed": false,
+          "details": "Arrears status of 0 in last 6 months. No missed payments in last 12 months minimum (varies by tier).",
+          "tierRequirements": {
+            "Pepper48": "0 in 48 months",
+            "Pepper36": "0 in 36 months",
+            "Pepper24": "0 in 24 months",
+            "Pepper18": "0 in 18 months",
+            "Pepper12": "0 in 12 months",
+            "Pepper6": "0 in 12 months"
+          },
+          "currentArrears": "Not accepted",
+          "arrearsBalance": "Must be 0 in last 6 months"
+        },
+        "unsecuredArrears": {
+          "fixedTerm": "Missed payments accepted after 6 months",
+          "revolvingCredit": "Missed payments considered"
+        },
+        "bankruptcy": {
+          "allowed": true,
+          "minYearsSinceDischarge": 6,
+          "standardRange": "6+ years",
+          "bankruptcyRange": "3+ years (special products)",
+          "maxLTV": 75
+        },
+        "iva": {
+          "allowed": true,
+          "minYearsSinceDischarge": 6,
+          "standardRange": "6+ years",
+          "ivaRange": "3+ years (special products)",
+          "maxLTV": 75
+        },
+        "debtManagementPlan": {
+          "allowed": true,
+          "active": "Accepted on DMP products",
+          "requirements": [
+            "Must have been active for minimum 12 months",
+            "Must provide proof of satisfactory payments from DMP provider",
+            "If active, doesn't have to be repaid at completion",
+            "For remortgages, capital raising can be considered to clear the DMP",
+            "No more than 1 active DMP per application"
+          ],
+          "satisfied": "Accepted if satisfied over 12 months ago (standard products)",
+          "specialProducts": "Pepper24 DMP, Pepper18 DMP, Pepper12 DMP"
+        },
+        "paydayLoans": {
+          "allowed": true,
+          "minMonthsClosed": 12,
+          "details": "Accepted where account closed over 12 months ago"
+        },
+        "repossessions": {
+          "allowed": true,
+          "minYears": 6,
+          "details": "Accepted where repossession occurred more than 6 years ago"
+        }
+      },
+      "incomeCriteria": {
+        "minIncome": 18000,
+        "incomeTypes": {
+          "employed": {
+            "minMonths": 6,
+            "basicSalary": 100,
+            "carAllowance": 100,
+            "monthlyBonus": 100,
+            "overtime": 100,
+            "annualBonus": 50,
+            "quarterlyBonus": 50,
+            "rentalIncome": 50
+          },
+          "selfEmployed": {
+            "minYearsTrading": 1,
+            "acceptedTypes": [
+              "Sole Trader",
+              "Partnership",
+              "Limited Company"
+            ],
+            "soleTrader": "Last 1-2 years SA302s",
+            "limitedCompany": "Last 1-2 years company accounts + SA302s",
+            "additionalRemuneration": "100% ownership allows add-backs (car allowance, pension, home office, health insurance)"
+          },
+          "dayRateContractors": {
+            "accepted": true,
+            "minHistory": 12,
+            "calculation": "Lower of 12 month average or current rate \u00d7 5 days \u00d7 46 weeks"
+          }
+        },
+        "secondaryIncome": "100% of secondary income accepted in many scenarios"
+      },
+      "propertyRequirements": {
+        "minValue": 70000,
+        "maxValue": "No maximum",
+        "acceptedTypes": [
+          "Houses (private)",
+          "Houses (ex-local authority)",
+          "Flats (private)",
+          "Flats (ex-local authority)",
+          "Maisonettes"
+        ],
+        "excludedTypes": [
+          "New build flats",
+          "Studio flats",
+          "Freehold flats",
+          "Properties <35m\u00b2 (flats)",
+          "Non-standard construction",
+          "Properties with commercial element"
+        ],
+        "locations": [
+          "England",
+          "Wales",
+          "Isle of Wight"
+        ],
+        "tenure": {
+          "freehold": "Houses only",
+          "leasehold": "Min 85 years unexpired at completion",
+          "commonhold": "Not accepted"
+        }
+      },
+      "specialFeatures": {
+        "pepperFlex": {
+          "available": true,
+          "description": "For applicants just outside standard criteria",
+          "additionalFee": "\u00a31,000 - \u00a32,500 completion fee"
+        },
+        "capitalRaising": "Accepted to maximum LTVs for debt consolidation",
+        "interestOnly": {
+          "maxLTV": 60,
+          "repaymentStrategy": "Sale of main residence acceptable with suitable equity"
+        },
+        "firstTimeBuyers": "Accepted",
+        "rightToBuy": {
+          "accepted": true,
+          "maxLTV": 100,
+          "maxLoan": 750000
+        },
+        "concessionary": {
+          "family": "Accepted - up to 100% loan to purchase price",
+          "landlord": "Accepted - up to 100% loan to purchase price",
+          "maxLTV": 75
+        }
+      },
+      "applicationRequirements": {
+        "minAge": 21,
+        "maxAge": 80,
+        "maxRetirementAge": 75,
+        "maxTerm": 40,
+        "minTerm": 5,
+        "residency": "3 years UK address history required",
+        "creditCheck": "Manual underwriting by skilled decision makers",
+        "offerValidity": 90,
+        "applicationValidity": 45
+      },
+      "fees": {
+        "applicationFee": 150,
+        "completionFee": "\u00a30 - \u00a31,495 (varies by product)",
+        "valuation": "Free valuation available on some products up to \u00a3500k"
+      }
+    },
+    {
+      "lenderName": "West One",
+      "lenderType": "Adverse Credit Specialist",
+      "productTiers": [
+        {
+          "tierName": "Premier",
+          "description": "Cleanest credit profile - FTBs up to 95% LTV, remortgages up to 90% LTV",
+          "maxLTV": 95,
+          "maxLoan": 1500000,
+          "minLoan": 25000,
+          "rates": {
+            "65ltv_2yr": 5.69,
+            "70ltv_2yr": 5.79,
+            "75ltv_2yr": 5.79,
+            "80ltv_2yr": 5.94,
+            "85ltv_2yr": 6.49,
+            "90ltv_2yr": 7.24,
+            "95ltv_2yr": 7.64,
+            "65ltv_5yr": 5.74,
+            "70ltv_5yr": 5.84,
+            "75ltv_5yr": 5.84,
+            "80ltv_5yr": 5.99,
+            "85ltv_5yr": 6.54,
+            "90ltv_5yr": 7.29,
+            "95ltv_5yr": 7.69
+          }
+        },
+        {
+          "tierName": "Platinum",
+          "description": "Minor adverse credit - up to 90% LTV",
+          "maxLTV": 90,
+          "maxLoan": 1250000,
+          "minLoan": 25000,
+          "rates": {
+            "65ltv_2yr": 5.79,
+            "70ltv_2yr": 5.89,
+            "75ltv_2yr": 5.89,
+            "80ltv_2yr": 6.04,
+            "85ltv_2yr": 6.59,
+            "90ltv_2yr": 7.34,
+            "65ltv_5yr": 5.84,
+            "70ltv_5yr": 5.94,
+            "75ltv_5yr": 5.94,
+            "80ltv_5yr": 6.09,
+            "85ltv_5yr": 6.64,
+            "90ltv_5yr": 7.39
+          }
+        },
+        {
+          "tierName": "Prime Plus",
+          "description": "Some adverse credit - up to 85% LTV",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 25000,
+          "rates": {
+            "65ltv_2yr": 5.99,
+            "70ltv_2yr": 6.09,
+            "75ltv_2yr": 6.09,
+            "80ltv_2yr": 6.24,
+            "85ltv_2yr": 6.79,
+            "65ltv_5yr": 6.04,
+            "70ltv_5yr": 6.14,
+            "75ltv_5yr": 6.14,
+            "80ltv_5yr": 6.29,
+            "85ltv_5yr": 6.84
+          }
+        },
+        {
+          "tierName": "Prime",
+          "description": "More adverse credit - up to 80% LTV",
+          "maxLTV": 80,
+          "maxLoan": 750000,
+          "minLoan": 25000,
+          "rates": {
+            "65ltv_2yr": 6.54,
+            "70ltv_2yr": 6.64,
+            "75ltv_2yr": 6.64,
+            "80ltv_2yr": 6.79,
+            "65ltv_5yr": 6.59,
+            "70ltv_5yr": 6.69,
+            "75ltv_5yr": 6.69,
+            "80ltv_5yr": 6.84
+          }
+        },
+        {
+          "tierName": "Near Prime",
+          "description": "More complex adverse credit - up to 75% LTV",
+          "maxLTV": 75,
+          "maxLoan": 500000,
+          "minLoan": 25000,
+          "rates": {
+            "65ltv_2yr": 7.59,
+            "70ltv_2yr": 7.69,
+            "75ltv_2yr": 7.69,
+            "65ltv_5yr": 7.64,
+            "70ltv_5yr": 7.74,
+            "75ltv_5yr": 7.74
+          }
+        },
+        {
+          "tierName": "Right to Buy",
+          "description": "Right to Buy purchases only - up to 75% LTV",
+          "maxLTV": 75,
+          "maxLoan": 500000,
+          "minLoan": 25000,
+          "specialCriteria": "Lower of 100% of discounted purchase price or 75% of OMV",
+          "rates": {
+            "75ltv_omv_2yr": 6.84,
+            "75ltv_omv_5yr": 6.69
+          }
+        },
+        {
+          "tierName": "Shared Ownership",
+          "description": "Shared Ownership purchases and remortgages - up to 75% LTV",
+          "maxLTV": 75,
+          "maxLoan": 450000,
+          "minLoan": 25000,
+          "specialCriteria": "Up to 100% of shares being purchased, max 75% of OMV. Min/max share: 25%/75%",
+          "rates": {
+            "90lsv_2yr": 6.54,
+            "95lsv_2yr": 6.64,
+            "100lsv_2yr": 7.04,
+            "90lsv_5yr": 6.54,
+            "95lsv_5yr": 6.64,
+            "100lsv_5yr": 7.04
+          }
+        }
+      ],
+      "adverseCreditCriteria": {
+        "ccjs": {
+          "allowed": true,
+          "details": "Varies by tier. Unsecured credit with balances below \u00a3500 excluded from plan assessments but reviewed for affordability.",
+          "tierRequirements": {
+            "Premier": "0 for balances >\u00a3500 in 36 months (satisfied and unsatisfied)",
+            "Platinum": "0 for balances >\u00a3500 in 24 months (satisfied and unsatisfied)",
+            "Prime Plus": "0 for balances >\u00a3500 in 12 months (satisfied and unsatisfied)",
+            "Prime": "Accepted (satisfied). 0 for balances >\u00a3500 in 6 months (unsatisfied)",
+            "Near Prime": "Accepted (satisfied). 1 for balances >\u00a3500 in 12 months (unsatisfied)",
+            "Right to Buy": "0 for balances >\u00a3500 in 12 months (satisfied and unsatisfied)",
+            "Shared Ownership": "0 for balances >\u00a3500 in 12 months (satisfied and unsatisfied)"
+          },
+          "mustBeSatisfied": false,
+          "maxValue": {
+            "Premier": 5000,
+            "Platinum": "Over \u00a35,000 by referral",
+            "Prime Plus": "Over \u00a37,500 by referral",
+            "Prime": "Not applicable",
+            "Near Prime": "Not applicable",
+            "Right to Buy": "Over \u00a37,500 by referral",
+            "Shared Ownership": "Over \u00a37,500 by referral"
+          },
+          "specialNote": "Explanation required for all adverse credit, especially in cases of worsening credit profile. Utilities and comms suppliers' payment profiles not taken into account for plan assessment (excluding CCJs and defaults)."
+        },
+        "defaults": {
+          "allowed": true,
+          "details": "Varies by tier. Unsecured credit with balances below \u00a3500 excluded from plan assessments but reviewed for affordability.",
+          "tierRequirements": {
+            "Premier": "0 for balances >\u00a3500 in 36 months (satisfied and unsatisfied)",
+            "Platinum": "0 for balances >\u00a3500 in 24 months (satisfied and unsatisfied)",
+            "Prime Plus": "0 for balances >\u00a3500 in 12 months (satisfied and unsatisfied)",
+            "Prime": "Accepted (satisfied). 0 for balances >\u00a3500 in 6 months (unsatisfied)",
+            "Near Prime": "Accepted (satisfied). 1 for balances >\u00a3500 in 12 months (unsatisfied)",
+            "Right to Buy": "0 for balances >\u00a3500 in 12 months (satisfied and unsatisfied)",
+            "Shared Ownership": "0 for balances >\u00a3500 in 12 months (satisfied and unsatisfied)"
+          },
+          "mustBeSatisfied": false,
+          "specialNote": "Explanation required for all adverse credit, especially in cases of worsening credit profile. Utilities and comms suppliers' payment profiles not taken into account for plan assessment (excluding CCJs and defaults)."
+        },
+        "mortgageArrears": {
+          "allowed": true,
+          "details": "Secured arrears acceptance varies by tier",
+          "tierRequirements": {
+            "Premier": "0 in 36 months and up to date",
+            "Platinum": "0 in 24 months and up to date",
+            "Prime Plus": "0 in 12 months and up to date",
+            "Prime": "1 in 12 months, 0 in 6 months",
+            "Near Prime": "1 in 12 months, 0 in 3 months",
+            "Right to Buy": "0 in 12 months and up to date",
+            "Shared Ownership": "0 in 12 months and up to date"
+          },
+          "currentArrears": "Must be up to date"
+        },
+        "unsecuredArrears": {
+          "allowed": true,
+          "details": "Acceptance varies by tier",
+          "tierRequirements": {
+            "Premier": "1 in 12 months for balances >\u00a3500 and up to date",
+            "Platinum": "Max Status 2 in 12 months for balances >\u00a3500 and up to date",
+            "Prime Plus": "Accepted where outstanding arrears being cleared by the mortgage",
+            "Prime": "Accepted where outstanding arrears being cleared by the mortgage",
+            "Near Prime": "Accepted",
+            "Right to Buy": "Accepted if up to date",
+            "Shared Ownership": "Accepted if up to date"
+          }
+        },
+        "paydayLoans": {
+          "allowed": false,
+          "details": "Not accepted within specific timeframes by tier",
+          "tierRequirements": {
+            "Premier": "0 in 36 months",
+            "Platinum": "0 in 24 months",
+            "Prime Plus": "0 in 12 months",
+            "Prime": "0 in 6 months",
+            "Near Prime": "0 in 3 months",
+            "Right to Buy": "0 in 12 months",
+            "Shared Ownership": "0 in 12 months"
+          }
+        },
+        "debtManagementPlan": {
+          "allowed": true,
+          "active": "Not accepted (except Near Prime - if being discharged from mortgage proceeds)",
+          "requirements": [
+            "Discharged DMPs: 0 in 72 months for Premier, Platinum, Prime Plus, Right to Buy, Shared Ownership",
+            "Discharged DMPs: 0 in 36 months for Prime",
+            "Discharged DMPs: Accepted with satisfactory explanation for Near Prime",
+            "Current DMPs: Only Near Prime accepts if being discharged directly from mortgage proceeds with satisfactory explanation"
+          ]
+        },
+        "bankruptcy": {
+          "allowed": false,
+          "minYearsSinceDischarge": 6,
+          "details": "0 in 72 months for all tiers"
+        },
+        "iva": {
+          "allowed": false,
+          "minYearsSinceDischarge": 6,
+          "details": "0 in 72 months for all tiers"
+        },
+        "repossessions": {
+          "allowed": false,
+          "details": "Not mentioned as accepted in any tier"
+        }
+      },
+      "incomeCriteria": {
+        "minIncome": 15000,
+        "minHouseholdIncome": {
+          "LTI_Boost": 50000
+        },
+        "incomeTypes": {
+          "employed": {
+            "minMonths": 3,
+            "minYears": {
+              "Premier": 1,
+              "Platinum": 1,
+              "Prime Plus": 1,
+              "Prime": 1,
+              "Near Prime": 1
+            },
+            "bonusOvertimeCommission": "Up to 100% if regular and consistent"
+          },
+          "selfEmployed": {
+            "minYearsTrading": 2,
+            "acceptedTypes": [
+              "Sole Trader",
+              "Partnership",
+              "Limited Company"
+            ],
+            "requirements": "Minimum 2 year trading history for Premier, Platinum, Prime Plus. Minimum 1 year for Prime, Near Prime, Right to Buy, Shared Ownership"
+          },
+          "contractors": {
+            "accepted": true,
+            "minHistory": 12,
+            "details": "1 year self-employed and contractors accepted"
+          }
+        },
+        "retirementIncome": {
+          "over10Years": "Work off current income with proof of pension",
+          "within10Years": "Work off lower of current income or pension income"
+        }
+      },
+      "propertyRequirements": {
+        "minValue": null,
+        "maxValue": {
+          "Premier": "No maximum mentioned",
+          "Platinum": "No maximum mentioned",
+          "Prime Plus": "No maximum mentioned",
+          "Prime": "No maximum mentioned",
+          "Near Prime": "No maximum mentioned"
+        },
+        "locations": [
+          "England",
+          "Wales",
+          "Scotland",
+          "Isle of Wight"
+        ],
+        "newBuild": {
+          "flats": "Up to 75% LTV",
+          "houses": "Up to plan maximum LTV (varies by tier)"
+        },
+        "councilFlats": "Accepted up to 4 stories with minimum property value of \u00a3200,000 up to 65% LTV. 5 stories or more with a lift considered by referral",
+        "sharedOwnership": {
+          "locations": "England, Wales, Isle of Wight only",
+          "registeredWith": "Homes Community Agency (Homes England) and Welsh Assembly (Shared Ownership Wales)",
+          "minShare": "25%",
+          "maxShare": "75%",
+          "requirements": "Solicitors to confirm lease meets requirements including Mortgage Protection Clause and ability to staircase to 100%"
+        },
+        "rightToBuy": {
+          "location": "England and Isle of Wight only"
+        }
+      },
+      "specialFeatures": {
+        "unencumberedProperty": "Accepted",
+        "capitalRaising": {
+          "debtConsolidation": "Available up to 90% LTV for Premier, Platinum, Prime Plus - all unsecured debts paid directly from BACS. Available up to 85% LTV for Prime. Available up to 75% LTV for Near Prime. Not permitted for interest only."
+        },
+        "interestOnly": {
+          "maxLTV": 75,
+          "availability": "Not available for LTI Boost or unencumbered properties",
+          "maxAge": 75
+        },
+        "firstTimeBuyers": {
+          "accepted": true,
+          "Premier": "Accepted. For 95% LTV: additional applicants considered where they have not owned property in last 5 years",
+          "Platinum": "Accepted",
+          "Prime Plus": "Accepted",
+          "Prime": "12 months current rental history required (applicants living with family considered by referral)",
+          "Near Prime": "Not accepted",
+          "Right to Buy": "Accepted",
+          "Shared Ownership": "Accepted"
+        },
+        "marriedCohabiting": "Applications from married individuals applying in their sole name accepted. Can also consider adding non-owning spouses/partners to mortgage application",
+        "fastTrackRemortgage": "Fast track legal services available for remortgage applications with no legal fees",
+        "ltiBoost": {
+          "available": true,
+          "description": "Offering uncapped LTIs over 5.0 times income",
+          "minHouseholdIncome": 50000,
+          "maxLTV": {
+            "Premier": 90,
+            "Platinum": 90,
+            "Prime Plus": 85,
+            "Prime": 80,
+            "Near Prime": 75
+          },
+          "onlyCapitalRepayment": true,
+          "interestOnlyNotAvailable": true,
+          "unencumberedNotAvailable": true
+        },
+        "avm": {
+          "available": true,
+          "maxLoanSize": 300000,
+          "maxLTV": 70,
+          "maxPropertyValue": 1000000,
+          "availableFor": "Remortgages, unencumbered properties, and transfer of equity"
+        },
+        "visaHolders": "Skilled Worker, Health & Care or UK Ancestry visas accepted up to 90% LTV provided they have >24 months UK residency",
+        "borrowersLivingWithFamily": "Accepted for Premier, Platinum, Prime Plus, Platinum. Prime by referral only.",
+        "legalServices": "Dual representation available exclusively through closed panel of solicitors (Right to Buy and Shared Ownership)"
+      },
+      "applicationRequirements": {
+        "minAge": 21,
+        "maxAge": {
+          "capitalRepayment": 85,
+          "interestOnly": 75
+        },
+        "maxTerm": 40,
+        "minTerm": 5,
+        "maxApplicants": 2,
+        "creditCheck": "No credit score - each case assessed on its own merits. Manual underwriting. Referrals considered.",
+        "rentalPayments": {
+          "Prime": "Last 12 months required",
+          "Near Prime": "Last 12 months required",
+          "Shared Ownership": "Rental payment to be factored in affordability"
+        }
+      },
+      "fees": {
+        "applicationFee": 199,
+        "productFees": {
+          "standard": 1495,
+          "feeAssist": 0,
+          "cashback": "\u00a31,000 on selected products"
+        },
+        "feeAssist": "Application fee refundable within 30 days of completion for fee assist products",
+        "valuationRefund": "Valuation refunded within 30 days of completion on selected products",
+        "lenderFee": "Excluded from LTV calculation, capped at max of 90% LTV. Fees cannot be added above gross maximum LTV of 90%.",
+        "ercs": {
+          "2yr": "2%/1%",
+          "5yr": "5%/5%/4%/3%/2%"
+        }
+      }
+    },
+    {
+      "lenderName": "The Mortgage Lender (TML)",
+      "lenderType": "Adverse Credit Specialist",
+      "productTiers": [
+        {
+          "tierName": "Real Life 0 (RL0)",
+          "description": "Cleanest credit profile - No CCJs/defaults in 36 months",
+          "maxLTV": 90,
+          "maxLoan": 1250000,
+          "minLoan": 25001,
+          "rates": {
+            "75ltv_2yr": 5.54,
+            "80ltv_2yr": 6.09,
+            "85ltv_2yr": 6.04,
+            "90ltv_2yr": 6.29,
+            "75ltv_5yr": 5.49,
+            "80ltv_5yr": 5.79,
+            "85ltv_5yr": 5.99,
+            "90ltv_5yr": 5.99
+          },
+          "specialNotes": "90% LTV requires minimum credit score of 200 and EPC rating A-C"
+        },
+        {
+          "tierName": "Real Life 1 (RL1)",
+          "description": "Minor adverse - Up to 3 CCJs in 36 months (0 in 6 months), up to 4 defaults",
+          "maxLTV": 90,
+          "maxLoan": 1250000,
+          "minLoan": 25001,
+          "rates": {
+            "70ltv_2yr": 5.64,
+            "75ltv_2yr": 6.04,
+            "80ltv_2yr": 6.14,
+            "85ltv_2yr": 6.24,
+            "90ltv_2yr": 6.44,
+            "70ltv_5yr": 5.59,
+            "75ltv_5yr": 5.84,
+            "80ltv_5yr": 5.89,
+            "85ltv_5yr": 5.94,
+            "90ltv_5yr": 6.19
+          },
+          "specialNotes": "90% LTV requires minimum credit score of 200 and EPC rating A-C"
+        },
+        {
+          "tierName": "Real Life 2 (RL2)",
+          "description": "Moderate adverse - 1 CCJ and 1 default in 36 months (0 in 6 months), discharged bankruptcy/IVA 36+ months",
+          "maxLTV": 85,
+          "maxLoan": 1250000,
+          "minLoan": 25001,
+          "rates": {
+            "70ltv_2yr": 5.92,
+            "75ltv_2yr": 6.31,
+            "80ltv_2yr": 6.39,
+            "85ltv_2yr": 6.49,
+            "70ltv_5yr": 5.79,
+            "75ltv_5yr": 5.99,
+            "80ltv_5yr": 6.19,
+            "85ltv_5yr": 6.14
+          }
+        },
+        {
+          "tierName": "Real Life 3 (RL3)",
+          "description": "Heavier adverse - 0 CCJs/defaults in 36 months but discharged bankruptcy/IVA 72+ months",
+          "maxLTV": 80,
+          "maxLoan": 1250000,
+          "minLoan": 25001,
+          "rates": {
+            "70ltv_2yr": 6.24,
+            "75ltv_2yr": 6.64,
+            "80ltv_2yr": 6.74,
+            "70ltv_5yr": 6.19,
+            "75ltv_5yr": 6.49,
+            "80ltv_5yr": 6.64
+          }
+        }
+      ],
+      "adverseCreditCriteria": {
+        "ccjs": {
+          "RL0": {
+            "allowed": false,
+            "minMonthsSince": 36,
+            "maxNumber": 0,
+            "details": "No CCJs in last 36 months"
+          },
+          "RL1": {
+            "allowed": true,
+            "minMonthsSince": 6,
+            "maxNumber": 3,
+            "minMonthsSinceForMax": 36,
+            "mustBeZeroInLast": 6,
+            "ignoreIfUnder": 300,
+            "details": "Up to 3 CCJs in 36 months, but 0 in last 6 months. CCJs under \u00a3300 are ignored"
+          },
+          "RL2": {
+            "allowed": true,
+            "minMonthsSince": 6,
+            "maxNumber": 1,
+            "minMonthsSinceForMax": 36,
+            "mustBeZeroInLast": 6,
+            "ignoreIfUnder": 300,
+            "details": "1 CCJ in 36 months (0 in last 6 months). CCJs under \u00a3300 are ignored"
+          },
+          "RL3": {
+            "allowed": false,
+            "minMonthsSince": 36,
+            "maxNumber": 0,
+            "details": "No CCJs in last 36 months"
+          }
+        },
+        "defaults": {
+          "RL0": {
+            "allowed": false,
+            "minMonthsSince": 36,
+            "maxNumber": 0,
+            "details": "No defaults in last 36 months"
+          },
+          "RL1": {
+            "allowed": true,
+            "minMonthsSince": 6,
+            "maxNumber": 4,
+            "minMonthsSinceForMax": 36,
+            "mustBeZeroInLast": 6,
+            "utilityAndCommsIgnored": true,
+            "details": "Up to 4 defaults in 36 months (0 in last 6 months). Utility and communications defaults are not considered adverse"
+          },
+          "RL2": {
+            "allowed": true,
+            "minMonthsSince": 6,
+            "maxNumber": 1,
+            "minMonthsSinceForMax": 36,
+            "mustBeZeroInLast": 6,
+            "utilityAndCommsIgnored": true,
+            "details": "1 default in 36 months (0 in last 6 months). Utility and communications defaults are not considered adverse"
+          },
+          "RL3": {
+            "allowed": false,
+            "minMonthsSince": 36,
+            "maxNumber": 0,
+            "details": "No defaults in last 36 months"
+          }
+        },
+        "unsecuredArrears": {
+          "allowed": true,
+          "maxMissedPaymentsPerAccount": 2,
+          "maxMissedPaymentsTimePeriod": "6 months",
+          "ignoredIfBalanceUnder": 500,
+          "details": "Maximum 2 missed payments in last 6 months allowed on each unsecured credit agreement. Arrears ignored if current balance is under \u00a3500. RL0 only assessed on worst status basis"
+        },
+        "mortgageArrears": {
+          "RL0": {
+            "allowed": false,
+            "minMonthsSince": 36,
+            "maxMissedPayments": 0,
+            "details": "0 missed mortgage payments in last 36 months"
+          },
+          "RL1": {
+            "allowed": true,
+            "maxMissedPayments": 2,
+            "minMonthsSince": 24,
+            "mustBeZeroInLast": 12,
+            "details": "Maximum 2 missed mortgage payments in last 24 months, 0 in last 12 months"
+          },
+          "RL2": {
+            "allowed": true,
+            "maxMissedPayments": 1,
+            "minMonthsSince": 24,
+            "mustBeZeroInLast": 12,
+            "details": "Maximum 1 missed mortgage payment in last 24 months, 0 in last 12 months"
+          },
+          "RL3": {
+            "allowed": false,
+            "minMonthsSince": 24,
+            "maxMissedPayments": 0,
+            "details": "0 missed mortgage payments in last 24 months"
+          },
+          "generalRule": "No missed payments in last 12 months on secured loans. Must be currently up to date"
+        },
+        "bankruptcy": {
+          "RL0": {
+            "allowed": false,
+            "details": "Not accepted"
+          },
+          "RL1": {
+            "allowed": false,
+            "details": "Not accepted"
+          },
+          "RL2": {
+            "allowed": true,
+            "minMonthsSinceDischarge": 36,
+            "cleanProfileRequired": true,
+            "cleanProfileMonths": 36,
+            "details": "Discharged 36+ months with clean profile for 36 months since discharge"
+          },
+          "RL3": {
+            "allowed": true,
+            "minMonthsSinceDischarge": 72,
+            "cleanProfileRequired": true,
+            "cleanProfileMonths": 72,
+            "details": "Discharged 72+ months with clean profile since discharge"
+          }
+        },
+        "iva": {
+          "RL0": {
+            "allowed": false,
+            "details": "Not accepted"
+          },
+          "RL1": {
+            "allowed": false,
+            "details": "Not accepted"
+          },
+          "RL2": {
+            "allowed": true,
+            "minMonthsSinceDischarge": 36,
+            "cleanProfileRequired": true,
+            "cleanProfileMonths": 36,
+            "details": "Discharged 36+ months with clean profile for 36 months since discharge. Trust Deed in Scotland also accepted"
+          },
+          "RL3": {
+            "allowed": true,
+            "minMonthsSinceDischarge": 72,
+            "cleanProfileRequired": true,
+            "cleanProfileMonths": 72,
+            "details": "Discharged 72+ months with clean profile since discharge. Trust Deed in Scotland also accepted"
+          }
+        },
+        "debtManagementPlan": {
+          "RL0": {
+            "allowed": false,
+            "details": "Not accepted"
+          },
+          "RL1": {
+            "allowed": true,
+            "active": "Accepted with negotiated payment",
+            "details": "Acceptable if negotiated payment arrangement in place"
+          },
+          "RL2": {
+            "allowed": true,
+            "active": "Accepted with negotiated payment",
+            "details": "Acceptable if negotiated payment arrangement in place"
+          },
+          "RL3": {
+            "allowed": false,
+            "details": "Not accepted"
+          }
+        },
+        "paydayLoans": {
+          "allowed": true,
+          "minMonthsClosed": 12,
+          "noDefaultsInLast": 12,
+          "mustBeSatisfied": true,
+          "details": "Payday loans must be satisfied 12 months prior to application. No defaulted payday loans in last 12 months. Current/recent payday loans are considered"
+        },
+        "repossessions": {
+          "RL0": {
+            "allowed": false,
+            "details": "Not accepted"
+          },
+          "RL1": {
+            "allowed": false,
+            "details": "Not accepted"
+          },
+          "RL2": {
+            "allowed": true,
+            "minYearsSince": 6,
+            "details": "Accepted if 6+ years since repossession"
+          },
+          "RL3": {
+            "allowed": false,
+            "details": "Not accepted"
+          }
+        }
+      },
+      "incomeCriteria": {
+        "minIncome": 18000,
+        "incomeTypes": {
+          "employed": {
+            "basicSalary": "100%",
+            "overtime": "100%",
+            "bonus": "100%",
+            "commission": "100%",
+            "carAllowance": "100%",
+            "regionalAllowance": "100%",
+            "shiftAllowance": "50% if paid weekly, monthly or quarterly",
+            "overMillionLoan": "For loans over \u00a31m: 75% of last 3 months average for overtime/bonus/commission with evidence of sustainability"
+          },
+          "selfEmployed": {
+            "accepted": true,
+            "calculation": "Profit before tax plus salary",
+            "accountsRequired": "Last 2 years accounts OR SA302 with tax year overviews if trading 2+ years",
+            "bankStatements": "Last 3 months business bank statements",
+            "contractors": "Subcontractors under CIS treated as employed. If YTD not on payslip, may need accounts or SA302"
+          }
+        },
+        "loanToIncome": {
+          "standard": "Standard LTI applies",
+          "largeLoans": "Up to 5x LTI on loans \u00a3500k+. Loans over \u00a31m on Capital & Interest only"
+        }
+      },
+      "propertyRequirements": {
+        "minValue": 70000,
+        "minValueLondonSouthEast": 150000,
+        "acceptedTypes": [
+          "Standard residential properties",
+          "Leasehold properties",
+          "Shared ownership (specific products)"
+        ],
+        "excludedTypes": "See TML Property Criteria Guide for unacceptable property types",
+        "epcRequirements": {
+          "90LTV": "EPC rating A-C required for 90% LTV products",
+          "sharedOwnership": "EPC rating A-C required"
+        }
+      },
+      "specialFeatures": {
+        "realLifeTierSystem": "4-tier system (RL0, RL1, RL2, RL3) based on adverse credit profile, not credit score",
+        "creditScoreNotUsed": "Credit score does not determine product rate, except 90% LTV requires minimum score of 200 for RL0 and RL1",
+        "sharedOwnership": "Dedicated Shared Ownership range available - 95% of share purchased, up to 75% LTV against open market value",
+        "largeLoans": "Real Life Large Loans range up to \u00a31.25m with interest only available",
+        "interestOnly": {
+          "minLoan": 500000,
+          "maxLoan": 1250000,
+          "maxLTV": 75,
+          "acceptableRepaymentVehicles": [
+            "Sale of mortgage property (min \u00a3250k equity, 70% LTV)",
+            "Sale of other UK property (sufficient equity required)",
+            "ISAs (current value)",
+            "UK cash/savings (current value)"
+          ],
+          "affordabilityAssessment": "Assessed on Capital and Interest basis"
+        },
+        "partAndPart": "Available on large loans (\u00a3500k+) up to 85% LTV",
+        "giftedEquity": "Considered",
+        "debtConsolidation": "Available on remortgage - solicitor must repay debts directly",
+        "fastTrackValuation": "Standard valuation fee \u00a30 on selected products"
+      },
+      "fees": {
+        "completionFee": "\u00a30 to \u00a32,995 depending on product",
+        "applicationFee": "\u00a30 to \u00a3150 depending on product",
+        "telegraphicTransferFee": "\u00a30 to \u00a330 depending on product",
+        "valuationFee": "Variable or \u00a30 on standard valuation for selected products",
+        "standardLegalFees": "Variable",
+        "earlyRepaymentCharges": {
+          "2year": [
+            "3%",
+            "2%"
+          ],
+          "5year": [
+            "5%",
+            "4%",
+            "3%",
+            "2%",
+            "1%"
+          ]
+        }
+      },
+      "additionalCriteria": {
+        "maxLTVByProduct": {
+          "RL0_standard": 90,
+          "RL1_standard": 90,
+          "RL2_standard": 85,
+          "RL3_standard": 80,
+          "RL0_sharedOwnership": 75,
+          "RL1_sharedOwnership": 75,
+          "RL0_interestOnly": 75,
+          "RL1_interestOnly": 75,
+          "RL0_partAndPart": 85,
+          "RL1_partAndPart": 85
+        },
+        "maxLoanByLTV": {
+          "90LTV": 600000,
+          "80LTV": 750000,
+          "75LTV": 1000000,
+          "sharedOwnership": 405000
+        },
+        "dipValidity": "30 days",
+        "creditSearchValidity": "90 days",
+        "applicationValidity": "180 days",
+        "valuationValidity": "180 days",
+        "offerValidity": "90 days (184 days for new builds)",
+        "revertRate": "TML Residential Base Rate (currently 4.25%, floor 0.75%) + product margin = 7.25% total",
+        "utilityDefaults": "Utility and communications defaults are not considered adverse credit"
+      }
+    },
+    {
+      "lenderName": "Bluestone Mortgages",
+      "lenderType": "Adverse Credit Specialist",
+      "productTiers": [
+        {
+          "tierName": "Clear",
+          "description": "Cleanest credit profile - no CCJs or defaults in 36 months, no mortgage arrears in 24 months",
+          "maxLTV": 90,
+          "maxLoan": 1000000,
+          "minLoan": 50000,
+          "rates": {
+            "65ltv_2yr": 6.19,
+            "70ltv_2yr": 6.24,
+            "75ltv_2yr": 6.34,
+            "80ltv_2yr": 6.39,
+            "85ltv_2yr": 7.04,
+            "90ltv_2yr": 7.34,
+            "65ltv_3yr": 6.24,
+            "70ltv_3yr": 6.29,
+            "75ltv_3yr": 6.34,
+            "80ltv_3yr": 6.44,
+            "85ltv_3yr": 6.94,
+            "90ltv_3yr": 7.19,
+            "65ltv_5yr": 5.99,
+            "70ltv_5yr": 6.04,
+            "75ltv_5yr": 6.09,
+            "80ltv_5yr": 6.14,
+            "85ltv_5yr": 6.74,
+            "90ltv_5yr": 7.04
+          }
+        },
+        {
+          "tierName": "AAA",
+          "description": "1 satisfied default OR 1 satisfied CCJ in 36 months, no mortgage arrears in 24 months",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 50000,
+          "rates": {
+            "65ltv_2yr": 6.39,
+            "70ltv_2yr": 6.44,
+            "75ltv_2yr": 6.49,
+            "80ltv_2yr": 6.54,
+            "85ltv_2yr": 7.09,
+            "65ltv_3yr": 6.49,
+            "70ltv_3yr": 6.54,
+            "75ltv_3yr": 6.59,
+            "80ltv_3yr": 6.69,
+            "85ltv_3yr": 6.99,
+            "65ltv_5yr": 6.19,
+            "70ltv_5yr": 6.24,
+            "75ltv_5yr": 6.29,
+            "80ltv_5yr": 6.39,
+            "85ltv_5yr": 6.79
+          }
+        },
+        {
+          "tierName": "AA",
+          "description": "Up to 2 defaults OR up to 2 CCJs in 36 months, up to 2 mortgage missed payments 13-24 months ago",
+          "maxLTV": 85,
+          "maxLoan": 1000000,
+          "minLoan": 50000,
+          "rates": {
+            "65ltv_2yr": 6.79,
+            "70ltv_2yr": 6.84,
+            "75ltv_2yr": 6.89,
+            "80ltv_2yr": 6.99,
+            "85ltv_2yr": 7.14,
+            "65ltv_3yr": 6.74,
+            "70ltv_3yr": 6.79,
+            "75ltv_3yr": 6.84,
+            "80ltv_3yr": 6.94,
+            "85ltv_3yr": 7.09,
+            "65ltv_5yr": 6.69,
+            "70ltv_5yr": 6.74,
+            "75ltv_5yr": 6.79,
+            "80ltv_5yr": 6.89,
+            "85ltv_5yr": 6.99
+          }
+        },
+        {
+          "tierName": "A",
+          "description": "Up to 3 defaults OR up to 3 CCJs in 36 months, up to 3 mortgage missed payments 13-24 months ago",
+          "maxLTV": 80,
+          "maxLoan": 1000000,
+          "minLoan": 50000,
+          "rates": {
+            "65ltv_2yr": 6.99,
+            "70ltv_2yr": 7.04,
+            "75ltv_2yr": 7.09,
+            "80ltv_2yr": 7.14,
+            "65ltv_3yr": 6.94,
+            "70ltv_3yr": 6.99,
+            "75ltv_3yr": 7.04,
+            "80ltv_3yr": 7.09,
+            "65ltv_5yr": 6.89,
+            "70ltv_5yr": 6.94,
+            "75ltv_5yr": 6.99,
+            "80ltv_5yr": 7.04
+          }
+        },
+        {
+          "tierName": "BBB",
+          "description": "Up to 4 defaults OR up to 3 CCJs in 36 months, up to 4 mortgage missed payments 13-24 months ago",
+          "maxLTV": 75,
+          "maxLoan": 1000000,
+          "minLoan": 50000,
+          "rates": {
+            "65ltv_2yr": 7.19,
+            "70ltv_2yr": 7.24,
+            "75ltv_2yr": 7.24,
+            "65ltv_3yr": 7.14,
+            "70ltv_3yr": 7.19,
+            "75ltv_3yr": 7.19,
+            "65ltv_5yr": 7.09,
+            "70ltv_5yr": 7.14,
+            "75ltv_5yr": 7.14
+          }
+        },
+        {
+          "tierName": "Deposit Unlock (95% LTV)",
+          "description": "First-time buyers only, 95% LTV on new builds with 1 satisfied default in 36 months",
+          "maxLTV": 95,
+          "maxLoan": 600000,
+          "minLoan": 67507,
+          "rates": {
+            "95ltv_2yr": 7.04,
+            "95ltv_5yr": 6.79
+          }
+        },
+        {
+          "tierName": "Right to Buy",
+          "description": "Council tenant Right to Buy purchases, up to 100% of discounted price (max 75% of open market value)",
+          "maxLTV": 75,
+          "maxLoan": 1000000,
+          "minLoan": 50000,
+          "rates": {
+            "65ltv_5yr_Clear": 6.29,
+            "70ltv_5yr_Clear": 6.34,
+            "75ltv_5yr_Clear": 6.39,
+            "65ltv_5yr_AAA": 6.54,
+            "70ltv_5yr_AAA": 6.59,
+            "75ltv_5yr_AAA": 6.64,
+            "65ltv_5yr_AA": 6.84,
+            "70ltv_5yr_AA": 6.89,
+            "75ltv_5yr_AA": 6.94,
+            "65ltv_5yr_A": 7.04,
+            "70ltv_5yr_A": 7.09,
+            "75ltv_5yr_A": 7.14,
+            "65ltv_5yr_BBB": 7.24,
+            "70ltv_5yr_BBB": 7.29,
+            "75ltv_5yr_BBB": 7.29
+          }
+        }
+      ],
+      "adverseCreditCriteria": {
+        "ccjs": {
+          "allowed": true,
+          "details": "No CCJs in last 6 months (ignored if >36 months old). CCJs under \u00a3500 for telecom/utilities ignored even if in last 6 months",
+          "maxNumber": 3,
+          "tierRequirements": {
+            "Clear": "0 in 36 months",
+            "AAA": "1 satisfied in 36 months",
+            "AA": "2 in 36 months",
+            "A": "3 in 36 months",
+            "BBB": "3 in 36 months",
+            "DepositUnlock": "0 in 36 months"
+          },
+          "mustBeSatisfied": false,
+          "maxValue": "No limit (under \u00a3500 telecom/utilities ignored)",
+          "ignoreRule": "< \u00a3500 telecom or utilities ignored (even if in last 6 months); > 36 months ignored"
+        },
+        "defaults": {
+          "allowed": true,
+          "details": "No defaults in last 6 months (ignored if >36 months old). Defaults under \u00a3500 for telecom/utilities ignored even if in last 6 months",
+          "maxNumber": 4,
+          "tierRequirements": {
+            "Clear": "1 satisfied in 36 months",
+            "AAA": "1 satisfied in 36 months",
+            "AA": "2 in 36 months",
+            "A": "3 in 36 months",
+            "BBB": "4 in 36 months",
+            "DepositUnlock": "1 satisfied in 36 months"
+          },
+          "mustBeSatisfied": false,
+          "maxValue": "No limit (under \u00a3500 telecom/utilities ignored)",
+          "ignoreRule": "< \u00a3500 telecom or utilities ignored (even if in last 6 months); > 36 months ignored"
+        },
+        "mortgageArrears": {
+          "allowed": true,
+          "details": "No mortgage arrears in last 12 months minimum. Arrears >24 months ago ignored",
+          "tierRequirements": {
+            "Clear": "0 in 24 months",
+            "AAA": "0 in 24 months",
+            "AA": "2 in 13-24 months",
+            "A": "3 in 13-24 months",
+            "BBB": "4 in 13-24 months",
+            "DepositUnlock": "0 in 24 months"
+          },
+          "maxMissedPayments": 4,
+          "recencyRule": "Must be in 13-24 month period, 0 in last 12 months",
+          "ignoreRule": "> 24 months ignored"
+        },
+        "rentalArrears": {
+          "allowed": true,
+          "details": "Treated same as mortgage arrears. No rental arrears in last 12 months. Arrears >24 months ago ignored",
+          "tierRequirements": {
+            "Clear": "0 in 24 months",
+            "AAA": "0 in 24 months",
+            "AA": "2 in 13-24 months",
+            "A": "3 in 13-24 months",
+            "BBB": "4 in 13-24 months"
+          },
+          "maxMissedPayments": 4,
+          "recencyRule": "Must be in 13-24 month period, 0 in last 12 months",
+          "ignoreRule": "> 24 months ignored"
+        },
+        "bankruptcy": {
+          "allowed": true,
+          "minYearsSinceDischarge": 3,
+          "tierRequirements": {
+            "Clear": "> 6 years discharged",
+            "AAA": "> 6 years discharged",
+            "AA": "> 3 years discharged",
+            "A": "> 3 years discharged",
+            "BBB": "> 3 years discharged"
+          },
+          "rateLoading": "1% rate loading applies if discharged in last 6 years",
+          "caseByCase": "May consider customers with bankruptcy discharged >1 year on case-by-case basis",
+          "details": "Standard appetite: discharged 3-6+ years depending on tier. 1% loading if discharged <6 years. Sequestration (Scotland) treated same as bankruptcy"
+        },
+        "iva": {
+          "allowed": true,
+          "minYearsSinceDischarge": 3,
+          "tierRequirements": {
+            "Clear": "> 6 years discharged",
+            "AAA": "> 6 years discharged",
+            "AA": "> 3 years discharged",
+            "A": "> 3 years discharged",
+            "BBB": "> 3 years discharged"
+          },
+          "rateLoading": "1% rate loading applies if discharged in last 6 years",
+          "caseByCase": "May consider customers with current IVA on case-by-case basis",
+          "details": "Standard appetite: discharged 3-6+ years depending on tier. 1% loading if discharged <6 years. Trust Deed (Scotland) treated same as IVA"
+        },
+        "dro": {
+          "allowed": true,
+          "minYearsSinceDischarge": 3,
+          "tierRequirements": {
+            "Clear": "> 6 years discharged",
+            "AAA": "> 6 years discharged",
+            "AA": "> 3 years discharged",
+            "A": "> 3 years discharged",
+            "BBB": "> 3 years discharged"
+          },
+          "rateLoading": "1% rate loading applies if discharged in last 6 years",
+          "details": "Debt Relief Order treated same as bankruptcy/IVA. 1% loading if discharged <6 years"
+        },
+        "debtManagementPlan": {
+          "allowed": true,
+          "active": "OK if still in operation and can remain",
+          "tierRequirements": {
+            "Clear": "DMP/DAS must have been settled over 12 months ago",
+            "AAA_to_BBB": "DMP: OK if still in operation and can remain. DAS: Must be repaid prior to/upon completion"
+          },
+          "requirements": [
+            "Must be due to a life event",
+            "Must be conducted satisfactorily for 12 months"
+          ],
+          "details": "DMP can remain active. DAS (Debt Arrangement Scheme in Scotland) must be repaid on/before completion. Must be due to life event and conducted satisfactorily for 12 months"
+        },
+        "paydayLoans": {
+          "allowed": true,
+          "tierRequirements": {
+            "Clear": "0 in 12 months",
+            "AAA": "0 in 12 months",
+            "AA": "0 in 6 months",
+            "A_BBB": "Current payday loans accepted"
+          },
+          "definition": "Payday loan defined as loan <12 months with APR of at least 39%",
+          "requirements": [
+            "All outstanding payday loans must be cleared on or prior to completion",
+            "Includes any revolving credit used in past 12 months",
+            "Only one applicant can have had a payday loan in last 12 months"
+          ],
+          "details": "Clear/AAA: none in 12 months. AA: none in 6 months. A/BBB: current loans accepted but must clear on completion. Only 1 applicant can have had payday loan in last 12 months"
+        },
+        "repossessions": {
+          "allowed": false,
+          "details": "Not explicitly mentioned in criteria - refer to underwriter"
+        },
+        "unsecuredArrears": {
+          "allowed": true,
+          "maxAccounts": 5,
+          "ignoreRules": [
+            "Balance <\u00a3500",
+            "Account has defaulted",
+            "Account is part of DMP/DAS"
+          ],
+          "recencyRule": "Maximum 2 missed payments in last 6 months per credit agreement. If balance >\u00a3500, latest payment must have been made",
+          "details": "Maximum 5 unsecured credit accounts in arrears at completion. Arrears ignored if balance <\u00a3500, defaulted, or part of DMP/DAS. Max 2 missed payments in last 6 months per agreement"
+        }
+      },
+      "incomeCriteria": {
+        "minIncome": 18000,
+        "incomeTypes": {
+          "employed": {
+            "criteria": "Permanently employed, in continuous employment 6+ months, in current role 3+ months, not in probation on completion",
+            "evidenceRequired": [
+              "3 months payslips",
+              "P60",
+              "Details of last 6 months employment",
+              "Latest 1 month bank statements",
+              "Employment reference may be required"
+            ],
+            "basicSalary": "100%",
+            "bonus": "50% of average earned in last 2 years, 100% if guaranteed",
+            "commission": "50% of average earned in last 3 months, 100% if guaranteed",
+            "overtime": "50% of average earned in last 3 months, 100% if guaranteed",
+            "shiftPay": "50% of average earned in last 3 months, 100% if guaranteed",
+            "carAllowance": "100% if guaranteed, Nil if not guaranteed",
+            "locationAllowance": "100% if guaranteed, Nil if not guaranteed"
+          },
+          "selfEmployed": {
+            "accepted": true,
+            "minTradingHistory": "12 months",
+            "calculation": "Sole Traders: net profit. Partnerships: share of net profit. Ltd directors: salary and dividends. Can use salary and net profit if applicant owns 100% of business",
+            "additionalInclusions": [
+              "Directors Pension",
+              "Car Allowance",
+              "Home Office Use"
+            ],
+            "evidenceRequired": {
+              "tradingLessThan2Years": "Latest SA302 tax calculation and corresponding tax overview OR Latest certified accounts",
+              "trading2YearsPlus": "Last 2 years SA302 tax calculations and corresponding tax overviews OR Latest certified accounts",
+              "bankStatements": [
+                "3 months business bank statements",
+                "3 months personal bank statements"
+              ]
+            },
+            "notAcceptable": "Management or draft accounts",
+            "note": "Evidence must cover last full year's trading"
+          },
+          "contractors": {
+            "dayRate": {
+              "accepted": true,
+              "dayOneAccepted": true,
+              "minIndustryExperience": "6 months",
+              "calculation": "Day rate x 5 x 48",
+              "gapRule": "No gaps of more than 6 weeks in last 6 months",
+              "evidenceRequired": [
+                "Copy of current contract",
+                "3 months bank statements",
+                "Employment reference may be required"
+              ]
+            },
+            "paye": {
+              "accepted": true,
+              "dayOneAccepted": true,
+              "minEmployment": "6 months continuous",
+              "evidenceRequired": [
+                "Latest contract",
+                "If new contract: evidence of 6 months history (6 months payslips)",
+                "3 months bank statements"
+              ]
+            },
+            "temp_agency_zeroHours": {
+              "accepted": true,
+              "minHistory": "12 months with same employer, current role 3 months",
+              "calculation": "Average of last 12 months earnings",
+              "evidenceRequired": [
+                "12 months payslips required to take average",
+                "3 months bank statements"
+              ]
+            }
+          },
+          "cis": {
+            "accepted": true,
+            "minHistory": "12 months",
+            "calculation": "Average last 12 months earnings if using invoices, or use latest year's SA302",
+            "evidenceRequired": [
+              "Accept 12 months CIS vouchers OR SA302 as income",
+              "3 months bank statements"
+            ]
+          },
+          "otherIncome": {
+            "maintenance": {
+              "accepted": "Up to 100% if received and evidenced for last 6 months",
+              "evidenceRequired": "CSA orders"
+            },
+            "casualIncome": {
+              "accepted": true,
+              "requirements": "12 months employment history, must be with current employer minimum 6 months",
+              "evidenceRequired": [
+                "6 months payslips",
+                "P60",
+                "6 months bank statements"
+              ]
+            },
+            "directorsPartnersFees": {
+              "accepted": "Up to 100%",
+              "evidenceRequired": [
+                "Tax returns",
+                "3 months bank statements"
+              ]
+            },
+            "investmentIncome": {
+              "accepted": "Up to 100% if guaranteed and sustainable",
+              "evidenceRequired": "Solicitors/Accountant/Trust administrator verification"
+            },
+            "pensionIncome": {
+              "accepted": "Up to 100%",
+              "evidenceRequired": [
+                "Pension statement/letter OR SA302 & Tax Year Overview",
+                "3 months bank statements"
+              ]
+            },
+            "secondJobs": {
+              "accepted": true,
+              "requirements": "Must be permanent and been in role for 6 months",
+              "evidenceRequired": [
+                "3 months payslips and P60",
+                "3 months bank statements"
+              ]
+            },
+            "benefitIncome": {
+              "accepted": {
+                "workingTaxCredits": "100%, subject to max 30% of household income",
+                "disabilityLivingAllowance": "100%, subject to max 30% of household income",
+                "incapacityBenefit": "100%, subject to max 30% of household income",
+                "carersAllowance": "100%, subject to max 30% of household income",
+                "childTaxCredits": "100%, mortgage term cannot exceed child's 16th birthday",
+                "depositUnlock": "Working Family Tax Credits, Family Tax Credits, Personal Independence Payments: max 50% for affordability"
+              },
+              "notAccepted": [
+                "Child Benefit",
+                "JSA",
+                "Housing Benefit",
+                "DLA for non-applicants (i.e. received on behalf of 3rd party/child)"
+              ],
+              "evidenceRequired": "Latest award letter"
+            },
+            "rentalIncome": {
+              "portfolioLandlords": "100% of Net Rental Income after portfolio stressed at 125% of 5.50%",
+              "nonPortfolioLandlords": "75% of Net Rental Income",
+              "evidenceRequired": [
+                "6 months rental statements",
+                "Signed AST",
+                "Bank statements showing 6 months rental income"
+              ]
+            },
+            "fosterCareWorkers": {
+              "accepted": true,
+              "minHistory": "12 months",
+              "evidenceRequired": [
+                "SA302s OR last 12 months remittance slips/invoices/reference from foster care agency to evidence income"
+              ]
+            },
+            "maintenanceIncome_depositUnlock": {
+              "accepted": "100% if evidenced for minimum 6 months by bank statements",
+              "note": "If cannot be evidenced for 6 months, no maintenance income should be used"
+            },
+            "notAccepted": [
+              "Statutory Sick Pay",
+              "Occupational Sick Pay",
+              "Self Certified Income"
+            ]
+          }
+        },
+        "lendingIntoRetirement": {
+          "retirementAge": "Earlier of anticipated retirement age or age 70",
+          "evidenceRequired": {
+            "noPensionEvidence": [
+              "Up to age 50",
+              "20+ years until retirement",
+              "Customer has <35% LTV and <30% term remaining at 70 years or retirement"
+            ],
+            "pensionStatementNeeded": [
+              "Aged 50+",
+              "<20 years until retirement IF more than 35% LTV OR more than 30% term remaining at 70 years or retirement"
+            ],
+            "preRetirementIncome": "Can use pre-retirement income beyond age 70 (max age 73) for professionals: Specialist consultant in finance, Legal Practitioners, Doctors/Medical Practitioners including support staff, Business Owner"
+          }
+        }
+      },
+      "propertyRequirements": {
+        "minValue": 75000,
+        "maxValue": "No stated maximum",
+        "acceptedTypes": [
+          "Standard residential properties",
+          "Leasehold properties (flats must have min 2 bedrooms for Deposit Unlock)",
+          "New builds (Deposit Unlock only)",
+          "Right to Buy properties (England only)",
+          "Ex-local authority properties"
+        ],
+        "excludedTypes": [
+          "Self builds",
+          "Homebuy/Key Worker Scheme",
+          "HTB schemes not reported",
+          "Shared Equity",
+          "Shared Ownership (except specific Right to Buy scenarios)"
+        ],
+        "depositUnlockPropertyTypes": {
+          "onlyNewBuilds": true,
+          "leaseholdRequirement": "Minimum 2 bedrooms",
+          "constructionType": "As per standard policy",
+          "warrantyRequired": true,
+          "acceptedWarranties": [
+            "Advantage",
+            "Aedis Warranties",
+            "Ark Residential New Build Latent Defects Insurance Policy",
+            "BLP",
+            "Build Assure",
+            "Build Zone",
+            "Castle 10 provided by Checkmate",
+            "CRL Management Ltd",
+            "Global Home Warranties",
+            "ICW (International Construction Warranties)",
+            "LABC New Home Warranty",
+            "NHBC",
+            "One Guarantee",
+            "Premier Guarantee",
+            "Project Builders Structural Guarantee Certificate",
+            "Proteck",
+            "The Q Policy",
+            "Zurich Municipal"
+          ]
+        },
+        "rightToBuyPropertyTypes": {
+          "location": "England only",
+          "maxDiscountByRegion": {
+            "northEast": 22000,
+            "northWest": 26000,
+            "yorkshireHumber": 24000,
+            "eastMidlands": 24000,
+            "westMidlands": 26000,
+            "eastern": 34000,
+            "easternWatford": 16000,
+            "southEast": 38000,
+            "southEastSpecificDistricts": 16000,
+            "southWest": 30000,
+            "london": 16000,
+            "londonBarkingHavering": 38000
+          },
+          "note": "Applications received before 21 Nov 2024: up to \u00a3102,400 across England, \u00a3136,400 in London"
+        }
+      },
+      "specialFeatures": {
+        "noCreditScoring": "Bluestone does not use credit scoring - decisions based on unique circumstances",
+        "criteriaOnCompletion": "All adverse credit criteria assessed at mortgage offer/completion",
+        "lowValueIgnoreRule": "CCJs and Defaults under \u00a3500 for telecom/utilities ignored even if in last 6 months",
+        "depositUnlockScheme": {
+          "description": "Only specialist lender offering 95% LTV on new builds",
+          "customerType": "First-time buyers only",
+          "fullOwnership": "100% home ownership with no 2nd charge equity loans required",
+          "offerValidity": "180 days",
+          "acceptableDeposits": "Own resources, gifted cash, or combination. Builders incentives NOT allowed",
+          "residency": "All applicants must have been UK resident for 36 months AND held indefinite leave to remain for full 36 months",
+          "term": "5-35 years",
+          "minLTV": "90.01% excluding fee"
+        },
+        "rightToBuyScheme": {
+          "description": "Lend 100% of discounted purchase price, up to max 75% of open market value",
+          "customerType": "Council tenants only - only those named on Section 125 RTB Notice can apply",
+          "transactionType": "Purchase only",
+          "term": "5-40 years",
+          "location": "England only",
+          "offerValidity": "4 months",
+          "additionalDocuments": "Section 125 RTB Notice required for initial underwrite"
+        },
+        "feesFreeBenefits": {
+          "noProductFee": true,
+          "freeBasicValuation": true,
+          "freeBasicLegalFees": "Or \u00a3500 contribution to solicitor costs (remortgages only)",
+          "applicableTo": [
+            "\u00a3 for \u00a3 Remortgages",
+            "Capital raising",
+            "Transfer of equity",
+            "Unencumbered properties",
+            "Debt consolidation"
+          ],
+          "scottishRemortgages": "No free legals, but \u00a3500 contribution to solicitor costs available"
+        },
+        "openBankingIntegration": "Broker portal uses open banking for automated committed expenditure",
+        "experianIntegration": "Automatic credit reports from Experian earlier in process",
+        "loanPortability": "Not portable",
+        "feeAddition": "Product fees can be added to loan regardless of LTV (restricted to max 90% LTV for residential)"
+      },
+      "fees": {
+        "productFee": 1495,
+        "productFeesFree": 0,
+        "applicationFee": 0,
+        "valuationFees": {
+          "75000_150000": 220,
+          "150001_200000": 245,
+          "200001_250000": 270,
+          "250001_300000": 295,
+          "300001_350000": 320,
+          "350001_400000": 345,
+          "400001_450000": 370,
+          "450001_500000": 395,
+          "500001_600000": 530,
+          "600001_700000": 630,
+          "700001_800000": 695,
+          "800001_900000": 755,
+          "900001_1000000": 870,
+          "1000000plus": "Price on request"
+        },
+        "valuationWithHomebuyersReport": {
+          "75000_150000": 490,
+          "150001_200000": 545,
+          "200001_250000": 600,
+          "250001_300000": 660,
+          "300001_350000": 705,
+          "350001_400000": 745,
+          "400001_450000": 790,
+          "450001_500000": 820,
+          "500001_600000": 915,
+          "600001_700000": 1010,
+          "700001_800000": 1130,
+          "800001_900000": 1255,
+          "900001_1000000": 1380,
+          "1000000plus": "Price on request"
+        },
+        "valuationWithBuildingSurvey": {
+          "75000_150000": 780,
+          "150001_200000": 875,
+          "200001_250000": 915,
+          "250001_300000": 955,
+          "300001_350000": 1005,
+          "350001_400000": 1065,
+          "400001_450000": 1115,
+          "450001_500000": 1170,
+          "500001_600000": 1295,
+          "600001_700000": 1425,
+          "700001_800000": 1545,
+          "800001_900000": 1670,
+          "900001_1000000": 1795,
+          "1000000plus": "Price on request"
+        },
+        "retypeFee": 60,
+        "scottishHomeReports": "Transcripts acceptable where report carried out by valuer on Bluestone panel",
+        "earlyRepaymentCharges": {
+          "2year": [
+            "3% Year 1",
+            "2% Year 2"
+          ],
+          "3year": [
+            "3% Year 1",
+            "2.5% Year 2",
+            "2% Year 3"
+          ],
+          "5year": [
+            "3% Year 1",
+            "2.5% Year 2",
+            "2% Year 3",
+            "1% Year 4",
+            "0.5% Year 5"
+          ],
+          "termVariable_depositUnlock": [
+            "1.5% Year 1",
+            "1% Year 2",
+            "0.5% Year 3"
+          ]
+        }
+      },
+      "additionalCriteria": {
+        "maxApplicants": 4,
+        "minAge": 20,
+        "maxAge": 75,
+        "maxAgeAtEndOfTerm": "75 for residential and affordability based applications",
+        "residency": "Permanent UK residency rights, permanent settled status. Resident in UK for at least 1 year. Application for settled status is NOT sufficient",
+        "applicantsNotAccepted": [
+          "Guarantors",
+          "Expats",
+          "Diplomats",
+          "Protected persons (for Deposit Unlock)"
+        ],
+        "loanTerm": {
+          "min": 5,
+          "max": 40,
+          "depositUnlock": "5-35 years",
+          "rightToBuy": "5-40 years"
+        },
+        "repaymentType": "Capital & Interest available on all loans",
+        "mortgageSchemesNotAccepted": [
+          "Homebuy/Key Worker Scheme",
+          "HTB schemes not reported",
+          "Shared Equity",
+          "Shared Ownership",
+          "Self Builds"
+        ],
+        "deposit": "From own resources or gifted from close relative (parent, child, grandparent, brother, sister, uncle, aunt, foster parent, legal guardian including step relatives)",
+        "portability": "Not portable",
+        "maxLoanByLTV": {
+          "clear90LTV": 400000,
+          "depositUnlock95LTV": 600000,
+          "rightToBuy75LTV": 1000000
+        },
+        "bluestoneStandardVariableRate": 5.5,
+        "svr_note": "BVR does not have direct link to Bank of England Base Rate. Typically moves in line with BBR changes but could go up or down at any time",
+        "reversionRates": {
+          "description": "Variable rates calculated as margin + BVR (5.50%)",
+          "margins_by_tier_and_ltv": "See product tables - margins range from 2.30% to 3.65% depending on credit tier and LTV"
+        },
+        "giftedDeposit": {
+          "closeFamily": "Parent, child, grandparent, brother, sister, uncle, aunt, foster parent, legal guardian (including step relatives)"
+        },
+        "brokerPortalFeatures": {
+          "openBanking": "Pull through committed expenditure automatically",
+          "automatedCredit": "Automated Experian credit decision earlier in process",
+          "processingTime": "Reduction in processing times with accurate household expenditure in minutes"
+        }
+      }
+    },
+    {
+      "lenderName": "Tandem Bank",
+      "lenderType": "Adverse Credit Specialist",
+      "productTiers": [
+        {
+          "tierName": "Tandem Zero (T0)",
+          "description": "Clean credit profile - 0 CCJs, 0 defaults, 0 missed payments in last 24 months",
+          "maxLTV": 90,
+          "maxLoan": 750000,
+          "minLoan": 25000,
+          "rates": {
+            "70ltv_2yr": 5.99,
+            "70ltv_5yr": 5.99,
+            "75ltv_2yr": 5.99,
+            "75ltv_5yr": 5.99,
+            "80ltv_2yr": 6.25,
+            "80ltv_5yr": 5.99,
+            "85ltv_2yr": 6.49,
+            "85ltv_5yr": 6.15,
+            "90ltv_2yr": 6.99,
+            "90ltv_5yr": 6.75
+          },
+          "ltvLimits": {
+            "90ltv": "Up to £500,000",
+            "80ltv": "Up to £750,000"
+          }
+        },
+        {
+          "tierName": "Tandem One (T1)",
+          "description": "1 CCJ, 1 default, 1 missed payment, or 1 worst status in last 24 months (0 in last 3 months)",
+          "maxLTV": 90,
+          "maxLoan": 750000,
+          "minLoan": 25000,
+          "rates": {
+            "70ltv_2yr": 5.99,
+            "70ltv_5yr": 5.99,
+            "75ltv_2yr": 6.25,
+            "75ltv_5yr": 6.25,
+            "80ltv_2yr": 6.49,
+            "80ltv_5yr": 6.69,
+            "85ltv_2yr": 6.99,
+            "85ltv_5yr": 6.79,
+            "90ltv_2yr": 7.59,
+            "90ltv_5yr": 7.09
+          },
+          "ltvLimits": {
+            "90ltv": "Up to £500,000",
+            "80ltv": "Up to £750,000"
+          }
+        },
+        {
+          "tierName": "Tandem Two (T2)",
+          "description": "2 CCJs, 2 defaults, 2 missed payments, or 2 worst status in last 24 months (0 in last 3 months)",
+          "maxLTV": 85,
+          "maxLoan": 500000,
+          "minLoan": 25000,
+          "rates": {
+            "70ltv_2yr": 6.99,
+            "70ltv_5yr": 6.89,
+            "75ltv_2yr": 6.99,
+            "75ltv_5yr": 7.09,
+            "80ltv_2yr": 6.99,
+            "80ltv_5yr": 7.39,
+            "85ltv_2yr": 6.99,
+            "85ltv_5yr": 7.49
+          }
+        },
+        {
+          "tierName": "Tandem Three (T3)",
+          "description": "3 CCJs, 3 defaults, 3 missed payments, or 3 worst status in last 24 months (0 in last 3 months)",
+          "maxLTV": 80,
+          "maxLoan": 500000,
+          "minLoan": 25000,
+          "rates": {
+            "70ltv_2yr": 6.99,
+            "70ltv_5yr": 6.99,
+            "75ltv_2yr": 6.99,
+            "75ltv_5yr": 7.39,
+            "80ltv_2yr": 6.99,
+            "80ltv_5yr": 7.59
+          }
+        }
+      ],
+      "adverseCreditCriteria": {
+        "ccjs": {
+          "allowed": true,
+          "maxNumber": 3,
+          "timePeriod": "Last 24 months",
+          "mustBeSatisfied": false,
+          "balanceReferral": "Balances over £2,000 need referral and explanation",
+          "utilityException": "CCJs for utility and communications providers with value <£350 are not used to determine product tier",
+          "tierCascade": "1 late payment on one account is allowed before tier cascade",
+          "details": "T0: 0 in 24 months, T1: 1 in 24 months with 0 in 3 months, T2: 2 in 24 months with 0 in 3 months, T3: 3 in 24 months with 0 in 3 months"
+        },
+        "defaults": {
+          "allowed": true,
+          "maxNumber": 3,
+          "timePeriod": "Last 24 months",
+          "mustBeSatisfied": false,
+          "balanceReferral": "Balances over £2,000 need referral and explanation",
+          "utilityException": "Defaults for utility and communications providers with value <£350 are not used to determine product tier",
+          "tierCascade": "1 late payment on one account is allowed before tier cascade",
+          "details": "T0: 0 in 24 months, T1: 1 in 24 months with 0 in 3 months, T2: 2 in 24 months with 0 in 3 months, T3: 3 in 24 months with 0 in 3 months"
+        },
+        "mortgageArrears": {
+          "allowed": true,
+          "maxNumber": 3,
+          "timePeriod": "Last 24 months",
+          "tierCascade": "1 late payment on one account is allowed before tier cascade",
+          "details": "T0: 0 missed payments in 0-24 months, T1: 0 in 0-6 months and 1 in 7-24 months, T2: 0 in 0-6 months, 2 in 7-24 months, current status 1, T3: 0 in 0-6 months, 3 in 7-24 months, current status 1"
+        },
+        "unsecuredAccountConduct": {
+          "allowed": true,
+          "maxWorstStatus": 3,
+          "timePeriod": "Last 24 months",
+          "tierCascade": "1 late payment on one account is allowed before tier cascade",
+          "utilityException": "Utility and communications providers are not used to determine product tier",
+          "details": "T0: Highest status 0 in 0-24 months, T1: 0 in 0-6 months and 1 in 7-24 months, T2: 1 in 0-6 months, 2 in 7-24 months, current status 1, T3: 2 in 0-6 months, 3 in 7-24 months, current status 2"
+        },
+        "bankruptcy": {
+          "allowed": true,
+          "minMonthsSinceDischarge": 36,
+          "details": "T0: None ever, T1: None in 6 years, T2: >36 months discharged on Bankruptcy, T3: >36 months discharged on Bankruptcy"
+        },
+        "iva": {
+          "allowed": true,
+          "minMonthsSinceDischarge": 36,
+          "details": "T0: None ever, T1: None in 6 years, T2: >36 months discharged on IVA, T3: >36 months discharged on IVA"
+        },
+        "dro": {
+          "allowed": true,
+          "minMonthsSinceDischarge": 36,
+          "details": "T0: None ever, T1: None in 6 years, T2: >36 months discharged on DRO, T3: >36 months discharged on DRO"
+        },
+        "debtManagementPlan": {
+          "allowed": true,
+          "active": "Not accepted on T0, T1, T2. Accepted on T3 if completed satisfactorily >12 months ago",
+          "requirements": ["Must be completed satisfactorily", "Minimum 12 months since completion for T3"],
+          "details": "T0: None ever, T1: None ever, T2: None ever, T3: Accepted subject to completed satisfactorily >12 months ago"
+        },
+        "paydayLoans": {
+          "allowed": true,
+          "minMonthsClosed": 12,
+          "maxInLast12Months": 3,
+          "maxCurrentlyActive": 1,
+          "details": "T0: None in last 12 months, T1-T3: Max 3 in last 12 months with max 1 currently active"
+        },
+        "repossessions": {
+          "allowed": false,
+          "details": "Not mentioned in criteria - appears not accepted"
+        }
+      },
+      "incomeCriteria": {
+        "minIncome": 18000,
+        "maxLTI": 5,
+        "ltiDetails": "Maximum LTI is x5 inclusive of fees added to the loan",
+        "incomeTypes": {
+          "employed": {
+            "minMonthsInJob": 1,
+            "minTotalEmployment": 12,
+            "bonus": "Up to 100% of consistent monthly or quarterly bonus, commission and overtime considered",
+            "requirements": "Minimum of 1 month in current job with 12 months continuous employment"
+          },
+          "fixedTermContract": {
+            "accepted": true,
+            "requirements": "Minimum 6 months remaining on contract at time of offer. Where less than 6 months, evidence of renewal/extension past 6 months must be provided"
+          },
+          "agency": {
+            "accepted": true,
+            "requirements": "Agency workers who have been with same agency for 12 months or more"
+          },
+          "selfEmployed": {
+            "minYearsTrading": 2,
+            "accountsRequired": "2 years trading, latest year used for affordability",
+            "requirements": "2 years trading, latest year's figures used for affordability"
+          },
+          "secondIncome": {
+            "accepted": true,
+            "percentage": 100,
+            "minMonths": 6,
+            "details": "Up to 100% of second income considered (minimum 6 months in the role)"
+          },
+          "additionalIncome": {
+            "accepted": true,
+            "types": ["Benefit incomes", "Non court ordered maintenance"],
+            "details": "Additional income streams such as benefit incomes and non court ordered maintenance can be considered"
+          }
+        }
+      },
+      "propertyRequirements": {
+        "minValue": 75000,
+        "acceptedTypes": ["Standard residential properties", "Flats", "Houses"],
+        "excludedTypes": ["Not specified in detail"],
+        "locations": ["England", "Wales"],
+        "avmCriteria": {
+          "maxLTV": 75,
+          "excluded": ["Flats", "Maisonettes"],
+          "minConfidenceLevel": "Level 5 up to 60% LTV, Level 6 up to 75% LTV",
+          "requirements": "Property purchased/remortgaged in last 5 years. RICS valuation may be requested"
+        }
+      },
+      "specialFeatures": {
+        "epcDiscount": {
+          "epcA": 0.30,
+          "epcB": 0.20,
+          "description": "EPC discount applied to rates for A-rated (0.30%) and B-rated (0.20%) properties"
+        },
+        "greenLender": {
+          "description": "The Greener Specialist Lender - provides access to educational tools and energy saving products",
+          "greenHomePlan": "Personalised Green Home Plan available to show how borrowers can improve home energy efficiency",
+          "furtherAdvance": "After 6 months, borrowers can apply for further advance to improve their home"
+        },
+        "debtConsolidation": {
+          "remortgage": "Max £60,000 unsecured debt consolidation for remortgages"
+        },
+        "giftedDeposit": {
+          "accepted": true,
+          "eligibleDonors": "Family members only",
+          "types": ["Equity gifted deposit", "Cash gifted deposit"]
+        },
+        "unsecuredLoanAsDeposit": {
+          "accepted": true,
+          "conditions": "Non-Tandem unsecured lending accepted as deposit, subject to affordability"
+        },
+        "freeValuation": {
+          "remortgage": "One free valuation per application up to £700,000 property value for remortgages",
+          "timing": "Valuation instructed when application fully underwritten"
+        },
+        "creditAssessment": {
+          "methodology": "Fair View Credit Assessment - based on last 24 months credit conduct",
+          "utilityIgnore": "Small defaults for utilities and communications (under £350) do not affect product tier"
+        }
+      },
+      "fees": {
+        "brokerFee": 1495,
+        "completionFee": 1495,
+        "totalFees": 1495,
+        "feeOptions": "Broker fee and completion fee of £1,495 can be added to loan with no interest charged. Fees can be added above maximum LTV or paid in full",
+        "earlyRepaymentCharges": {
+          "2yrFixed": {
+            "year1": "4.00%",
+            "year2": "3.00%"
+          },
+          "5yrFixed": {
+            "year1": "4.00%",
+            "year2": "4.00%",
+            "year3": "3.00%",
+            "year4": "2.00%",
+            "year5": "1.00%"
+          }
+        },
+        "valuationFeeScale": {
+          "100k": 225,
+          "150k": 250,
+          "200k": 285,
+          "250k": 305,
+          "300k": 340,
+          "350k": 360,
+          "400k": 385,
+          "450k": 405,
+          "500k": 435,
+          "600k": 565,
+          "700k": 665,
+          "800k": 730,
+          "900k": 790,
+          "1m_plus": "Contact for confirmation"
+        },
+        "reversionRate": "Current rate plus lender base rate (currently 0.50%)"
+      },
+      "applicationCriteria": {
+        "minAge": 21,
+        "maxAge": 70,
+        "ageDetails": "Loan must be repaid before borrower's 70th birthday",
+        "maxApplicants": 2,
+        "residentialStatus": "3 years address history required",
+        "nationality": {
+          "ukResident": true,
+          "nonUkResident": "Must have indefinite rights to remain or permanent settlement"
+        },
+        "minTerm": 5,
+        "maxTerm": 35,
+        "repaymentMethod": "Capital and Interest",
+        "validityPeriods": {
+          "dip": "7 days",
+          "dipToOffer": "60 days for documents and credit search. After 60 days new credit search required. New payslips and other documents may also be required"
+        }
+      }
+    },
+    {
+      "lenderName": "Vida Homeloans",
+      "lenderType": "Adverse Credit Specialist",
+      "productTiers": [
+        {
+          "tierName": "Vida 36",
+          "description": "Clean credit for 36 months - 0 defaults ≥£250 in 36 months, 0 CCJs ≥£250 in 36 months, 0 secured arrears in 36 months, max 1 unsecured missed payment ≥£250 in last 6 months",
+          "maxLTV": 97,
+          "maxLoan": 2000000,
+          "minLoan": 50000,
+          "rates": {
+            "75ltv_2yr": 5.42,
+            "75ltv_5yr": 5.60,
+            "80ltv_2yr": 5.50,
+            "80ltv_5yr": 5.67,
+            "85ltv_2yr": 5.74,
+            "85ltv_5yr": 5.91,
+            "90ltv_2yr": 6.38,
+            "90ltv_5yr": 6.09,
+            "95ltv_5yr": 6.62,
+            "97ltv_5yr": 7.16
+          }
+        },
+        {
+          "tierName": "Vida 24",
+          "description": "Improving credit - 0 defaults ≥£250 in 24 months, 0 CCJs ≥£250 in 24 months, max 3 secured arrears in last 24 months, max 2 unsecured missed payments ≥£250 in last 6 months",
+          "maxLTV": 97,
+          "maxLoan": 2000000,
+          "minLoan": 50000,
+          "rates": {
+            "75ltv_2yr": 5.94,
+            "75ltv_5yr": 5.71,
+            "80ltv_2yr": 6.02,
+            "80ltv_5yr": 5.76,
+            "85ltv_2yr": 6.07,
+            "85ltv_5yr": 6.11,
+            "90ltv_2yr": 7.02,
+            "90ltv_5yr": 6.53,
+            "95ltv_5yr": 6.91
+          }
+        },
+        {
+          "tierName": "Vida 6",
+          "description": "Recent adverse - 0 defaults ≥£250 in 6 months, 0 CCJs ≥£250 in 6 months, no secured arrears in last 6 months (but considered overall), max 3 unsecured missed payments ≥£250 in last 6 months",
+          "maxLTV": 95,
+          "maxLoan": 2000000,
+          "minLoan": 50000,
+          "rates": {
+            "75ltv_2yr": 6.18,
+            "75ltv_5yr": 5.72,
+            "80ltv_2yr": 6.30,
+            "80ltv_5yr": 5.85,
+            "85ltv_2yr": 6.78,
+            "85ltv_5yr": 6.12,
+            "90ltv_2yr": 7.89,
+            "90ltv_5yr": 7.27,
+            "95ltv_5yr": 7.57
+          }
+        },
+        {
+          "tierName": "Packager",
+          "description": "Higher adverse - defaults/CCJs <6 months considered, 1+ year since bankruptcy/IVA discharge, 3+ years since repossession. Available only through packager partners",
+          "maxLTV": 75,
+          "maxLoan": 2000000,
+          "minLoan": 50000,
+          "rates": {
+            "75ltv_2yr": 6.88,
+            "75ltv_5yr": 6.76
+          }
+        }
+      ],
+      "adverseCreditCriteria": {
+        "ccjs": {
+          "allowed": true,
+          "exclusionRule": "All CCJs less than £250 are excluded from product tiering",
+          "minMonthsSince": 0,
+          "maxNumber": "Unlimited",
+          "mustBeSatisfied": false,
+          "details": "Vida 36: 0 CCJs ≥£250 in 36 months, Vida 24: 0 CCJs ≥£250 in 24 months, Vida 6: 0 CCJs ≥£250 in 6 months, Packager: Considered <6 months"
+        },
+        "defaults": {
+          "allowed": true,
+          "exclusionRule": "All defaults less than £250 are excluded from product tiering",
+          "minMonthsSince": 0,
+          "maxNumber": "Unlimited",
+          "mustBeSatisfied": false,
+          "details": "Vida 36: 0 defaults ≥£250 in 36 months, Vida 24: 0 defaults ≥£250 in 24 months, Vida 6: 0 defaults ≥£250 in 6 months, Packager: Considered <6 months"
+        },
+        "mortgageArrears": {
+          "allowed": true,
+          "requirement": "All historic secured arrears must have been made up to date for at least 6 months prior to application",
+          "details": "Vida 36: 0 in last 36 months, Vida 24: 3 in last 24 months, Vida 6: Considered (no max), Packager: No secured arrears allowed within last 6 months"
+        },
+        "unsecuredAccountConduct": {
+          "allowed": true,
+          "details": "Vida 36: Max 1 missed payment ≥£250 in last 6 months, Vida 24: Max 2 missed payments ≥£250 in last 6 months, Vida 6: Max 3 missed payments ≥£250 in last 6 months, Packager: Considered (no max). Unsecured includes loans, hire purchases, store cards, credit cards and current accounts"
+        },
+        "bankruptcy": {
+          "allowed": true,
+          "minYearsSinceDischarge": 3,
+          "details": "Vida 36/Vida 24/Vida 6: 3 years+ since discharge, Packager: 1 year+ since discharge"
+        },
+        "iva": {
+          "allowed": true,
+          "minYearsSinceDischarge": 3,
+          "details": "Vida 36/Vida 24/Vida 6: 3 years+ since discharge, Packager: 1 year+ since discharge"
+        },
+        "dro": {
+          "allowed": true,
+          "minYearsSinceDischarge": 3,
+          "details": "Debt Relief Orders: 3 years+ since discharge for Vida 36/24/6, 1 year+ for Packager"
+        },
+        "trustDeed": {
+          "allowed": true,
+          "minYearsSinceDischarge": 3,
+          "details": "Scottish Trust Deeds: 3 years+ since discharge for Vida 36/24/6, 1 year+ for Packager"
+        },
+        "debtManagementPlan": {
+          "allowed": true,
+          "active": "May be considered at underwriter discretion",
+          "requirements": ["Subject to satisfactory affordability", "Subject to satisfactory conduct checks"],
+          "details": "Debt Management Plans and Debt Arrangement Schemes may be considered at underwriter discretion"
+        },
+        "paydayLoans": {
+          "allowed": true,
+          "details": "Not specifically mentioned - likely considered as part of unsecured credit assessment"
+        },
+        "repossessions": {
+          "allowed": true,
+          "minYears": 6,
+          "details": "Vida 36/Vida 24/Vida 6: 6 years+, Packager: 3 years+"
+        },
+        "higherLTVRequirements": {
+          "above85LTV": "For Vida 24 and Vida 6 products, any LTV above 85% requires credit file up to date with no current arrears on major unsecured items",
+          "above90LTV": "All LTVs above 90% require credit file up to date with no current arrears on major unsecured items (unsecured loans, hire purchases, store cards, credit cards, current accounts)"
+        }
+      },
+      "incomeCriteria": {
+        "minIncome": 15000,
+        "foreignNationalMinIncome": 50000,
+        "foreignNationalDetails": "For Foreign National products where LTV is over 75%, one applicant must earn at least £50,000",
+        "employmentHistory": "No minimum time in current employment, but applicants need to provide at least 3 months employment history",
+        "incomeTypes": {
+          "employed": {
+            "requirements": "Latest payslip, further information may be required upon assessment",
+            "minMonthsInJob": 0,
+            "minTotalEmployment": 3
+          },
+          "fixedTermContract": {
+            "accepted": true,
+            "requirements": "Minimum 6 months remaining on contract at time of offer. Where less than 6 months, evidence of renewal/extension past 6 months must be provided"
+          },
+          "agency": {
+            "accepted": true,
+            "requirements": "Agency workers who have been with same agency for 12 months or more"
+          },
+          "contractors": {
+            "accepted": true,
+            "day1Contractors": true,
+            "minTrackRecord": 12,
+            "minContractRemaining": 3,
+            "weeklyRateCalculation": "Weekly rate x 48 weeks for self employed",
+            "umbrellaContractors": true,
+            "cisContractors": "Using last years SA302/Tax calculations with TYOs, plus latest 3 months payslips/invoices OR latest 12 months CIS payslips/invoices",
+            "requirements": "Day 1 contractors considered with minimum 1-year track record in same line of work. Minimum 3 months remaining on current contract (except Limited Companies)"
+          },
+          "selfEmployed": {
+            "soleTrader": "Latest 2 years SA302 and TYO OR Accountant's Certificate covering last 2 years OR 2 years accounts certified by qualified accountant",
+            "partnership": "Latest 2 years SA302 and TYO OR Accountant's Certificate covering last 2 years OR 2 years accounts certified by qualified accountant",
+            "limitedCompany": "Accountant's Certificate covering last 2 years OR 2 years accounts certified by qualified accountant. If not 100% shareholder and only accounts provided, also require last 2 years SA302s",
+            "tradingLessThan2Years": "Evidence of income for 1st year and either projection for current year from qualified accountant OR latest 3 months business bank statements",
+            "oldProofOfIncome": "If latest proof older than 12 months (but no more than 18 months), latest 3 months Personal and Business Bank Statements also required",
+            "acceptableIncome": "Sole traders/partnerships: most recent share of net profit if stable or increasing. Limited Co Directors: salary and dividends. Net profit after tax for 100% shareholders"
+          },
+          "otherIncome100Percent": {
+            "types": ["Investment income (SA302)", "Mortgage subsidy", "Rental profit (SA302)", "Lodger income (remortgage only)", "Trust Fund income", "Car/large town/shift/housing allowances", "Foster care income", "Court ordered maintenance", "Income from 2nd jobs (3 months record + last 3 payslips)", "Pension income (not retired/not state pension)", "Regular bonus (last P60 + last 3 payslips)", "Child Tax Credit", "Child Benefit (where each applicant <£60k, for children ≤11 years at application)", "Guardians allowance"],
+            "percentage": 100
+          },
+          "otherIncome75Percent": {
+            "types": ["Regular overtime/commission (last P60 + last 3 payslips)", "Profit related pay (last P60)", "Tronc (tips) income"],
+            "percentage": 75
+          },
+          "otherIncome50Percent": {
+            "types": ["Disability Living Allowance (DLA)", "Incapacity Benefit", "Carer's Allowance", "Armed Forces Independence Payment", "Industrial Injuries Disablement Benefit (IIDB)", "Universal Credit", "Personal Independence Payment (PIP)", "Working Tax Credit", "Employment and Support Allowance (ESA) - Income and Contribution"],
+            "percentage": 50,
+            "note": "Not as main source of income. Benefit income should not typically be considered main source"
+          }
+        }
+      },
+      "propertyRequirements": {
+        "minValue": 70000,
+        "exLAFlatsMinValue": "£80,000 outside Greater London, £200,000 within Greater London",
+        "acceptedTypes": ["Freehold houses", "Leasehold flats", "Coach House flats", "Ex-Local Authority flats", "Flats above/adjacent to commercial", "New Build", "High-rise flats"],
+        "excludedTypes": ["Properties outside mainland England, Scotland, Wales", "Unsuitable properties (see criteria guide)"],
+        "locations": ["England", "Scotland", "Wales"],
+        "postcodeRestrictions": "Postcode restrictions apply in Scotland",
+        "flats": {
+          "maxStoreys": "No maximum limit on number of storeys in a block subject to Valuers comments on mortgageability and saleability"
+        },
+        "exLAFlats": {
+          "accepted": true,
+          "maxLTV": 80,
+          "minPrivateOwnership": "No minimum private ownership percentage",
+          "deckAccess": "Allowed",
+          "maxStoreys": "No maximum limit"
+        },
+        "aboveCommercial": {
+          "accepted": true,
+          "standard": "Up to 75% LTV",
+          "restricted": "Up to 60% LTV for flats above/adjacent to restaurants, takeaways, dry cleaners, hairdressers, launderettes, tattoo, piercing, nail parlours, public houses and petrol stations"
+        },
+        "leasehold": {
+          "capitalRepayment": "Minimum 40 years remaining at end of mortgage term",
+          "interestOnly": "Minimum 70 years remaining"
+        },
+        "newBuild": {
+          "offerValidity": "6 months",
+          "builderIncentive": "Acceptable up to 5% of purchase price",
+          "buildingWarranty": "Warranty required from suitable provider"
+        }
+      },
+      "specialFeatures": {
+        "rightToBuy": {
+          "accepted": true,
+          "maxLTV": 75,
+          "calculation": "Lower of 100% of discounted purchase price or 75% of open market value",
+          "requirements": ["Section 125 or RTA 3 from Local Authority/Housing Association", "Last 12 months rental payments (missed payments treated as missed mortgage payments for tier allocation)"],
+          "description": "Purchase only applications from Local Authorities for Right to Buy and from Housing Associations for Right to Acquire"
+        },
+        "jointBorrowerSoleProprietor": {
+          "accepted": true,
+          "maxApplicants": 4,
+          "allIncomesConsidered": true,
+          "eligibleRelations": ["Parents (including stepparents and parents of spouse)", "Children (including step or adopted)", "Siblings", "Grandparents", "Aunts", "Uncles", "Cousins", "Nieces/nephews"],
+          "howItWorks": "Only borrowers named on title deeds occupy property as main residence. Family member(s) live elsewhere. All jointly and severally liable"
+        },
+        "foreignNationals": {
+          "accepted": true,
+          "acceptableVisas": ["Indefinite Leave to Remain", "EU/EEA/Swiss (Settled or Pre-Settled Status)", "Skilled Worker Visa", "British National (Overseas) Visa", "Health and Care Worker Visa", "Family Visa - Spouse or Partner", "Family Visa - Parent", "Family Visa - UK Ancestry", "Family Visa - Skilled Worker Dependent", "Innovator Founder Visa", "Investor Visa", "Global Talent Visa", "Minister of Religion Visa", "Sportsperson Visa"],
+          "standardRange": "EU/EEA/Swiss with Pre-Settled/Settled status or Indefinite Leave to Remain eligible for standard products up to 97% LTV",
+          "foreignNationalRange": "Other acceptable visas use Foreign National product range up to 90% LTV",
+          "minIncomeAbove75LTV": 50000,
+          "depositRequirement": "5% of deposit must come from applicant's own funds (savings or inheritance) for Foreign National range"
+        },
+        "lendingIntoRetirement": {
+          "accepted": true,
+          "requirements": ["Applicant under 50", "Over 10 years from retirement", "Contributing to pension scheme"],
+          "calculation": "Can lend to age 80 based on current income where above 3 requirements met. Additional applicants outside this can be considered but no income used for affordability. Repayment must be Capital & Interest"
+        },
+        "giftedDeposit": {
+          "accepted": true,
+          "eligibleDonors": ["Parent", "Child", "Grandparent", "Sibling", "Step relatives", "Uncle", "Aunt", "Cousin", "Niece/nephew", "Foster parent", "Legal guardian"],
+          "requirements": "Form confirming no interest in property and will not reside at property. May require evidence of balance in UK bank account with donor's name and address"
+        },
+        "debtConsolidation": {
+          "accepted": true,
+          "maxLTV": 85,
+          "description": "Available up to 85% LTV"
+        },
+        "cashback": {
+          "available": true,
+          "amounts": "£500 (75% LTV), £1,250 (90%+ LTV)",
+          "payment": "Paid via conveyancer on completion"
+        },
+        "feeSaver": {
+          "available": true,
+          "benefits": ["No assessment fee", "No product fee", "Free valuation on properties up to £500k"]
+        },
+        "3AndEasy97LTV": {
+          "available": true,
+          "maxLTV": 97,
+          "maxLoan": 750000,
+          "terms": ["5 year fixed", "7 year fixed"],
+          "eligibility": ["First time buyers", "Home movers", "Remortgages"],
+          "description": "97% LTV products with Fee Saver options"
+        },
+        "overpayments": {
+          "withERC": "Up to 10% in any rolling 12-month period",
+          "variable": "No restriction on overpayments"
+        },
+        "remortgage": {
+          "within6Months": "Considered even within 6 months since purchase or last remortgage, subject to underwriter discretion"
+        },
+        "purchaseAtUndervalue": {
+          "accepted": true,
+          "conditions": "Acceptable where purchasing from close relative, or long term tenant buying from landlord"
+        },
+        "directorsLoan": {
+          "accepted": true,
+          "conditions": "Self-employed applicants only. Confirmation from Accountant required that loan will not adversely affect business"
+        },
+        "overseasDeposit": {
+          "accepted": true,
+          "conditions": "Deposits from overseas account considered on case by case basis"
+        }
+      },
+      "fees": {
+        "assessmentFee": 195,
+        "productFee": 995,
+        "feeSaverAssessmentFee": 0,
+        "feeSaverProductFee": 0,
+        "feeOptions": "Product fees can be added to loan above max LTV except 97%. Interest only up to 75% LTV including fees",
+        "cashback": {
+          "75LTV": 500,
+          "90LTVPlus": 1250
+        },
+        "earlyRepaymentCharges": {
+          "2yrFixed": {
+            "year1": "4%",
+            "year2": "3%"
+          },
+          "5yrFixed": {
+            "year1": "5%",
+            "year2": "5%",
+            "year3": "4%",
+            "year4": "3%",
+            "year5": "2%"
+          }
+        },
+        "valuationFeeScale": {
+          "under100k": 175,
+          "100k_200k": 245,
+          "200k_300k": 310,
+          "300k_400k": 370,
+          "400k_500k": 475,
+          "500k_600k": 585,
+          "600k_700k": 640,
+          "700k_800k": 695,
+          "800k_900k": 695,
+          "900k_1m": 745,
+          "1m_1.25m": 1100,
+          "1.25m_1.5m": 1220,
+          "1.5m_1.75m": 1325,
+          "1.75m_2m": 1565,
+          "2m_2.25m": 1835,
+          "2.25m_2.5m": 1955,
+          "2.5m_2.75m": 1995,
+          "2.75m_3m": 2115,
+          "over3m": "By negotiation"
+        },
+        "revertRate": {
+          "calculation": "VVR (Vida Variable Rate) + 2.64%",
+          "vvrRate": 6.05,
+          "effectiveRate": 8.69,
+          "dateSet": "01.09.2025"
+        }
+      },
+      "applicationCriteria": {
+        "minAge": 21,
+        "maxAge": 80,
+        "ageDetails": "21 years at application and up to 80 years at end of term",
+        "maxApplicants": 4,
+        "allIncomesConsidered": true,
+        "maritalStatus": "Cases submitted in joint names where married, civil partnership, co-habiting, financial dependency, or if partners providing monies. Sole applications for married couples on remortgages when property already in sole name",
+        "residentialStatus": "3 years address history. Latest year must show continuous UK residency",
+        "minTerm": 5,
+        "maxTerm": 45,
+        "termRequirement": "Any products with fixed rate 5+ years, 1 extra year must be applied to term (e.g. 5yr fixed needs 6yr term, 7yr fixed needs 8yr term)",
+        "repaymentMethod": "Capital and Interest or Interest Only (Interest Only up to 75% LTV, max £1m)",
+        "interestOnlyVehicles": ["Cash ISA or other regular savings", "Regular investments (stocks and bonds)", "Pensions", "Sale of another property", "Downsizing (equity £250k+ London/SE, £175k+ rest of UK)", "Combination of vehicles (excluding downsizing)"],
+        "offerValidity": "4 months. New Build offers valid 6 months",
+        "firstTimeBuyers": "Accepted across full product range",
+        "deposits": {
+          "savings": "Proof required in all instances - statement showing balance to monthly statements evidencing build up",
+          "gifted": "Accepted from close relatives (see giftedDeposit in specialFeatures)",
+          "overseas": "Considered case by case",
+          "buildersIncentive": "Up to 5% on new build",
+          "purchaseAtUndervalue": "Where purchasing from close relative or long term tenant from landlord",
+          "directorsLoan": "Self-employed only with accountant confirmation",
+          "governmentSchemes": "Where SEISS, CBILS or BBLS used, proceeds cannot be used for deposit"
+        },
+        "documentCertification": {
+          "requirements": ["Name of certifier", "Date (no more than 3 months old)", "Signature of certifier (digital acceptable)", "Job title and company stamp if not intermediary"],
+          "statementPhoto": "I certify this is true copy of original document, and photo is true likeness",
+          "statementNoPhoto": "I certify this is true copy of original document"
+        }
+      },
+      "packagers": {
+        "available": true,
+        "packagerTier": "Exclusive tier available only through packager partners for higher adverse cases",
+        "partners": ["8mc", "Active Investments", "Brightstar", "Brilliant Solutions", "Positive Lending", "Complete", "Connect for Intermediaries", "Impact Specialist Finance", "Dynamo Packaging", "AMM", "The Lending Channel", "MFB", "Mortgage Advice Bureau", "Mortgage Trading", "Simply Lending"],
+        "tierDetails": "Packager tier accepts defaults/CCJs <6 months, 1+ year bankruptcy/IVA discharge, 3+ years repossession"
+      }
+    },
+    {
+      "lenderName": "Precise Mortgages",
+      "lenderType": "Adverse Credit Specialist",
+      "productTiers": [
+        {
+          "tierName": "Tier 1",
+          "description": "No CCJs or defaults in 24 months, 0-1 mortgage arrears in 36 months",
+          "maxLTV": 95,
+          "maxLoan": 5000000,
+          "minLoan": 25001,
+          "rates": {
+            "55ltv_2yr": 4.81,
+            "55ltv_5yr": 4.87,
+            "65ltv_2yr": 4.85,
+            "65ltv_5yr": 4.91,
+            "75ltv_2yr": 4.94,
+            "75ltv_5yr": 5.00,
+            "80ltv_2yr": 5.15,
+            "80ltv_5yr": 5.21,
+            "85ltv_2yr": 5.20,
+            "85ltv_5yr": 5.26,
+            "90ltv_2yr": 5.75,
+            "90ltv_5yr": 5.81,
+            "95ltv_2yr": 6.12,
+            "95ltv_5yr": 6.18
+          }
+        },
+        {
+          "tierName": "Tier 2",
+          "description": "No CCJs or defaults in 24 months, 0-1 mortgage arrears in 36 months (same as Tier 1 with slightly higher rates)",
+          "maxLTV": 95,
+          "maxLoan": 5000000,
+          "minLoan": 25001,
+          "rates": {
+            "55ltv_2yr": 4.91,
+            "55ltv_5yr": 4.97,
+            "65ltv_2yr": 4.95,
+            "65ltv_5yr": 5.01,
+            "75ltv_2yr": 5.04,
+            "75ltv_5yr": 5.10,
+            "80ltv_2yr": 5.25,
+            "80ltv_5yr": 5.31,
+            "85ltv_2yr": 5.30,
+            "85ltv_5yr": 5.36,
+            "90ltv_2yr": 5.85,
+            "90ltv_5yr": 5.91,
+            "95ltv_2yr": 6.22,
+            "95ltv_5yr": 6.28
+          }
+        },
+        {
+          "tierName": "Tier 3",
+          "description": "Up to 2 defaults in 24 months (max £1,500 in 12 months), 1 CCJ in 24 months (max £1,000 in 12 months or £2,500 in 24 months), 1-3 mortgage arrears in 36 months",
+          "maxLTV": 95,
+          "maxLoan": 5000000,
+          "minLoan": 25001,
+          "rates": {
+            "55ltv_2yr": 5.31,
+            "55ltv_5yr": 5.37,
+            "65ltv_2yr": 5.35,
+            "65ltv_5yr": 5.41,
+            "75ltv_2yr": 5.44,
+            "75ltv_5yr": 5.50,
+            "80ltv_2yr": 5.65,
+            "80ltv_5yr": 5.71,
+            "85ltv_2yr": 5.70,
+            "85ltv_5yr": 5.76,
+            "90ltv_2yr": 6.25,
+            "90ltv_5yr": 6.31,
+            "95ltv_2yr": 6.62,
+            "95ltv_5yr": 6.68
+          }
+        },
+        {
+          "tierName": "Tier 4",
+          "description": "Up to 2 defaults in 24 months (max £1,500 in 12 months), 1 CCJ in 24 months (max £1,000 in 12 months or £2,500 in 24 months), 1-3 mortgage arrears in 36 months (same as Tier 3 with slightly higher rates)",
+          "maxLTV": 85,
+          "maxLoan": 5000000,
+          "minLoan": 25001,
+          "rates": {
+            "55ltv_2yr": 5.66,
+            "55ltv_5yr": 5.72,
+            "65ltv_2yr": 5.70,
+            "65ltv_5yr": 5.76,
+            "75ltv_2yr": 5.79,
+            "75ltv_5yr": 5.85,
+            "80ltv_2yr": 6.00,
+            "80ltv_5yr": 6.06,
+            "85ltv_2yr": 6.05,
+            "85ltv_5yr": 6.11
+          }
+        },
+        {
+          "tierName": "Tier 5",
+          "description": "Up to 5 defaults in 24 months, up to 3 CCJs in 24 months, 1-3 mortgage arrears in 36 months - highest adverse acceptance",
+          "maxLTV": 80,
+          "maxLoan": 5000000,
+          "minLoan": 25001,
+          "rates": {
+            "55ltv_2yr": 5.96,
+            "55ltv_5yr": 6.02,
+            "65ltv_2yr": 6.00,
+            "65ltv_5yr": 6.06,
+            "75ltv_2yr": 6.09,
+            "75ltv_5yr": 6.15,
+            "80ltv_2yr": 6.30,
+            "80ltv_5yr": 6.36
+          }
+        }
+      ],
+      "adverseCreditCriteria": {
+        "ccjs": {
+          "tier1": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "0 in 24 months",
+            "mustBeSatisfied": true
+          },
+          "tier2": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "0 in 24 months",
+            "mustBeSatisfied": true
+          },
+          "tier3": {
+            "allowed": true,
+            "maxNumber": 1,
+            "timePeriod": "1 in 24 months",
+            "maxValue": "£1,000 in 12 months or £2,500 in 24 months",
+            "mustBeSatisfied": true
+          },
+          "tier4": {
+            "allowed": true,
+            "maxNumber": 1,
+            "timePeriod": "1 in 24 months",
+            "maxValue": "£1,000 in 12 months or £2,500 in 24 months",
+            "mustBeSatisfied": true
+          },
+          "tier5": {
+            "allowed": true,
+            "maxNumber": 3,
+            "timePeriod": "3 in 24 months",
+            "mustBeSatisfied": true
+          },
+          "exclusion": "Defaults, CCJs or secured arrears recorded 3 months before application are not accepted"
+        },
+        "defaults": {
+          "tier1": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "0 in 24 months"
+          },
+          "tier2": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "0 in 24 months"
+          },
+          "tier3": {
+            "allowed": true,
+            "maxNumber": 2,
+            "timePeriod": "2 in 24 months",
+            "maxValue": "£1,500 in 12 months, unlimited thereafter"
+          },
+          "tier4": {
+            "allowed": true,
+            "maxNumber": 2,
+            "timePeriod": "2 in 24 months",
+            "maxValue": "£1,500 in 12 months, unlimited thereafter"
+          },
+          "tier5": {
+            "allowed": true,
+            "maxNumber": 5,
+            "timePeriod": "5 in 24 months"
+          },
+          "exclusion": "Defaults, CCJs or secured arrears recorded 3 months before application are not accepted"
+        },
+        "mortgageArrears": {
+          "tier1": {
+            "allowed": true,
+            "maxNumber": 1,
+            "timePeriod": "0 in 12 months, 1 in 36 months (worst status)"
+          },
+          "tier2": {
+            "allowed": true,
+            "maxNumber": 1,
+            "timePeriod": "0 in 12 months, 1 in 36 months (worst status)"
+          },
+          "tier3": {
+            "allowed": true,
+            "maxNumber": 3,
+            "timePeriod": "1 in 12 months, 3 in 36 months (worst status)"
+          },
+          "tier4": {
+            "allowed": true,
+            "maxNumber": 3,
+            "timePeriod": "1 in 12 months, 3 in 36 months (worst status)"
+          },
+          "tier5": {
+            "allowed": true,
+            "maxNumber": 3,
+            "timePeriod": "1 in 12 months, 3 in 36 months (worst status)"
+          },
+          "exclusion": "Defaults, CCJs or secured arrears recorded 3 months before application are not accepted"
+        },
+        "unsecuredArrears": {
+          "allowed": true,
+          "notes": "Not counted but may affect credit score"
+        },
+        "bankruptcy": {
+          "allowed": false,
+          "notes": "Not mentioned in criteria - assumed not accepted"
+        },
+        "iva": {
+          "allowed": false,
+          "notes": "Not mentioned in criteria - assumed not accepted"
+        },
+        "dro": {
+          "allowed": false,
+          "notes": "Not mentioned in criteria - assumed not accepted"
+        },
+        "debtManagementPlan": {
+          "allowed": true,
+          "satisfied": {
+            "minYearsSince": 3,
+            "maxLTV": 95,
+            "notes": "If satisfied more than 36 months ago, can be considered up to 95% LTV"
+          },
+          "active": {
+            "allowed": true,
+            "maxLTV": 85,
+            "minMonthsActive": 12,
+            "notes": "If in an active or satisfied DMP less than 36 months ago, can be considered up to 85% LTV. DMPs must have been active for a minimum of 12 months. No minimum period of activity for satisfied DMPs."
+          },
+          "debtArrangementScheme": "Debt Arrangement Schemes (DAS) accepted and treated in the same way as a Debt Management Plan (DMP)"
+        },
+        "paydayLoans": {
+          "allowed": false,
+          "notes": "Not mentioned in criteria"
+        },
+        "repossessions": {
+          "allowed": false,
+          "notes": "Not mentioned in criteria"
+        },
+        "creditScoring": "All products are subject to internal credit scoring"
+      },
+      "incomeCriteria": {
+        "minimumIncome": 15000,
+        "minimumIncomeNotes": "£15,000 for primary applicant",
+        "maxLTI": null,
+        "employed": {
+          "accepted": true,
+          "percentage": 100
+        },
+        "selfEmployed": {
+          "accepted": true,
+          "percentage": 100
+        },
+        "contractors": {
+          "accepted": true,
+          "percentage": 100
+        },
+        "incomeTypes": {
+          "basicSalary": 100,
+          "guaranteedBonus": 100,
+          "regularOvertime": 100,
+          "commission": 100,
+          "secondIncome": 100
+        }
+      },
+      "propertyRequirements": {
+        "minimumValue": null,
+        "acceptedTypes": [
+          "Houses",
+          "Flats",
+          "New Build (up to 85% LTV)",
+          "Studio Flats (up to 70% LTV)",
+          "Right to Buy properties (England only, houses only, not flats)"
+        ],
+        "excludedTypes": [],
+        "locations": {
+          "england": true,
+          "scotland": true,
+          "wales": true,
+          "northernIreland": false
+        },
+        "flats": {
+          "accepted": true,
+          "maxStoreys": null,
+          "exLocalAuthority": true
+        },
+        "leasehold": {
+          "accepted": true,
+          "minRemainingTerm": null
+        },
+        "newBuild": {
+          "accepted": true,
+          "maxLTV": 85,
+          "notes": "Purchase and remortgage limited to 85% LTV"
+        },
+        "studioFlats": {
+          "accepted": true,
+          "maxLTV": 70,
+          "notes": "Purchase and remortgage limited to 70% LTV"
+        }
+      },
+      "specialFeatures": {
+        "rightToBuy": {
+          "available": true,
+          "location": "England only",
+          "propertyTypes": "Houses only (flats not acceptable)",
+          "maxLTV": 75,
+          "maxLoan": 750000,
+          "fundingOptions": [
+            "Up to 90% of discounted purchase price (plus lender fees)",
+            "Up to 100% of discounted purchase price (plus lender fees)"
+          ],
+          "ltvCalculation": "Loan doesn't exceed 75% of open market value as determined by panel surveyor",
+          "rates": {
+            "90percent_2yr": 6.29,
+            "90percent_5yr": 5.84,
+            "100percent_2yr": 6.39,
+            "100percent_5yr": 5.94
+          }
+        },
+        "helpToBuy": {
+          "purchase": {
+            "available": true,
+            "location": "Wales only",
+            "maxPropertyValue": 300000,
+            "minDeposit": "5% from own resources",
+            "maxLTV": 75,
+            "maxLoan": 225000,
+            "rates": {
+              "2yr": 6.93,
+              "5yr": 6.57
+            }
+          },
+          "remortgage": {
+            "available": true,
+            "locations": ["England", "Scotland", "Wales"],
+            "schemes": [
+              "Help to Buy England 2021-2023",
+              "Help to Buy Wales",
+              "Help to Buy Scotland"
+            ],
+            "maxLTV": 75,
+            "maxLoan": 750000,
+            "rates": {
+              "2yr": 7.03,
+              "5yr": 6.57
+            }
+          }
+        },
+        "giftedDeposits": {
+          "accepted": true,
+          "notes": "Standard gifted deposit criteria applies"
+        },
+        "debtConsolidation": {
+          "allowed": true,
+          "maxLTV": 90,
+          "notes": "Remortgages with debt consolidation limited to 90% LTV"
+        },
+        "cashback": {
+          "available": true,
+          "amount": 300,
+          "notes": "Available on £0 fee products with valuation refund"
+        },
+        "valuationRefund": {
+          "available": true,
+          "maxAmount": 630,
+          "notes": "Available on £0 fee products"
+        }
+      },
+      "fees": {
+        "productFees": [
+          {
+            "type": "1.00% fee",
+            "amount": "1.00% of loan amount"
+          },
+          {
+            "type": "£1,495 fee",
+            "amount": 1495,
+            "maxLoan": 500000,
+            "notes": "Max loan £500,000"
+          },
+          {
+            "type": "£0 fee",
+            "amount": 0,
+            "includes": "Refund of valuation (max £630) + £300 cashback"
+          }
+        ],
+        "applicationFee": null,
+        "assessmentFee": {
+          "included": true,
+          "notes": "Standard valuation and assessment fee is payable on application for all products. The amount charged includes both fees. The valuation fee is refundable if the valuation is not carried out."
+        },
+        "valuationFee": {
+          "scale": [
+            {"propertyValue": 100000, "standardFee": 370, "homebuyersReportFee": 570},
+            {"propertyValue": 150000, "standardFee": 410, "homebuyersReportFee": 600},
+            {"propertyValue": 200000, "standardFee": 445, "homebuyersReportFee": 650},
+            {"propertyValue": 250000, "standardFee": 465, "homebuyersReportFee": 705},
+            {"propertyValue": 300000, "standardFee": 485, "homebuyersReportFee": 770},
+            {"propertyValue": 350000, "standardFee": 525, "homebuyersReportFee": 815},
+            {"propertyValue": 400000, "standardFee": 560, "homebuyersReportFee": 900},
+            {"propertyValue": 450000, "standardFee": 590, "homebuyersReportFee": 955},
+            {"propertyValue": 500000, "standardFee": 630, "homebuyersReportFee": 1045},
+            {"propertyValue": 600000, "standardFee": 695, "homebuyersReportFee": 1105},
+            {"propertyValue": 700000, "standardFee": 750, "homebuyersReportFee": 1155},
+            {"propertyValue": 800000, "standardFee": 810, "homebuyersReportFee": 1205},
+            {"propertyValue": 900000, "standardFee": 920, "homebuyersReportFee": 1255},
+            {"propertyValue": 1000000, "standardFee": 975, "homebuyersReportFee": 1405}
+          ],
+          "over1Million": "Refer to residential calculator"
+        },
+        "telegraphicTransferFee": 25,
+        "redemptionFee": 40,
+        "earlyRepaymentCharges": {
+          "2year": ["4% year 1", "3% year 2"],
+          "5year": ["4% year 1", "4% year 2", "3% year 3", "3% year 4", "2% year 5"]
+        }
+      },
+      "applicationCriteria": {
+        "minAge": 21,
+        "maxAge": 75,
+        "maxAgeNotes": "Max age 75 where proof of retirement is supplied",
+        "maxApplicants": 2,
+        "residentialStatus": null,
+        "minTerm": 5,
+        "maxTerm": 35,
+        "repaymentMethods": {
+          "capitalRepayment": {
+            "maxLTV": 95,
+            "maxLoan": {
+              "85ltv": 5000000,
+              "90ltv": 3000000,
+              "95ltv": 2000000
+            }
+          },
+          "interestOnly": {
+            "maxLTV": 65,
+            "maxLoan": 1000000,
+            "repaymentVehicles": [
+              "Sale of the mortgaged property",
+              "Sale of an additional property",
+              "Savings or investments",
+              "Pension"
+            ],
+            "notes": "Value of repayment vehicle at application must cover the interest only loan amount (inclusive of fees) at mortgage term end"
+          },
+          "partAndPart": {
+            "maxLTV": 75,
+            "maxLoan": {
+              "70ltv": 1000000,
+              "75ltv": 750000
+            },
+            "interestOnlyMaxLTV": 50,
+            "notes": "Interest only element cannot exceed 50% LTV"
+          }
+        },
+        "offerValidity": null,
+        "specialLoanLimits": {
+          "95ltv_minLoan": {
+            "1percent_fee": 50000,
+            "1495_fee": 75000,
+            "0_fee": 50000
+          }
+        }
+      },
+      "reversionRates": {
+        "standard": "BBR + 3.00%",
+        "high_ltv": "BBR + 3.25% (90% and 95% LTV)",
+        "tier2_90ltv": "BBR + 3.50%",
+        "notes": "BBR reversion rates have a floor. If BBR falls to 0.00% or less, rate payable will be 0.00% plus the agreed set percentage above BBR. Rate will never go below 0.00% plus the additional percentage rate."
+      }
+    },
+    {
+      "lenderName": "Kent Reliance",
+      "lenderType": "Specialist Lender - Complex Income & Newly Qualified Professionals",
+      "productTiers": [
+        {
+          "tierName": "Flexibility with Income Multiples",
+          "description": "For newly qualified professionals and clients needing flexibility with income multiples - no maximum loan amount at 90% LTV",
+          "maxLTV": 95,
+          "maxLoan": 1500000,
+          "minLoan": 50000,
+          "rates": {
+            "75ltv_2yr": 5.94,
+            "75ltv_5yr": 5.89,
+            "85ltv_2yr": 6.34,
+            "85ltv_5yr": 6.29,
+            "90ltv_2yr": 6.79,
+            "90ltv_5yr": 6.74,
+            "95ltv_2yr": 7.14,
+            "95ltv_5yr": 7.09
+          }
+        },
+        {
+          "tierName": "Core Residential Range",
+          "description": "Standard residential range with no maximum loan amount - accepts some adverse credit",
+          "maxLTV": 90,
+          "maxLoan": null,
+          "minLoan": 50000,
+          "rates": {
+            "75ltv_2yr": 6.09,
+            "75ltv_5yr": 6.04,
+            "85ltv_2yr": 6.54,
+            "85ltv_5yr": 6.49,
+            "90ltv_2yr": 6.89,
+            "90ltv_5yr": 6.84
+          }
+        },
+        {
+          "tierName": "Extra Flexibility Range",
+          "description": "For clients with more adverse credit history including discharged bankruptcy and IVA",
+          "maxLTV": 80,
+          "maxLoan": 1500000,
+          "minLoan": 50000,
+          "rates": {
+            "75ltv_2yr": 6.14,
+            "75ltv_5yr": 6.09,
+            "80ltv_2yr": 6.79,
+            "80ltv_5yr": 6.74
+          }
+        },
+        {
+          "tierName": "Shared Ownership",
+          "description": "Up to 100% of share value for shared ownership properties",
+          "maxLTV": 75,
+          "maxShareValue": 100,
+          "maxLoan": 1000000,
+          "minLoan": 50000,
+          "minPropertyValue": 125000,
+          "rates": {
+            "75ltv_90msv_2yr_0fee": 6.07,
+            "75ltv_90msv_2yr_995fee": 5.79,
+            "75ltv_95msv_2yr_0fee": 6.12,
+            "75ltv_95msv_2yr_995fee": 5.84,
+            "75ltv_100msv_2yr_0fee": 6.17,
+            "75ltv_100msv_2yr_995fee": 5.89,
+            "75ltv_90msv_5yr_0fee": 5.95,
+            "75ltv_90msv_5yr_995fee": 5.84,
+            "75ltv_95msv_5yr_0fee": 6.00,
+            "75ltv_95msv_5yr_995fee": 5.89,
+            "75ltv_100msv_5yr_0fee": 6.05,
+            "75ltv_100msv_5yr_995fee": 5.94
+          }
+        }
+      ],
+      "adverseCreditCriteria": {
+        "flexibilityWithIncomeMultiples": {
+          "ccjs": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "0 in 36 months",
+            "ignoreCriteria": "Ignored if less than £300 in total and satisfied",
+            "mustBeSatisfied": true
+          },
+          "defaults": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "0 in 36 months",
+            "ignoreCriteria": "Ignored if less than £300 in total and satisfied",
+            "mustBeSatisfied": true
+          },
+          "mortgageArrears": {
+            "allowed": true,
+            "timePeriod": "0 in last 12 months and currently up to date"
+          },
+          "unsecuredArrears": {
+            "allowed": true,
+            "timePeriod": "0 in last 12 months and currently up to date"
+          },
+          "maximumStatus": "Must be currently up to date. Maximum 2 down in last 24 months",
+          "dmp": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          },
+          "iva": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          },
+          "dro": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          },
+          "bankruptcy": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          },
+          "repossessions": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          }
+        },
+        "coreResidentialRange": {
+          "ccjs": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "0 in last 24 months",
+            "ignoreCriteria": [
+              "Less than £300 in total and satisfied",
+              "Satisfied more than 12 months ago",
+              "Registered more than 24 months ago whether satisfied or not"
+            ],
+            "mustBeSatisfied": true
+          },
+          "defaults": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "0 in last 24 months",
+            "ignoreCriteria": [
+              "Less than £300 in total and satisfied",
+              "Satisfied more than 12 months ago",
+              "Registered more than 24 months ago whether satisfied or not"
+            ],
+            "mustBeSatisfied": true
+          },
+          "mortgageArrears": {
+            "allowed": true,
+            "timePeriod": "0 in last 12 months and currently up to date"
+          },
+          "unsecuredArrears": {
+            "allowed": true,
+            "maxNumber": 2,
+            "timePeriod": "2 in last 12 months and currently up to date"
+          },
+          "maximumStatus": "Currently up to date. Previous maximum status ignored",
+          "communicationUtilityMailOrder": "Performance ignored where account balance less than £500 (single or aggregate)",
+          "dmp": {
+            "allowed": true,
+            "minMonthsConducted": 12,
+            "notes": "Satisfactorily conducted for minimum of 12 months"
+          },
+          "iva": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          },
+          "dro": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          },
+          "bankruptcy": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          },
+          "repossessions": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          }
+        },
+        "extraFlexibilityRange": {
+          "ccjs": {
+            "allowed": true,
+            "maxNumber": 2,
+            "timePeriod": {
+              "80ltv": "0 in last 6 months (2 in last 24 months)",
+              "85ltv": "0 in last 12 months (2 in last 24 months)"
+            },
+            "ignoreCriteria": [
+              "Less than £300 in total and satisfied",
+              "Satisfied more than 12 months ago",
+              "Registered more than 24 months ago whether satisfied or not"
+            ]
+          },
+          "defaults": {
+            "allowed": true,
+            "maxNumber": 1,
+            "timePeriod": {
+              "80ltv": "0 in last 6 months (1 in last 24 months)",
+              "85ltv": "0 in last 12 months (1 in last 24 months)"
+            },
+            "ignoreCriteria": [
+              "Less than £300 in total and satisfied",
+              "Satisfied more than 12 months ago",
+              "Registered more than 24 months ago whether satisfied or not"
+            ]
+          },
+          "mortgageArrears": {
+            "allowed": true,
+            "timePeriod": {
+              "80ltv": "0 in 6 months and currently up to date",
+              "85ltv": "0 in last 12 months and currently up to date"
+            }
+          },
+          "unsecuredArrears": {
+            "allowed": true,
+            "maxNumber": 2,
+            "timePeriod": "2 in last 12 months and currently up to date"
+          },
+          "maximumStatus": "Currently up to date. Previous maximum status ignored",
+          "communicationUtilityMailOrder": "Performance ignored where account balance less than £500 (single or aggregate)",
+          "dmp": {
+            "allowed": true,
+            "minMonthsConducted": 12,
+            "notes": "Satisfactorily conducted for minimum of 12 months"
+          },
+          "iva": {
+            "allowed": true,
+            "minYearsDischarge": {
+              "80ltv": 3,
+              "85ltv": 6
+            },
+            "notes": "More than 3 years discharged (80% LTV) or more than 6 years discharged (85% LTV)"
+          },
+          "dro": {
+            "allowed": true,
+            "minYearsDischarge": {
+              "80ltv": 3,
+              "85ltv": 6
+            },
+            "notes": "More than 3 years discharged (80% LTV) or more than 6 years discharged (85% LTV)"
+          },
+          "bankruptcy": {
+            "allowed": true,
+            "minYearsDischarge": {
+              "80ltv": 3,
+              "85ltv": 6
+            },
+            "notes": "More than 3 years discharged (80% LTV) or more than 6 years discharged (85% LTV)"
+          },
+          "repossessions": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          }
+        },
+        "sharedOwnership": {
+          "ccjs": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "None in last 36 months",
+            "ignoreCriteria": [
+              "All CCJs/defaults registered more than 3 years ago and satisfied prior to mortgage application",
+              "All CCJs/defaults satisfied more than 12 months prior to application regardless of date of registration",
+              "CCJs/defaults aggregate less than £300, regardless of date of registration, and satisfied prior to application"
+            ],
+            "mustBeSatisfied": true
+          },
+          "defaults": {
+            "allowed": false,
+            "maxNumber": 0,
+            "timePeriod": "None in last 36 months",
+            "ignoreCriteria": [
+              "All CCJs/defaults registered more than 3 years ago and satisfied prior to mortgage application",
+              "All CCJs/defaults satisfied more than 12 months prior to application regardless of date of registration",
+              "CCJs/defaults aggregate less than £300, regardless of date of registration, and satisfied prior to application"
+            ],
+            "mustBeSatisfied": true
+          },
+          "mortgageRentArrears": {
+            "allowed": false,
+            "notes": "In last 12 months not normally accepted but may be considered subject to individual case assessment"
+          },
+          "unsecuredArrears": {
+            "allowed": true,
+            "notes": "Not counted but may be considered on case-by-case basis as part of full underwrite"
+          },
+          "iva": {
+            "allowed": true,
+            "minYearsSinceDischarge": 3,
+            "noResidualDebt": true,
+            "notes": "IVA/bankrupts who have been discharged over 3 years ago and who have no residual debt may be accepted subject to individual case assessment"
+          },
+          "bankruptcy": {
+            "allowed": true,
+            "minYearsSinceDischarge": 3,
+            "noResidualDebt": true,
+            "notes": "IVA/bankrupts who have been discharged over 3 years ago and who have no residual debt may be accepted subject to individual case assessment"
+          },
+          "repossessions": {
+            "allowed": false,
+            "notes": "Not acceptable"
+          }
+        }
+      },
+      "incomeCriteria": {
+        "minimumIncome": null,
+        "flexibleIncomeMultiples": true,
+        "multiSourceIncome": {
+          "accepted": true,
+          "secondaryIncome": 100,
+          "notes": "100% of secondary income considered in many scenarios. Accept multi-source income from employment, self-employment or combination of both"
+        },
+        "employed": {
+          "accepted": true,
+          "percentage": 100
+        },
+        "selfEmployed": {
+          "accepted": true,
+          "minYearsAccounts": 1,
+          "yearTwoProjection": "Can work on projection for year two based on uplift of up to 30% of first year's figures",
+          "percentage": 100
+        },
+        "contractors": {
+          "accepted": true,
+          "percentage": 100
+        },
+        "professionalLandlords": {
+          "accepted": true,
+          "asFullTimeIncome": true,
+          "notes": "Accept earnings from professional landlords as full time income source"
+        },
+        "complexIncome": {
+          "accepted": true,
+          "types": ["Sportspersons", "Musicians", "Actors"],
+          "notes": "Complex income sources understood and considered"
+        },
+        "newlyQualifiedProfessionals": {
+          "accepted": true,
+          "noMaxLoan": true,
+          "maxLTV": 90,
+          "notes": "Options with no maximum loan amount at 90% LTV helping newly qualified professionals",
+          "eligibleProfessions": [
+            "Accountant",
+            "Actuary",
+            "Barrister",
+            "Dentist",
+            "Financial adviser",
+            "Firefighter",
+            "Medical doctor",
+            "NHS clinician",
+            "Nurse",
+            "Optometrist",
+            "Pharmacist",
+            "Police officer",
+            "Solicitor",
+            "Surveyor",
+            "Teacher or lecturer",
+            "Veterinarian"
+          ]
+        }
+      },
+      "propertyRequirements": {
+        "minimumValue": 75000,
+        "sharedOwnershipMinValue": 125000,
+        "acceptedTypes": [
+          "Standard residential properties",
+          "Shared ownership properties"
+        ],
+        "excludedTypes": [],
+        "locations": {
+          "england": true,
+          "wales": true,
+          "scotland": false,
+          "northernIreland": false,
+          "notes": "Available in England and Wales only"
+        },
+        "cashPurchaseRemortgage": {
+          "accepted": true,
+          "minMonthsOwnership": 6,
+          "notes": "Properties bought for cash and renovated to increase value can be considered for remortgaging within 6 months of ownership providing this can be fully evidenced"
+        }
+      },
+      "specialFeatures": {
+        "highNetWorth": {
+          "available": true,
+          "noMaxLoan": true,
+          "notes": "For high net worth clients, options available with no maximum loan amount. Complex income sources such as sportspersons, musicians and actors are understood and considered"
+        },
+        "commonSenseApproach": {
+          "description": "Willingness to consider cases that fall outside of standard criteria and ability to be flexible with income multiples",
+          "bespokeSolutions": "Business development managers empowered to provide tailored solutions even if case doesn't fit standard criteria"
+        },
+        "portability": {
+          "available": true,
+          "notes": "Products are portable. If client moves home during initial deal period, remaining benefits (up to outstanding balance of existing mortgage) can be transferred to new mortgage, subject to lending criteria. ERC not charged but existing rate won't apply to additional funds borrowed"
+        }
+      },
+      "fees": {
+        "applicationFee": 145,
+        "productFees": [
+          {
+            "type": "£995 fee",
+            "amount": 995
+          },
+          {
+            "type": "£0 fee",
+            "amount": 0,
+            "notes": "Option to add fees available on shared ownership products"
+          }
+        ],
+        "valuationFee": {
+          "scale": [
+            {"propertyValue": 100000, "fee": 175},
+            {"propertyValue": 150000, "fee": 200},
+            {"propertyValue": 200000, "fee": 225},
+            {"propertyValue": 250000, "fee": 250},
+            {"propertyValue": 300000, "fee": 275},
+            {"propertyValue": 350000, "fee": 300},
+            {"propertyValue": 400000, "fee": 325},
+            {"propertyValue": 450000, "fee": 350},
+            {"propertyValue": 500000, "fee": 375},
+            {"propertyValue": 600000, "fee": 485},
+            {"propertyValue": 700000, "fee": 585},
+            {"propertyValue": 800000, "fee": 650},
+            {"propertyValue": 900000, "fee": 710},
+            {"propertyValue": 1000000, "fee": 825},
+            {"propertyValue": 1500000, "fee": 1225},
+            {"propertyValue": 2000000, "fee": 1625},
+            {"propertyValue": 2500000, "fee": 1925},
+            {"propertyValue": 3000000, "fee": 2225},
+            {"propertyValue": 3500000, "fee": 2725},
+            {"propertyValue": 4000000, "fee": 3125},
+            {"propertyValue": 4500000, "fee": 3425},
+            {"propertyValue": 5000000, "fee": 3725},
+            {"propertyValue": 6000000, "fee": 4000},
+            {"propertyValue": 7000000, "fee": 5000},
+            {"propertyValue": 8000000, "fee": 6000},
+            {"propertyValue": 9000000, "fee": 7000},
+            {"propertyValue": 10000000, "fee": 8000}
+          ]
+        },
+        "earlyRepaymentCharges": {
+          "2year": ["4% year 1", "3% year 2"],
+          "5year": ["4% year 1", "4% year 2", "3% year 3", "3% year 4", "2% year 5"]
+        },
+        "overpayments": "Payments up to maximum of £499.99 per month can be made without incurring early repayment charge"
+      },
+      "applicationCriteria": {
+        "minAge": 18,
+        "maxAge": 85,
+        "maxAgeNotes": "Maximum age at end of mortgage term is 85",
+        "maxApplicants": null,
+        "residentialStatus": null,
+        "minTerm": 5,
+        "maxTerm": 35,
+        "repaymentMethods": {
+          "flexibilityWithIncomeMultiples": {
+            "capitalRepayment": {
+              "available": true,
+              "maxLTV": 95
+            },
+            "interestOnly": {
+              "available": true
+            },
+            "partAndPart": {
+              "available": true
+            }
+          },
+          "coreResidential": {
+            "capitalRepayment": {
+              "available": true,
+              "maxLTV": 90
+            },
+            "interestOnly": {
+              "available": true
+            },
+            "partAndPart": {
+              "available": true
+            }
+          },
+          "extraFlexibility": {
+            "capitalRepayment": {
+              "available": true,
+              "maxLTV": 80
+            },
+            "interestOnly": {
+              "available": true
+            },
+            "partAndPart": {
+              "available": true
+            }
+          },
+          "sharedOwnership": {
+            "capitalRepayment": {
+              "available": true,
+              "maxLTV": 75,
+              "maxShareValue": 100
+            },
+            "interestOnly": {
+              "available": false
+            },
+            "partAndPart": {
+              "available": false
+            },
+            "notes": "Shared ownership products only available on repayment basis"
+          }
+        },
+        "offerValidity": null,
+        "purchaseMaxLTV": 95,
+        "remortgageMaxLTV": 90
+      },
+      "reversionRates": {
+        "standard": "BBR + 3.00%",
+        "notes": "On expiry of fixed rate product, mortgage will revert to variable rate above Bank of England Base Rate (BBR) for remainder of loan. Rate will move up and down in line with BBR but if BBR falls below 0.00% rate charged won't change"
+      }
+    }
+  ]
+}
